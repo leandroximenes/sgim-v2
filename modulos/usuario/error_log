@@ -1,0 +1,12 @@
+[20-Jul-2020 07:07:31 America/Chicago] PHP Fatal error:  Uncaught exception 'Exception' with message 'Erro ao executar comando.' in /home1/tabak865/public_html/sgim/conexao/conexao.php:85
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/modulos/usuario/gerenciar_usuario.php(504): MySQL->runQuery('CALL procPessoa...')
+#1 /home1/tabak865/public_html/sgim/modulos/usuario/gerenciar_usuario.php(882): pessoaGrupoListar()
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 85
+[06-Oct-2020 07:50:42 America/Chicago] PHP Fatal error:  Uncaught exception 'Exception' with message 'Erro ao executar comando.' in /home1/tabak865/public_html/sgim/conexao/conexao.php:85
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/modulos/usuario/gerenciar_usuario.php(504): MySQL->runQuery('CALL procPessoa...')
+#1 /home1/tabak865/public_html/sgim/modulos/usuario/gerenciar_usuario.php(882): pessoaGrupoListar()
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 85

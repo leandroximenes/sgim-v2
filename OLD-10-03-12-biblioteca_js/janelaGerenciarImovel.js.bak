@@ -1,0 +1,879 @@
+function gerenciarImovel(){
+	var codImovelSelecionado = 0
+
+
+	var msg = function(title, msg){
+		Ext.Msg.show({
+			title: title, 
+			msg: msg,
+			minWidth: 200,
+			modal: true,
+			icon: Ext.Msg.INFO,
+			buttons: Ext.Msg.OK
+		});
+	};
+
+	//Tipo de Imóvel
+	var storeTipoImovel = new Ext.data.Store({
+		id: 'storeTipoImovel',
+		proxy: new Ext.data.HttpProxy({
+			url: 'modulos/imovel/gerenciar_imovel.php',
+			method: 'POST'
+		}),
+		baseParams:{acao: "listarTipoImovel"},
+		reader: new Ext.data.JsonReader({
+			root: 'resultado',
+			totalProperty: 'total',
+			id: ['codTipoImovel','nome']
+		},[ 
+			{name: 'codTipoImovel', type: 'int'},
+			{name: 'nome', type: 'string'}
+
+		]),
+		sortInfo:{field: 'nome', direction: "ASC"}
+	}) 
+
+	storeTipoImovel.load()
+
+	
+	//Proprietario
+	var storeProprietario = new Ext.data.Store({
+		id: 'storeProprietario',
+		proxy: new Ext.data.HttpProxy({
+			url: 'modulos/usuario/gerenciar_usuario.php',
+			method: 'POST'
+		}),
+		baseParams:{acao: "proprietarioListar"},
+		reader: new Ext.data.JsonReader({
+			root: 'resultado',
+			totalProperty: 'total',
+			id: ['codPessoa','nome']
+		},[ 
+			{name: 'codPessoa', type: 'int'},
+			{name: 'nome', type: 'string'}
+
+		]),
+		sortInfo:{field: 'nome', direction: "ASC"}
+	}) 
+	storeProprietario.load()
+
+
+	var ufStore = new Ext.data.Store({
+		id: 'ufStore',
+		proxy: new Ext.data.HttpProxy({
+			url: 'modulos/diversos/gerenciar_uf.php',
+			method: 'POST'
+		}),
+		baseParams:{acao: "ufListar"},
+		reader: new Ext.data.JsonReader({
+			root: 'resultado',
+			totalProperty: 'total',
+			id: ['uf']
+		},[ 
+			{name: 'uf', type: 'string'}
+
+		]),
+		sortInfo:{field: 'uf', direction: "ASC"}
+	}) 
+
+	ufStore.load()
+
+		
+	//Tipo de Serviço
+	var storeTipoServico = new Ext.data.Store({
+		id: 'storeTipoServico',
+		proxy: new Ext.data.HttpProxy({
+			url: 'modulos/servico/gerenciar_servico.php',
+			method: 'POST'
+		}),
+		baseParams:{acao: "servicoListar"},
+		reader: new Ext.data.JsonReader({
+			root: 'resultado',
+			totalProperty: 'total',
+			id: ['codServico','nome']
+		},[ 
+			{name: 'codTipoServico', type: 'int'},
+			{name: 'nome', type: 'string'}
+
+		]),
+		sortInfo:{field: 'nome', direction: "ASC"}
+	}) 
+
+	storeTipoServico.load()
+
+		
+
+	function imovelEditar(value){
+		return '<center><img src="img/ic_editar.png" /></center>'
+	}
+
+	function imovelExcluir(value){
+		if(value == 1){
+			return '<center><img src="img/ic_desativar.png" /></center>'
+		}else{
+			return '<center><img src="img/ic_ativar.png" /></center>'
+		}
+	}
+
+	
+
+	function verificarAtivo(value){
+		if(value == true){
+			return 'sim'
+		}else{
+			return 'não'
+		}
+	}
+
+	imovelStore = new Ext.data.Store({
+		id: 'imovelStore',
+		proxy: new Ext.data.HttpProxy({
+			url: 'modulos/imovel/gerenciar_imovel.php',
+			method: 'POST'
+		}),
+		baseParams:{acao: "imovelListar"},
+		reader: new Ext.data.JsonReader({
+			root: 'resultado',
+			totalProperty: 'total',
+			id: ['codImovel']
+		},[ 
+			{name: 'codImovel', type: 'int', mapping: 'codImovel'},
+			{name: 'codPessoa', type: 'int', mapping: 'codPessoa'},
+			{name: 'codTipoImovel', type: 'int', mapping: 'codTipoImovel'},
+			{name: 'codTipoServico', type: 'int', mapping: 'codTipoServico'},
+			{name: 'tipoImovel', type: 'string', mapping: 'tipoImovel'},
+			{name: 'tipoServico', type: 'string', mapping: 'tipoServico'},
+			{name: 'endereco', type: 'string', mapping: 'endereco'},
+			{name: 'bairro', type: 'string', mapping: 'bairro'},
+			{name: 'cep', type: 'string', mapping: 'cep'},
+			{name: 'cidade', type: 'string', mapping: 'cidade'},
+			{name: 'proprietario', type: 'string', mapping: 'proprietario'},
+			{name: 'valorBase', type: 'float', mapping: 'valorBase'},
+			{name: 'condominio', type: 'float', mapping: 'condominio'},
+			{name: 'valor', type: 'float', mapping: 'valor'},
+			{name: 'dce', type: 'int', mapping: 'dce'},		
+			{name: 'uf', type: 'char', mapping: 'uf'},		
+			{name: 'qtdQuarto', type: 'int', mapping: 'qtdQuarto'},
+			{name: 'qtdSuite', type: 'int', mapping: 'qtdSuite'},
+			{name: 'qtdBanheiro', type: 'int', mapping: 'qtdBanheiro'},
+			{name: 'qtdGaragem', type: 'int', mapping: 'qtdGaragem'},
+			{name: 'areaPrivativa', type: 'float', mapping: 'areaPrivativa'},
+			{name: 'areaComum', type: 'float', mapping: 'areaComum'},
+			{name: 'qtdSuite', type: 'int', mapping: 'qtdSuite'},
+			{name: 'telefoneSindico', type: 'string', mapping: 'telefoneSindico'},
+			{name: 'telefoneCondominio', type: 'string', mapping: 'telefoneCondominio'},
+			{name: 'observacao', type: 'string', mapping: 'observacao'},
+			{name: 'status', type: 'int', mapping: 'status'}
+		])
+	}) 
+	
+	imovelColuna = new Ext.grid.ColumnModel(
+		[{
+	        header: 'codImovel',
+	        dataIndex: 'codImovel', 
+	        width: 100,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Tipo',
+	        dataIndex: 'tipoImovel', 
+	        width: 80,
+			readOnly: false
+	      },{
+	        header: 'Endereço',
+	        dataIndex: 'endereco', 
+	        width: 100,
+			readOnly: true
+	      },{
+	        header: 'bairro',
+	        dataIndex: 'bairro', 
+	        width: 100,
+			readOnly: true
+	      },{
+	        header: 'Cep',
+	        dataIndex: 'cep', 
+	        width: 100,
+			readOnly: true,
+			hidden: true
+	      },{
+	        header: 'Cidade',
+	        dataIndex: 'cidade', 
+	        width: 100,
+			readOnly: true
+	      },{
+	        header: 'Valor',
+	        dataIndex: 'valorBase', 
+	        width: 100,
+			readOnly: true
+	      },{
+	        header: 'Condominio',
+	        dataIndex: 'condominio', 
+	        width: 100,
+			readOnly: true,
+			hidden: true
+	      },{
+	        header: 'Área Privativa',
+	        dataIndex: 'areaPrivativa', 
+	        width: 100,
+			readOnly: true,
+			hidden: true
+	      },{
+	        header: 'Área Comum',
+	        dataIndex: 'areaComum', 
+	        width: 100,
+			readOnly: true,
+			hidden: true
+	      },{
+	        header: 'Qtd Garagem',
+	        dataIndex: 'qtdGaragem', 
+	        width: 100,
+			readOnly: true,
+			hidden: true
+	      },{
+	        header: 'Qtd Quarto',
+	        dataIndex: 'qtdQuarto', 
+	        width: 100,
+			readOnly: true,
+			hidden: true
+	      },{
+	        header: 'Qtd Suíte',
+	        dataIndex: 'qtdSuite', 
+	        width: 100,
+			readOnly: true,
+			hidden: true
+	      },{
+	        header: 'Qtd Banheiro',
+	        dataIndex: 'qtdBanheiro', 
+	        width: 100,
+			readOnly: true,
+			hidden: true
+	      },{
+	        header: 'Excluir',
+	        dataIndex: 'status', 
+	        width: 50,
+			renderer: imovelExcluir,
+			readOnly: true
+	      },{
+	        header: 'Observação',
+	        dataIndex: 'observacao', 
+	        width: 50,
+			hidden: true,
+			readOnly: true
+	      },{
+	        header: 'Telefone Síndico',
+	        dataIndex: 'telefoneSindico', 
+	        width: 50,
+			hidden: true,
+			readOnly: true
+	      },{
+	        header: 'Telefone Condomínio',
+	        dataIndex: 'telefoneCondominio', 
+	        width: 50,
+			hidden: true,
+			readOnly: true
+	      },{
+	        header: 'Status',
+	        dataIndex: 'status', 
+	        width: 50,
+			hidden: true,
+			readOnly: true
+	      }
+	])	
+	imovelColuna.defaultSortable = true
+
+
+	cbTipoImovel = new Ext.form.ComboBox({
+		id: 'cbTipoImovel',
+		typeAhead: false,
+		fieldLabel: '<b>Tipo de Imóvel</b>',
+		value: '',
+		mode: 'local',
+		editable: false,
+		anchor: '60%',
+		store: storeTipoImovel,
+		displayField: 'nome',
+		valueField: 'codTipoImovel',
+		forceSelection: true,
+		triggerAction: 'all'
+
+	})
+
+	cbProprietario = new Ext.form.ComboBox({
+		id: 'cbProprietario',
+		typeAhead: false,
+		fieldLabel: '<b>Proprietário</b>',
+		value: '',
+		mode: 'local',
+		editable: false,
+		anchor: '98%',
+		store: storeProprietario,
+		displayField: 'nome',
+		valueField: 'codPessoa',
+		forceSelection: true,
+		triggerAction: 'all'
+
+	})
+
+	cbTipoServico = new Ext.form.ComboBox({
+		id: 'cbTipoServico',
+		typeAhead: false,
+		fieldLabel: '<b>Tipo de Serviço</b>',
+		value: '',
+		mode: 'local',
+		editable: false,
+		anchor: '50%',
+		store: storeTipoServico,
+		displayField: 'nome',
+		valueField: 'codTipoServico',
+		forceSelection: true,
+		triggerAction: 'all'
+
+	})
+
+	txEndereco = new Ext.form.TextArea({
+		fieldLabel: '<b>Endereço</b>',
+		name: 'endereco',
+		id: 'txEndereco',
+		allowBlank:false,
+		blankText:"Por favor entre com o endereço do imóvel.",
+		maxLength: 100,
+		anchor : '98%',
+		height : 50
+	})
+
+
+	txObservacoes = new Ext.form.TextArea({
+		fieldLabel: '<b>Observações</b>',
+		name: 'observacao',
+		id: 'txObservacoes',
+		allowBlank: true,
+		maxLength: 100,
+		anchor : '98%',
+		height : 70
+	})
+
+	tfBairro = new Ext.form.TextField({
+		fieldLabel: '<b>Bairro</b>',
+		name: 'bairro',
+		id: 'tfBairro',
+		allowBlank:false,
+		blankText:"Por favor insira o bairro.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfCep = new Ext.form.TextField({
+		fieldLabel: '<b>Cep</b>',
+		name: 'cep',
+		id: 'tfCep',
+		allowBlank:false,
+		blankText:"Por favor insira o CEP.",
+		maxLength: 8,
+		anchor : '98%'
+	})
+	
+	tfCidade = new Ext.form.TextField({
+		fieldLabel: '<b>Cidade</b>',
+		name: 'cidade',
+		id: 'tfCidade',
+		allowBlank:false,
+		blankText:"Por favor insira a cidade.",
+		maxLength: 100,
+		anchor: '95%'
+	})
+
+	cbUf = new Ext.form.ComboBox({
+		xtype: 'combo',
+		id: 'cbUf',
+		typeAhead: false,
+		name: 'uf',
+		fieldLabel: '<b>UF</b>',
+		value: '',
+		mode: 'local',
+		editable: false,
+		store: ufStore,
+		displayField: 'uf',
+		valueField: 'uf',
+		forceSelection: true,
+		triggerAction: 'all',
+		anchor: '95%'
+	})
+
+		
+
+	tfNIptu = new Ext.form.TextField({
+		fieldLabel: '<b>Nº IPTU</b>',
+		name: 'nIptu',
+		id: 'tfNIptu',
+		allowBlank:false,
+		boxLabel: '(m2)',
+		blankText:"Por favor insira o número do IPTU.",
+		anchor : '95%'
+	})
+		
+	
+	tfNCeb = new Ext.form.TextField({
+		fieldLabel: '<b>Nº CEB</b>',
+		name: 'nCeb',
+		id: 'tfNCeb',
+		allowBlank:false,
+		boxLabel: '(m2)',
+		blankText:"Por favor insira o número da CEB.",
+		anchor : '95%'
+	})
+		
+	tfNCaesb = new Ext.form.TextField({
+		fieldLabel: '<b>Nº CAESB</b>',
+		name: 'nCaesb',
+		id: 'tfNCaesb',
+		allowBlank:false,
+		boxLabel: '(m2)',
+		blankText:"Por favor insira o número da CAESB.",
+		anchor : '95%'
+	})
+		
+	
+	
+	tfAreaPrivativa = new Ext.form.TextField({
+		fieldLabel: '<b>Área Privativa</b>',
+		name: 'areaPrivativa',
+		id: 'tfAreaPrivativa',
+		allowBlank:false,
+		boxLabel: '(m2)',
+		blankText:"Por favor insira a cidade.",
+		anchor : '95%'
+	})
+
+	tfAreaComum = new Ext.form.TextField({
+		fieldLabel: '<b>Área Comum</b>',
+		name: 'areaComum',
+		id: 'tfAreaComum',
+		allowBlank:false,
+		boxLabel: '(m2)',
+		blankText:"Por favor insira a cidade.",
+		anchor : '95%'
+	})
+
+	tfDce = new Ext.form.TextField({
+		fieldLabel: '<b>DCE</b>',
+		name: 'dce',
+		id: 'tfDce',
+		allowBlank:false,
+		blankText:"Por favor insira a DCE.",
+		anchor : '95%'
+	})
+
+	tfValor = new Ext.form.TextField({
+		fieldLabel: '<b>Valor</b>',
+		name: 'valorBase',
+		id: 'tfValor',
+		allowBlank:false,
+		blankText:"Por favor insira o valor.",
+		anchor : '95%'
+	})
+
+	tfCondominio = new Ext.form.TextField({
+		fieldLabel: '<b>Condomínio</b>',
+		name: 'condominio',
+		id: 'tfCondominio',
+		allowBlank:false,
+		blankText:"Por favor insira o valor do condomínio.",
+		anchor : '95%'
+	})
+
+
+	tfQuartos = new Ext.form.TextField({
+		fieldLabel: '<b>Nº de Quartos</b>',
+		name: 'qtdQuarto',
+		id: 'tfQuartos',
+		allowBlank:false,
+		blankText:"Por favor insira a quantidade quartos.",
+		anchor : '95%'
+	})
+
+	tfSuites = new Ext.form.TextField({
+		fieldLabel: '<b>Nº de Suítes</b>',
+		name: 'qtdSuite',
+		id: 'tfSuites',
+		allowBlank:false,
+		blankText:"Por favor insira a quantidade suítes.",
+		anchor : '95%'
+	})
+
+	tfBanheiros = new Ext.form.TextField({
+		fieldLabel: '<b>Banheiros</b>',
+		name: 'qtdBanheiro',
+		id: 'tfBanheiros',
+		allowBlank:false,
+		blankText:"Por favor insira a quantidade banheiros.",
+		anchor : '95%'
+	})
+
+	tfGaragem = new Ext.form.TextField({
+		fieldLabel: '<b>Vagas Garagem</b>',
+		name: 'qtdGaragem',
+		id: 'tfGaragem',
+		allowBlank:false,
+		blankText:"Por favor insira a quantidade de vagas.",
+		anchor : '95%'
+	})
+
+	tfTelefoneCondominio = new Ext.form.TextField({
+		fieldLabel: '<b>Tel Condomínio</b>',
+		name: 'telefoneCondominio',
+		id: 'tfTelefoneCondominio',
+		allowBlank:false,
+		blankText:"Por favor insira o telefone do condomínio.",
+		anchor : '95%'
+	})
+
+	tfTelefoneSindico = new Ext.form.TextField({
+		fieldLabel: '<b>Tel Sindíco</b>',
+		name: 'telefoneSindico',
+		id: 'tfTelefoneSindico',
+		allowBlank:false,
+		maskRe: 99-99999,
+		blankText:"Por favor insira o telefone do síndico.",
+		anchor : '95%'
+	})
+
+	function manterImovel(coluna,statusImovel,codImovel){
+		if(coluna == 13){
+			if(statusImovel == 1){
+				if(confirm('Tem certeza que deseja desativar esse imóvel?')){
+					Ext.Ajax.request({
+						url: 'modulos/imovel/gerenciar_imovel.php',
+						params: { 
+							acao: 'imovelDesativar',
+							codImovel:  codImovel
+						},
+						callback: function(options, success, response) {
+							
+							var retorno = Ext.decode(response.responseText);
+							
+							if(retorno.success == false){
+								Ext.MessageBox.alert('ok')
+							}else{
+								imovelStore.reload()
+								imovelGrid.getForm().reset()
+							}
+						}
+					})
+				}
+			}else{
+				if(confirm('Tem certeza que deseja ativar esse imóvel?')){
+					Ext.Ajax.request({
+						url: 'modulos/imovel/gerenciar_imovel.php',
+						params: { 
+							acao: 'imovelAtivar',
+							codImovel:  codImovel
+						},
+						callback: function(options, success, response) {
+							
+							var retorno = Ext.decode(response.responseText);
+							
+							if(retorno.success == false){
+								msg('Erro', 'Erro ao tentar executar a operação!')
+							}else{
+								imovelStore.reload()
+							}
+						}
+					})
+				}
+			}
+		}
+	
+	}
+
+	var gridListaImoveis = new Ext.grid.GridPanel({
+		id: 'gridListaImoveis',
+		ds: imovelStore,
+		cm: imovelColuna,
+		listeners:{
+			cellclick: function(grid,linha,coluna){
+				//Verifica se é a coluna de exclusão
+				var dados = grid.store.getAt(linha);
+				var codImovel = dados.get('codImovel')
+				var statusImovel = dados.get('status')
+				manterImovel(coluna, statusImovel,codImovel)
+				
+			},
+			rowcontextmenu: function(grid,rowIndex, e){
+				e.stopEvent()
+				var acao;
+				var dados = grid.store.getAt( rowIndex );
+				
+				if(dados.get('status') == 1){
+					acao = 'Desativar';
+					status = 'botaoDesativar'; 
+				}else{
+					acao = 'Ativar';
+					status = 'botaoAtivar'; 
+				}
+				
+				var contextMenu = new Ext.menu.Menu();
+				contextMenu.add({
+					text: acao,
+					iconCls: status,
+					handler: function (){
+						manterImovel('13', dados.get('status'),dados.get('codImovel'))
+					}
+				});
+				
+				contextMenu.showAt(e.xy);
+			}
+		},
+		viewConfig: {
+			forceFit: true,
+			getRowClass: function(record, rowIndex, rp, ds){
+				if(record.data.status == '0'){
+					return 'linhaDesativada'
+				}
+			}
+		}, 
+		sm: new Ext.grid.RowSelectionModel({
+			singleSelect: true,
+			listeners: {
+				rowselect: function(sm, row, rec) {
+					codImovelSelecionado = rec.data.codImovel
+					Ext.getCmp("imovelGrid").getForm().loadRecord(rec)
+					Ext.getCmp("cbTipoImovel").setRawValue(rec.data.tipoImovel)
+					Ext.getCmp("cbTipoImovel").setValue(rec.data.codTipoImovel)
+					Ext.getCmp("cbTipoServico").setRawValue(rec.data.tipoServico)
+					Ext.getCmp("cbTipoServico").setValue(rec.data.codTipoServico)
+					Ext.getCmp("cbProprietario").setRawValue(rec.data.proprietario)
+					Ext.getCmp("cbProprietario").setValue(rec.data.codPessoa)
+				}			
+			}
+		}),
+		autoExpandColumn: 'codImovel',
+		height: 442,
+		border: true
+	})
+
+	var imovelGrid = new Ext.FormPanel({
+        id: 'imovelGrid',
+        frame: true,
+		autoHeight: true,
+        labelAlign: 'left',
+        layout: 'column',	
+		items: [{
+			columnWidth: 0.5,
+			layout: 'fit',
+			items: [gridListaImoveis]
+        },{
+        	columnWidth: 0.50,
+            xtype: 'fieldset',
+			style: 'margin: 0px 5px 5px 5px;',
+            title:'Cadastro de Imóvel', 
+			bodyStyle: Ext.isIE ? 'padding:0 0 5px 10px' : 'padding:10px 10px',
+            items:[{
+				layout:'column',
+				width: '100%',
+				border: false,
+				items: [{	
+					columnWidth: 1,
+					labelWidth: 100,
+					layout: 'form',
+					autoHeight: true,
+					border: false,
+					items: [cbProprietario, cbTipoImovel, cbTipoServico, txEndereco]
+				},{
+					columnWidth: 0.75,
+					labelWidth: 100,
+					layout: 'form',
+					border: false,
+					items: [tfBairro]
+				},{
+					columnWidth: 0.25,
+					labelWidth: 40,
+					layout: 'form',
+					border: false,
+					items: [tfCep]
+				},{
+					columnWidth: 0.8,
+					labelWidth: 100,
+					layout: 'form',
+					border: false,
+					items: [tfCidade]
+				},{
+					columnWidth: 0.2,
+					labelWidth: 20,
+					layout: 'form',
+					items: [cbUf]
+				},{
+					columnWidth: 0.4,
+					labelWidth: 100,
+					layout: 'form',
+					border: false,
+					items: [tfAreaPrivativa]
+				},{
+					columnWidth: 0.4,
+					labelWidth: 90,
+					layout: 'form',
+					items: [tfAreaComum]
+				},{
+					columnWidth: 0.2,
+					labelWidth: 30,
+					layout: 'form',
+					items: [tfDce]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 100,
+					layout: 'form',
+					items: [tfValor]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 100,
+					layout: 'form',
+					items: [tfCondominio]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 100,
+					layout: 'form',
+					items: [tfQuartos]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 100,
+					layout: 'form',
+					items: [tfSuites]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 100,
+					layout: 'form',
+					items: [tfBanheiros]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 100,
+					layout: 'form',
+					items: [tfGaragem]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 100,
+					layout: 'form',
+					items: [tfTelefoneCondominio]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 100,
+					layout: 'form',
+					items: [tfTelefoneSindico]
+				},{
+					columnWidth: 0.4,
+					labelWidth: 100,
+					layout: 'form',
+					border: false,
+					items: [tfNIptu]
+				},{
+					columnWidth: 0.3,
+					labelWidth: 50,
+					layout: 'form',
+					items: [tfNCeb]
+				},{
+					columnWidth: 0.3,
+					labelWidth: 65,
+					layout: 'form',
+					items: [tfNCaesb]
+				},{
+					columnWidth: 1,
+					labelWidth: 100,
+					layout: 'form',
+					items: [txObservacoes]
+				}]
+			}]
+				
+        }],	
+		bbar: ['->',
+			
+			botaoNovo = new Ext.Button({
+				id: 'botaoNovo',
+				text: 'Novo',
+				tooltip: 'Novo',
+				handler: novo,   
+				iconCls:'botaoNovo'
+			}),'-',
+
+			botaoSalvar= new Ext.Button({
+				id: 'botaoSalvar',
+				text: 'Salvar',
+				tooltip: 'Salvar',
+				handler: salvar,
+				iconCls:'botaoSalvar'
+			})
+		]
+    })
+
+
+function novo(){
+	codImovelSelecionado = 0
+	imovelStore.load()
+	imovelGrid.getForm().reset()
+}	
+
+function salvar (){
+
+	Ext.Ajax.request({
+		url: 'modulos/imovel/gerenciar_imovel.php',
+		params: { 
+			acao: 'imovelCadastrar',
+			codImovel: codImovelSelecionado,
+			codTipoImovel : cbTipoImovel.getValue(),
+			codTipoServico : cbTipoServico.getValue(),
+			codProprietario:  cbProprietario.getValue(),
+			endereco: txEndereco.getValue(),
+			bairro: tfBairro.getValue(),
+			cep: tfCep.getValue(),
+			cidade: tfCidade.getValue(),
+			uf: cbUf.getValue(),
+			areaPrivativa: tfAreaPrivativa.getValue(),
+			areaComum: tfAreaComum.getValue(),
+			dce: tfDce.getValue(),
+			valor: tfValor.getValue(),
+			condominio: tfCondominio.getValue(),
+			quartos: tfQuartos.getValue(),
+			suites: tfSuites.getValue(),
+			banheiros: tfBanheiros.getValue(),
+			telefoneCondominio: tfTelefoneCondominio.getValue(),
+			telefoneSindico   : tfTelefoneSindico.getValue(),
+			nIptu             : tfNIptu.getValue(),
+			nCeb              : tfNCeb.getValue(),
+			nCaesb            : tfNCaesb.getValue(),
+
+				
+			garagem: tfGaragem.getValue(),
+			observacao: txObservacoes.getValue()
+		},
+		callback: function(options, success, response) {
+			var retorno = Ext.decode(response.responseText);
+			
+			if(retorno.success == false){
+				msg('Informação','Problema ao cadastrar o imóvel!')
+			}else{
+				msg('Informação','Operação executada com sucesso!')
+			}
+		}
+	})
+
+	novo()
+	codImovelSelecionado = 0
+	imovelGrid.getForm().reset()
+}
+
+	imovelStore.load({params: {start: 0, limit: 15}})
+
+	var janelaCadastrarImovel = new Ext.Window({
+		title: 'Gerenciar Imóvel',
+		id: 'janelaCadastrarImovel',
+		layout: 'fit',
+		border: false,
+		draggable: true,
+		resizable: true,
+		autoHeight: true,
+		width: 1000,
+		anchor: 50,
+		height: 510,
+		closeAction:'close',
+		iconCls: 'ic_janela_base',
+		items:[imovelGrid]
+	})
+	janelaCadastrarImovel.show()
+}

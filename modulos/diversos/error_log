@@ -1,0 +1,518 @@
+[20-Jan-2021 10:18:10 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 10:18:10 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 04:18:10 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 04:18:10 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 04:18:10 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 10:18:35 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 10:18:35 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 04:18:35 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 04:18:35 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 04:18:35 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 10:41:45 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 10:41:45 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 04:41:45 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 04:41:45 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 04:41:45 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 10:43:12 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 10:43:12 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 04:43:12 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 04:43:12 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 04:43:12 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 11:52:04 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 11:52:04 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 05:52:04 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 05:52:04 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 05:52:04 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 11:53:01 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 11:53:01 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 05:53:01 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 05:53:01 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 05:53:01 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 16:07:01 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 16:07:01 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 10:07:01 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 10:07:01 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 10:07:01 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 17:44:50 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 17:44:50 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 11:44:50 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 11:44:50 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 11:44:50 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 17:50:16 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 17:50:16 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 11:50:16 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 11:50:16 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 11:50:16 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 17:53:18 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 17:53:18 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 11:53:18 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 11:53:18 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 11:53:18 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 17:59:07 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 17:59:07 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 11:59:07 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 11:59:07 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 11:59:07 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 18:23:19 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 18:23:19 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 12:23:19 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 12:23:19 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 12:23:19 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 18:56:56 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 18:56:56 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 12:56:56 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 12:56:56 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 12:56:56 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 19:16:42 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 19:16:42 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 13:16:42 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 13:16:42 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 13:16:42 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 19:27:05 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 19:27:05 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 13:27:05 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 13:27:05 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 13:27:05 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 19:32:21 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 19:32:21 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 13:32:21 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 13:32:21 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 13:32:21 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 19:33:12 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 19:33:12 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 13:33:12 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 13:33:12 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 13:33:12 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 19:35:13 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 19:35:13 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 13:35:13 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 13:35:13 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 13:35:13 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(71): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 19:35:59 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 19:35:59 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 13:35:59 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 13:35:59 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 19:41:02 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 19:41:02 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 13:41:02 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 13:41:02 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 13:41:02 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 19:44:06 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 19:44:06 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 13:44:06 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 13:44:06 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 13:44:06 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 20:03:27 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 20:03:27 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 14:03:27 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 14:03:27 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 14:03:27 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 20:06:20 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 20:06:20 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 14:06:20 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 14:06:20 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 14:06:20 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[20-Jan-2021 17:28:56 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:28:56 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 17:29:15 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:29:15 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 17:29:46 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:29:46 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 17:31:02 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:31:02 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 17:34:57 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:34:57 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 17:34:59 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:34:59 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 17:35:08 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:35:08 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 17:38:19 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:38:19 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 17:38:22 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:38:22 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[20-Jan-2021 17:38:25 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:38:25 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 07:39:22 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 07:39:22 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 07:39:27 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 07:39:27 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 07:39:35 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 07:39:35 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 07:39:51 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 07:39:51 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 07:39:57 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 07:39:57 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 07:41:15 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 07:41:15 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 07:41:18 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 07:41:18 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 08:52:48 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 08:52:48 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 08:52:53 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 08:52:53 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 08:53:08 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 08:53:08 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 08:53:17 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 08:53:17 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 09:02:00 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:02:00 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 09:02:03 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:02:03 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 09:02:19 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:02:19 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 09:02:41 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:02:41 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 09:03:26 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:03:26 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 09:03:43 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:03:43 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 09:04:15 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:04:15 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 09:10:01 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:10:01 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 09:10:50 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:10:50 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 09:10:57 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:10:57 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 09:11:23 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:11:23 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 11:11:04 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 11:11:04 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 11:11:14 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 11:11:14 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 11:11:50 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 11:11:50 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[21-Jan-2021 14:40:46 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 14:40:46 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[22-Jan-2021 06:45:08 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[22-Jan-2021 06:45:08 America/Fortaleza] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; MySQL has a deprecated constructor in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 23
+[23-Jan-2021 23:03:57 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 23:03:57 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 17:03:57 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[23-Jan-2021 23:04:54 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 23:04:54 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 17:04:54 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[23-Jan-2021 23:10:06 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 23:10:06 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 17:10:06 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[25-Jan-2021 09:54:31 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 09:54:31 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 03:54:31 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[25-Jan-2021 09:54:49 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 09:54:49 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 03:54:49 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[25-Jan-2021 11:43:35 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 11:43:35 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 05:43:35 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[25-Jan-2021 13:23:39 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 13:23:39 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 07:23:39 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40
+[25-Jan-2021 15:35:27 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 15:35:27 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 09:35:27 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home1/tabak865/public_html/sgim/conexao/conexao.php:40
+Stack trace:
+#0 /home1/tabak865/public_html/sgim/conexao/conexao.php(70): MySQL->connMySQL()
+#1 /home1/tabak865/public_html/sgim/modulos/diversos/login.php(28): MySQL->runQuery('call procUsuari...')
+#2 {main}
+  thrown in /home1/tabak865/public_html/sgim/conexao/conexao.php on line 40

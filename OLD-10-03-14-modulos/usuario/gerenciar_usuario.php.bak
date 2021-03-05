@@ -1,0 +1,473 @@
+<?php
+session_start();
+header('Content-Type: text/html; charset=iso-8859-1');
+if(isset($_SESSION["SISTEMA_codPessoa"])){
+
+	include("../../conexao/conexao.php");
+
+	function JEncode($arr){
+		if (version_compare(PHP_VERSION,"5.2","<")){    
+			require_once("./JSON.php"); 
+			$json = new Services_JSON();
+			$data=$json->encode($arr);
+		}else{
+			//utf_prepare($arr);
+			$data = json_encode($arr);
+		}
+		return $data;
+	}
+
+	
+	function proprietarioUnicoListar(){
+		global $mySQL;
+
+		$codProprietario = $_POST['codProprietario'];
+		$sql = sprintf("CALL procPessoaProprietarioUnicoListar($codProprietario)");
+		$rs = $mySQL->runQuery($sql);
+		$rsQuant = $rs->num_rows;
+			
+		if($rsQuant>0){
+			while ($rsLinha = mysqli_fetch_assoc($rs)) {
+				$arr[] = $rsLinha;
+			}
+			$json = JEncode($arr);
+			echo '({"total":"'.$rsQuant.'","resultado":'.$json.'})';
+		} else {
+			echo '({"total":"0", "results":""})';
+		}
+	}
+
+	function proprietarioListar(){
+		global $mySQL;
+
+		$sql = sprintf("CALL procPessoaProprietarioListar()");
+		$rs = $mySQL->runQuery($sql);
+		$rsQuant = $rs->num_rows;
+			
+		if($rsQuant>0){
+			while ($rsLinha = mysqli_fetch_assoc($rs)) {
+				$arr[] = $rsLinha;
+			}
+			$json = JEncode($arr);
+			echo '({"total":"'.$rsQuant.'","resultado":'.$json.'})';
+		} else {
+			echo '({"total":"0", "resultado":""})';
+		}
+	}
+
+
+	function locadorListar(){
+		global $mySQL;
+
+		$sql = sprintf("CALL procPessoaLocadorListar()");
+		$rs = $mySQL->runQuery($sql);
+		$rsQuant = $rs->num_rows;
+			
+		if($rsQuant>0){
+			while ($rsLinha = mysqli_fetch_assoc($rs)) {
+				$arr[] = $rsLinha;
+			}
+			$json = JEncode($arr);
+			echo '({"total":"'.$rsQuant.'","resultado":'.$json.'})';
+		} else {
+			echo '({"total":"0", "results":""})';
+		}
+	}
+
+
+	function pessoaGerenciar() {
+		
+		global $mySQL;
+		
+		$codPessoa     = (integer) $_POST['codPessoa'];
+		$statusUsuario = (integer) $_POST['statusUsuario'];
+
+		$sql = sprintf("call procPessoaGerenciar($statusUsuario, $codPessoa)");
+
+		try {
+			if (!($rs = $mySQL->runQuery($sql))) {
+				throw new Exception("Erro ao executar comando."); 
+			}else{
+				echo "{success:true}";
+			}
+		} catch (Exception $e) {
+			echo "{failure:true}";
+			exit;
+		}
+	}
+
+
+	function pessoaVwListar(){
+		global $mySQL;
+
+		#Consulta os Monitoramentos remotos
+		$sql = sprintf("CALL procPessoaVwListar()");
+		$rs = $mySQL->runQuery($sql);
+		$rsQuant = $rs->num_rows;
+			
+		if($rsQuant>0){
+			while ($rsLinha = mysqli_fetch_assoc($rs)) {
+				$arr[] = $rsLinha;
+			}
+			$json = JEncode($arr);
+			echo '({"total":"'.$rsQuant.'","resultado":'.$json.'})';
+		} else {
+			echo '({"total":"0", "results":""})';
+		}
+	}
+
+	function estadoCivilListar(){
+		global $mySQL;
+
+		#Consulta os Monitoramentos remotos
+		$sql = sprintf("CALL procEstadoCivilListar()");
+		$rs = $mySQL->runQuery($sql);
+		$rsQuant = $rs->num_rows;
+			
+		if($rsQuant>0){
+			while ($rsLinha = mysqli_fetch_assoc($rs)) {
+				$arr[] = $rsLinha;
+			}
+			$json = JEncode($arr);
+			echo '({"total":"'.$rsQuant.'","resultado":'.$json.'})';
+		} else {
+			echo '({"total":"0", "results":""})';
+		}
+	}
+
+	function profissaoListar(){
+		global $mySQL;
+
+		#Consulta os Monitoramentos remotos
+		$sql = sprintf("CALL procProfissaoListar()");
+		$rs = $mySQL->runQuery($sql);
+		$rsQuant = $rs->num_rows;
+			
+		if($rsQuant>0){
+			while ($rsLinha = mysqli_fetch_assoc($rs)) {
+				$arr[] = $rsLinha;
+			}
+			$json = JEncode($arr);
+			echo '({"total":"'.$rsQuant.'","resultado":'.$json.'})';
+		} else {
+			echo '({"total":"0", "results":""})';
+		}
+	}
+
+
+	function fiadorListar(){
+		global $mySQL;
+
+		#Consulta os Monitoramentos remotos
+		$codContrato = $_POST['codContrato'];
+		$sql = sprintf("CALL procContratoFiadorListar($codContrato)");
+		$rs = $mySQL->runQuery($sql);
+		$rsQuant = $rs->num_rows;
+			
+		if($rsQuant>0){
+			while ($rsLinha = mysqli_fetch_assoc($rs)) {
+				$arr[] = $rsLinha;
+			}
+			$json = JEncode($arr);
+			echo '({"total":"'.$rsQuant.'","resultado":'.$json.'})';
+		} else {
+			echo '({"total":"0", "results":""})';
+		}
+	}
+
+
+
+	function pessoaGrupoListar(){
+		global $mySQL;
+
+		#Consulta os Monitoramentos remotos
+		$codPessoa = $_POST['codPessoa'];
+		$sql = sprintf("CALL procPessoaGrupoListar($codPessoa)");
+		$rs = $mySQL->runQuery($sql);
+		$rsQuant = $rs->num_rows;
+			
+		if($rsQuant>0){
+			while ($rsLinha = mysqli_fetch_assoc($rs)) {
+				$arr[] = $rsLinha;
+			}
+			$json = JEncode($arr);
+			echo '({"total":"'.$rsQuant.'","resultado":'.$json.'})';
+		} else {
+			echo '({"total":"0", "results":""})';
+		}
+	}
+
+	function contratoFiadorRelacionar(){
+		global $mySQL;
+		
+		$codFiador = $_POST['codFiador'];
+		$codContrato = $_POST['codContrato'];
+		$op = $_POST['op'];
+		
+		$sql = sprintf("call contratoFiadorRelacionar($codFiador,$codContrato,$op)");
+
+		try {
+			if (!($rs = $mySQL->runQuery($sql))) {
+				throw new Exception("Erro ao executar comando."); 
+			}else{
+				echo "{success:true}";
+			}
+		} catch (Exception $e) {
+			echo "{failure:true}";
+			exit;
+		}
+	}
+
+	
+	function pessoaGrupoRelacionar(){
+		global $mySQL;
+		
+		$codPessoa = $_POST['codPessoa'];
+		$codGrupo = $_POST['codGrupo'];
+		$op = $_POST['op'];
+		
+		$sql = sprintf("call procPessoaGrupoRelacionar($codPessoa,$codGrupo,$op)");
+
+		try {
+			if (!($rs = $mySQL->runQuery($sql))) {
+				throw new Exception("Erro ao executar comando."); 
+			}else{
+				echo "{success:true}";
+			}
+		} catch (Exception $e) {
+			echo "{failure:true}";
+			exit;
+		}
+	}
+
+	function conjugeUnicoListar() {
+		
+		global $mySQL;
+		
+		$codPessoa = $_POST['codPessoa'];
+		#Consulta os Monitoramentos remotos
+		
+		$sql = sprintf("call procPessoaConjugeListar($codPessoa)");
+		$rs = $mySQL->runQuery($sql);
+		$rsQuant = $rs->num_rows;
+			
+		if($rsQuant>0){
+			while ($linha = mysqli_fetch_assoc($rs)) {
+				$arr[] = $linha;
+			}
+			$json = JEncode($arr);
+			echo '({"total":"'.$rsQuant.'","resultado":'.$json.'})';
+		} else {
+			echo '({"total":"0", "resultado":""})';
+		}
+	}
+
+	function pessoaUnicoListar() {
+		
+		global $mySQL;
+		
+		$codPessoa = $_POST['codPessoa'];
+		#Consulta os Monitoramentos remotos
+		
+		$sql = sprintf("call procPessoaListarUnico($codPessoa)");
+		$rs = $mySQL->runQuery($sql);
+		$rsQuant = $rs->num_rows;
+			
+		if($rsQuant>0){
+			while ($linha = mysqli_fetch_assoc($rs)) {
+				$arr[] = $linha;
+			}
+			$json = JEncode($arr);
+			echo '({"total":"'.$rsQuant.'","resultado":'.$json.'})';
+		} else {
+			echo '({"total":"0", "resultado":""})';
+		}
+	}
+
+	
+		
+	function conjugeCadastrar(){
+		
+		global $mySQL;
+		
+		$codPessoa       = $_POST['codPessoa'];
+		$nome            = $_POST['nome'];
+		$cpf             = (int) (isset($_POST['cpf']) ? $_POST['cpf'] : 0);
+		$rg              = (int) (isset($_POST['rg']) ? $_POST['rg'] : 0);
+		$codProfissao    = (int) $_POST['codProfissao'];
+		$orgaoExpedidor  = (isset($_POST['orgaoExpedidor']) ? $_POST['orgaoExpedidor'] : "");
+		$renda           = (double) (isset($_POST['renda']) ? str_replace(',', '.', $_POST['renda']) : 0);
+		$outroRendimento = (double) (isset($_POST['outroRendimento']) ? str_replace(',', '.', $_POST['outroRendimento']) : 0);
+		$nacionalidade   = (isset($_POST['nacionalidade']) ? $_POST['nacionalidade'] : "");
+		$dataNascimento  =  (isset($_POST['dataNascimento']) ? $_POST['dataNascimento'] : 0);
+
+
+		$sql = sprintf("call procPessoaConjugeCadastrar($codPessoa,'$nome',$cpf,$rg,$codProfissao,'$orgaoExpedidor','$renda','$outroRendimento','$dataNascimento','$nacionalidade')");
+
+		try {
+			if (!($rs = $mySQL->runQuery($sql))) {
+				throw new Exception("Erro ao executar comando."); 
+			}else{
+				echo "{success:true}";
+			}
+		} catch (Exception $e) {
+			echo "{failure:true}";
+			exit;
+		}
+	}
+	
+	function pessoaCadastrar(){
+		
+		global $mySQL;
+		
+		if(isset($_POST['codPessoa'])){
+			$codPessoa = $_POST['codPessoa'];
+		}else{
+			$codPessoa = 0;
+		}
+		
+		$nome = $_POST['nome'];
+		$email = strToUpper($_POST['email']);
+		$senha = (isset($_POST['senha']) ? strToUpper($_POST['senha']) : "");
+		$codTipoPessoa = (int) $_POST['codTipoPessoa'];
+		$endereco = $_POST['endereco'];
+		$cep = (int) $_POST['cep'];
+		$bairro = $_POST['bairro'];
+		$cidade = $_POST['cidade'];
+		$uf = $_POST['uf'];
+		$cnpj = (int) (isset($_POST['cnpj']) ? $_POST['cnpj'] : 0);
+		$ie = (int) (isset($_POST['ie']) ? $_POST['ie'] : 0);
+		$cpf = (int) (isset($_POST['cpf']) ? $_POST['cpf'] : 0);
+		$rg = (int) (isset($_POST['rg']) ? $_POST['rg'] : 0);
+		$estadoCivil = (int) $_POST['estadoCivil'];
+		$codProfissao = (int) $_POST['codProfissao'];
+		$orgaoExpedidor = (isset($_POST['orgaoExpedidor']) ? $_POST['orgaoExpedidor'] : "");
+		$renda = (double) (isset($_POST['renda']) ? $_POST['renda'] : 0);
+		$outroRendimento = (double) (isset($_POST['outroRendimento']) ? $_POST['outroRendimento'] : 0);
+		$empresaTrabalho = $_POST['empresaTrabalho'];
+		$enderecoTrabalho = (isset($_POST['enderecoTrabalho']) ? $_POST['enderecoTrabalho'] : "");
+		$bairroTrabalho = (isset($_POST['bairroTrabalho']) ? $_POST['bairroTrabalho'] : "");
+		$cidadeTrabalho = (isset($_POST['cidadeTrabalho']) ? $_POST['cidadeTrabalho'] : "");
+		$ufTrabalho = (isset($_POST['ufTrabalho']) ? $_POST['ufTrabalho'] : "");
+		$cepTrabalho = (isset($_POST['cepTrabalho']) ? $_POST['cepTrabalho'] : "");
+		$nacionalidade = (isset($_POST['nacionalidade']) ? $_POST['nacionalidade'] : "");
+		$dataNascimento =  (isset($_POST['dataNascimento']) ? $_POST['dataNascimento'] : 0);
+		$observacao = $_POST['observacoes'];
+
+		$nomeRepresentante = (isset($_POST['nomeRepresentante']) ? $_POST['nomeRepresentante'] : "");
+		$estadoCivilRepresentante    = (int)(isset($_POST['estadoCivilRepresentante']) ? $_POST['estadoCivilRepresentante'] : "");
+		$profissaoRepresentante      = (int)(isset($_POST['profissaoRepresentante']) ? $_POST['profissaoRepresentante'] : "");
+		$dataNascimentoRepresentante = (isset($_POST['dataNascimentoRepresentante']) ? $_POST['dataNascimentoRepresentante'] : 0);
+		$cpfRepresentante            = (isset($_POST['cpfRepresentante']) ? $_POST['cpfRepresentante'] : "");
+		$identidadeRepresentante     = (isset($_POST['identidadeRepresentante']) ? $_POST['identidadeRepresentante'] : "");
+		$orgaoExpedidorRepresentante = (isset($_POST['orgaoExpedidorRepresentante']) ? $_POST['orgaoExpedidorRepresentante'] : "");
+		$rendaRepresentante          = (double) (isset($_POST['rendaRepresentante']) ? $_POST['rendaRepresentante'] : "");
+		$outroRendimentorepresentante= (double) (isset($_POST['outroRendimentorepresentante']) ? $_POST['outroRendimentorepresentante'] : "");
+
+				
+		if($codTipoPessoa == 1){ //Pessoa Física
+			$sql = sprintf("call procPessoaFisicaCadastrar($codPessoa,'$nome','$email','$senha','$endereco',$cep,'$bairro','$cidade','$uf',$cpf,$rg,$estadoCivil,$codProfissao,'$orgaoExpedidor',$renda,$outroRendimento, '$empresaTrabalho','$enderecoTrabalho', '$bairroTrabalho', '$cidadeTrabalho', '$ufTrabalho', '$cepTrabalho', '$dataNascimento','$nacionalidade','$observacao')");
+
+		}else{
+			$sql = sprintf("call procPessoaJuridicaCadastrar($codPessoa,'$nome','$email','$senha','$endereco',$cep,'$bairro','$cidade','$uf',$cnpj,$ie,'$observacao',
+			'$nomeRepresentante', $estadoCivilRepresentante, $profissaoRepresentante, '$dataNascimentoRepresentante', '$cpfRepresentante', '$identidadeRepresentante', '$orgaoExpedidorRepresentante', '$rendaRepresentante', '$outroRendimentorepresentante')");
+		}	
+
+
+		try {
+			if (!($rs = $mySQL->runQuery($sql))) {
+				throw new Exception("Erro ao executar comando."); 
+			}else{
+				echo "{success:true}";
+			}
+		} catch (Exception $e) {
+			echo "{failure:true}";
+			exit;
+		}
+	}
+
+
+	/*----------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------
+									Recebe o parametro que indica que função irá ser executada
+	------------------------------------------------------------------------------------------------------------------------
+	--------------------------------------------------------------------------------------------------------------------- */
+
+
+	$acao = "";
+	if(isset($_POST['acao'])){
+		$acao = $_POST['acao'];
+	}
+
+	if(isset($_GET['acao'])){
+		$acao = $_GET['acao'];
+	}
+	switch($acao){
+		case "pessoaListar":
+			pessoaListar();
+			break;
+		case "pessoaVwListar":
+			pessoaVwListar();
+			break;
+		case "pessoaCadastrar":
+			pessoaCadastrar();
+			break;
+		case "pessoaGrupoListar":
+			pessoaGrupoListar();
+			break;
+		case "pessoaGrupoRelacionar":
+			pessoaGrupoRelacionar();
+			break;
+		case "profissaoListar":
+			profissaoListar();
+			break;
+
+		case "pessoaGerenciar":
+			pessoaGerenciar();
+			break;	
+
+		case "estadoCivilListar":
+			estadoCivilListar();
+			break;
+		
+		case "locadorListar":
+			locadorListar();
+			break;
+
+		case "proprietarioListar":
+			proprietarioListar();
+			break;
+
+		case "proprietarioUnicoListar":
+			proprietarioUnicoListar();
+			break;
+
+		case "pessoaUnicoListar":
+			pessoaUnicoListar();
+			break;
+
+		case "fiadorListar":
+			fiadorListar();
+			break;
+
+		case "contratoFiadorRelacionar":
+			contratoFiadorRelacionar();
+			break;
+
+		case "conjugeUnicoListar":
+			conjugeUnicoListar();
+			break;
+
+		case "conjugeCadastrar":
+			conjugeCadastrar();
+			break;
+		
+		
+
+			
+	}
+
+}else{
+	header('location:login.php');
+}	
+?>

@@ -1,0 +1,55 @@
+body{
+	margin: 0px;
+	font-size: 11px;
+	font-family: arial;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	height: 0;
+}
+
+
+table{
+	font-size: 11px;
+	font-family: arial;
+}
+
+th{
+	background: #19688F;
+	font-weight: bold;
+	color: #FFF;
+}
+
+.vermelho{
+	color: #990000;
+}
+
+.verde{
+	color: #31CC2E;
+}
+
+#cabecalhoRelatorio{
+	width: 650px;
+	margin-bottom: 10px;
+	height: 62px;
+	background: url('../img/bg_topo.jpg') bottom repeat-x;
+}
+
+#logoRelatorio{
+	float: left;
+}
+
+#tituloRelatorio{
+	float: right;
+	text-align: right;
+}
+
+#nomeRelatorio{
+	padding-top: 15px;
+	font-size: 18px;
+	color: #19688F;
+}

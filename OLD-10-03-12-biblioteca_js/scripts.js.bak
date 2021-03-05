@@ -1,0 +1,71 @@
+var msg = function(title, msg){
+	Ext.Msg.show({
+		title: title, 
+		msg: msg,
+		minWidth: 200,
+		modal: true,
+		icon: Ext.Msg.INFO,
+		buttons: Ext.Msg.OK
+	});
+};
+
+function usuarioExcluir(value){
+	if(value == 1){
+		return '<center><img src="img/ic_desativar.png" /></center>'
+	}else{
+		return '<center><img src="img/ic_ativar.png" /></center>'
+	}
+}
+		
+function txtMinusculo(value){
+	return value;
+}
+
+function formatoMoeda(value){
+	valor = value + '';
+	//if(value != ""){
+		if(valor.indexOf('.') > 0){
+			valor = valor.replace(".",",")	
+			return valor ? 'R$ ' + valor : '';
+		}else{
+			return valor ? 'R$ ' + valor : ',00';
+		}
+		
+	/*}else{
+		return 'R$ ' + value
+	}*/
+}
+
+function formatoDia(value){
+	
+	novaData = new Date(value)
+	return value ? value.dateFormat('d/m/Y') : '';
+}
+
+function formatoData(value){
+	
+	novaData = new Date(value)
+	return novaData.dateFormat('d/m/Y H:m:i')
+}
+
+
+
+function alterarFloat(value){
+	/*alert(value)
+	if(value != ""){
+		return replace(".",",",value)
+	}else{*/
+		return value
+	//}
+}
+
+
+function separarVirgula(value){
+	valor = value + '';
+	if(valor.indexOf('.') > 0){
+		valor = valor.replace(".",",")	
+		return valor ? valor : '';
+	}else{
+		return valor ? valor : ',00';
+	}
+}

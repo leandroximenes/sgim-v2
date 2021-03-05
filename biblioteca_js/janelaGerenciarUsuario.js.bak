@@ -1,0 +1,1555 @@
+function gerenciarUsuario(){
+	var nomeSelecionado = '' 
+	var codPessoaSelecionada = 0
+
+	function manterPessoa(coluna,statusUsuario,codPessoa){
+		//if(coluna == 13){
+			if(statusUsuario == 1){
+				if(confirm('Tem certeza que deseja desativar esse Usuário?')){
+					Ext.Ajax.request({
+						url: 'modulos/usuario/gerenciar_usuario.php',
+						params: { 
+							acao         : 'pessoaGerenciar',
+							codPessoa    :  codPessoa,
+							statusUsuario: 0
+						},
+						callback: function(options, success, response) {
+							
+							var retorno = Ext.decode(response.responseText);
+							
+							if(retorno.success == false){
+								Ext.MessageBox.alert('Mensagem','Usuário Desativado com sucesso!')
+							}else{
+								pessoaStore.reload()
+							}
+						}
+					})
+				}
+			}else{
+				if(confirm('Tem certeza que deseja ativar esse Usuário?')){
+					Ext.Ajax.request({
+						url: 'modulos/usuario/gerenciar_usuario.php',
+						params: { 
+							acao: 'pessoaGerenciar',
+							codPessoa:  codPessoa,
+							statusUsuario: 1
+						},
+						callback: function(options, success, response) {
+							
+							var retorno = Ext.decode(response.responseText);
+							
+							if(retorno.success == false){
+								msg('Erro', 'Erro ao tentar executar a operação!')
+							}else{
+								pessoaStore.reload()
+							}
+						}
+					})
+				}
+			}
+		//}
+	}
+
+	
+	verificarTipoPessoa = function(){
+
+		if(cbTipoPessoa.getValue() == '2'){
+			Ext.getCmp('fieldPessoaFisica').hide(true)	
+			Ext.getCmp('fieldPessoaFisicaDadosProfissionais').hide(true)	
+			Ext.getCmp('fieldPessoaJuridica').show(true)
+			Ext.getCmp('fieldRepresentanteLegal').show(true)
+			//Ext.getCmp('montarFieldSet').show(true)
+		}else{
+			if(cbTipoPessoa.getValue() == '1'){
+				Ext.getCmp('fieldPessoaFisica').show(true)
+				Ext.getCmp('fieldPessoaFisicaDadosProfissionais').show(true)
+				Ext.getCmp('fieldPessoaJuridica').hide(true)
+				Ext.getCmp('fieldRepresentanteLegal').hide(true)
+				//Ext.getCmp('montarFieldSet').hide(true)
+
+			}else{
+				Ext.getCmp('fieldPessoaFisica').hide(true)	
+				Ext.getCmp('fieldPessoaFisicaDadosProfissionais').hide(true)
+				Ext.getCmp('fieldPessoaFisica').hide(true)	
+				Ext.getCmp('fieldPessoaJuridica').hide(true)
+				Ext.getCmp('fieldRepresentanteLegal').hide(true)
+			}	
+		}
+	}
+
+	var storeProfissao = new Ext.data.Store({
+		id: 'storeProfissao',
+		proxy: new Ext.data.HttpProxy({
+			url: 'modulos/usuario/gerenciar_usuario.php',
+			method: 'POST'
+		}),
+		baseParams:{acao: "profissaoListar"},
+		reader: new Ext.data.JsonReader({
+			root: 'resultado',
+			totalProperty: 'total',
+			id: ['codProfissao','nome']
+		},[ 
+			{name: 'codProfissao', type: 'int'},
+			{name: 'nome', type: 'string'}
+
+		]),
+		sortInfo:{field: 'nome', direction: "ASC"}
+	}) 
+
+	storeProfissao.load()
+
+	var ufStore = new Ext.data.Store({
+		id: 'ufStore',
+		proxy: new Ext.data.HttpProxy({
+			url: 'modulos/diversos/gerenciar_uf.php',
+			method: 'POST'
+		}),
+		baseParams:{acao: "ufListar"},
+		reader: new Ext.data.JsonReader({
+			root: 'resultado',
+			totalProperty: 'total',
+			id: ['uf']
+		},[ 
+			{name: 'uf', type: 'string'}
+
+		]),
+		sortInfo:{field: 'uf', direction: "ASC"}
+	}) 
+
+	ufStore.load()
+		
+	
+	//Tipo de Imóvel
+	var storeTipoImovel = new Ext.data.Store({
+		id: 'storeTipoImovel',
+		proxy: new Ext.data.HttpProxy({
+			url: 'modulos/imovel/gerenciar_imovel.php',
+			method: 'POST'
+		}),
+		baseParams:{acao: "listarTipoImovel"},
+		reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			id: ['codTipoImovel','nome']
+		},[ 
+			{name: 'codTipoImovel', type: 'int'},
+			{name: 'nome', type: 'string'}
+
+		]),
+		sortInfo:{field: 'nome', direction: "ASC"}
+	}) 
+
+	storeTipoImovel.load()
+
+		
+	//Estado Civil
+	var estadoCivilStore = new Ext.data.Store({
+		id: 'estadoCivilStore',
+		proxy: new Ext.data.HttpProxy({
+			url: 'modulos/usuario/gerenciar_usuario.php',
+			method: 'POST'
+		}),
+		baseParams:{acao: "estadoCivilListar"},
+		reader: new Ext.data.JsonReader({
+			root: 'resultado',
+			totalProperty: 'total',
+			id: ['codEstadoCivil','nome']
+		},[ 
+			{name: 'codEstadoCivil', type: 'int'},
+			{name: 'nome', type: 'string'}
+
+		]),
+		sortInfo:{field: 'nome', direction: "ASC"}
+	}) 
+
+	estadoCivilStore.load()
+
+
+
+	//Estado Civil Representante
+	var estadoCivilRepresentanteStore = new Ext.data.Store({
+		id: 'estadoCivilRepresentanteStore',
+		proxy: new Ext.data.HttpProxy({
+			url: 'modulos/usuario/gerenciar_usuario.php',
+			method: 'POST'
+		}),
+		baseParams:{acao: "estadoCivilListar"},
+		reader: new Ext.data.JsonReader({
+			root: 'resultado',
+			totalProperty: 'total',
+			id: ['codEstadoCivil','nome']
+		},[ 
+			{name: 'codEstadoCivil', type: 'int'},
+			{name: 'nome', type: 'string'}
+
+		]),
+		sortInfo:{field: 'nome', direction: "ASC"}
+	}) 
+
+	estadoCivilRepresentanteStore.load()	
+
+		
+
+	function imovelEditar(value){
+		return '<center><img src="img/ic_editar.png" /></center>'
+	}
+
+	function imovelExcluir(value){
+		if(value == 1){
+			return '<center><img src="img/ic_desativar.png" /></center>'
+		}else{
+			return '<center><img src="img/ic_ativar.png" /></center>'
+		}
+	}
+
+	function verificarAtivo(value){
+		if(value == true){
+			return 'sim'
+		}else{
+			return 'não'
+		}
+	}
+
+	pessoaStore = new Ext.data.Store({
+		id: 'pessoaStore',
+		proxy: new Ext.data.HttpProxy({
+			url: 'modulos/usuario/gerenciar_usuario.php',
+			method: 'POST'
+		}),
+		baseParams:{acao: "pessoaVwListar"},
+		reader: new Ext.data.JsonReader({
+			root: 'resultado',
+			totalProperty: 'total',
+			id: ['codPessoa','email','nome']
+		},[ 
+			{name: 'codPessoa', type: 'int', mapping: 'codPessoa'},
+			{name: 'email', type: 'string', mapping: 'email'},
+			{name: 'nome', type: 'string', mapping: 'nome'},
+			{name: 'endereco', type: 'string', mapping: 'endereco'},
+			{name: 'bairro', type: 'string', mapping: 'bairro'},
+			{name: 'cep', type: 'string', mapping: 'cep'},
+			{name: 'cidade', type: 'string', mapping: 'cidade'},
+			{name: 'uf', type: 'string', mapping: 'uf'},
+			{name: 'codTipoPessoa', type: 'int', mapping: 'codTipoPessoa'},
+			{name: 'tipoPessoa', type: 'string', mapping: 'tipoPessoa'},
+			{name: 'enderecoTrabalho', type: 'string', mapping: 'enderecoTrabalho'},
+			{name: 'cidadeTrabalho', type: 'string', mapping: 'cidadeTrabalho'},
+			{name: 'bairroTrabalho', type: 'string', mapping: 'bairroTrabalho'},
+			{name: 'cepTrabalho', type: 'string', mapping: 'cepTrabalho'},
+			{name: 'ufTrabalho', type: 'string', mapping: 'ufTrabalho'},
+			{name: 'codProfissao', type: 'int', mapping: 'codProfissao'},
+			{name: 'profissao', type: 'string', mapping: 'profissao'},
+			{name: 'codEstadoCivil', type: 'int', mapping: 'codEstadoCivil'},
+			{name: 'estadoCivil', type: 'string', mapping: 'estadoCivil'},
+			{name: 'dataNascimento', type: 'date', dateFormat:'Y-m-d H:i:s', mapping: 'dataNascimento'},
+			{name: 'cpf', type: 'string', mapping: 'cpf'},
+			{name: 'rg', type: 'string', mapping: 'rg'},
+			{name: 'cnpj', type: 'string', mapping: 'cnpj'},
+			{name: 'nacionalidade', type: 'string', mapping: 'nacionalidade'},
+			{name: 'ie', type: 'int', mapping: 'ie'},
+			{name: 'orgaoExpedidor', type: 'string', mapping: 'orgaoExpedidor'},
+			{name: 'renda', type: 'float', mapping: 'renda'},
+			{name: 'outroRendimento', type: 'float', mapping: 'outroRendimento'},
+			{name: 'empresaTrabalho', type: 'string', mapping: 'empresaTrabalho'},
+			{name: 'observacao', type: 'string', mapping: 'observacao'},
+			{name: 'cpfRepresentante', type: 'string', mapping: 'cpfRepresentante'},
+			{name: 'nomeRepresentante', type: 'string', mapping: 'nomeRepresentante'},
+			{name: 'dataNascimentoRepresentante', type: 'date', dateFormat:'Y-m-d H:i:s', mapping: 'dataNascimentoRepresentante'},
+			{name: 'codProfissaoRepresentante', type: 'int', mapping: 'codProfissaoRepresentante'},
+			{name: 'codEstadoCivilRepresentante', type: 'int', mapping: 'codEstadoCivilRepresentante'},
+			{name: 'estadoCivilRepresentante', type: 'string', mapping: 'estadoCivilRepresentante'},
+			{name: 'rendaRepresentante', type: 'float', mapping: 'rendaRepresentante'},
+			{name: 'outroRendimentoRepresentante', type: 'float', mapping: 'outroRendimentoRepresentante'},
+			{name: 'orgaoExpedidorRepresentante', type: 'string', mapping: 'orgaoExpedidorRepresentante'},
+			{name: 'rgRepresentante', type: 'string', mapping: 'rgRepresentante'},
+			
+			{name: 'profissaoRepresentante', type: 'string', mapping: 'profissaoRepresentante'},
+			{name: 'status', type: 'boolean', mapping: 'status'}
+		])
+	}) 
+	
+	pessoaColuna = new Ext.grid.ColumnModel(
+		[{
+	        header: 'codPessoa',
+	        dataIndex: 'codPessoa', 
+	        width: 100,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Nome',
+	        dataIndex: 'nome', 
+	        width: 200,
+			readOnly: false
+	      },{
+	        header: 'E-mail',
+	        dataIndex: 'email', 
+	        width: 150,
+			readOnly: false,
+			renderer: txtMinusculo
+	      },{
+	        header: 'Endereço',
+	        dataIndex: 'endereco', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Bairro',
+	        dataIndex: 'bairro', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Cidade',
+	        dataIndex: 'cidade', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'UF',
+	        dataIndex: 'uf', 
+	        width: 50,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'cep',
+	        dataIndex: 'cep', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Empresa',
+	        dataIndex: 'empresaTrabalho', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'endereco Trabalho',
+	        dataIndex: 'enderecoTrabalho', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Bairro Trabalho',
+	        dataIndex: 'bairroTrabalho', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Cidade Trabalho',
+	        dataIndex: 'cidadeTrabalho', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'UF Trabalho',
+	        dataIndex: 'ufTrabalho', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Tipo Pessoa',
+	        dataIndex: 'tipoPessoa', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'codTipoPessoa',
+	        dataIndex: 'codTipoPessoa', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Nacionalidade',
+	        dataIndex: 'nacionalidade', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'codProfissao',
+	        dataIndex: 'codProfissao', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'profissao',
+	        dataIndex: 'profissao', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'codEstadoCivil',
+	        dataIndex: 'codEstadoCivil', 
+	        width: 80,
+			hidden: true
+	      },{
+	        header: 'EstadoCivil',
+	        dataIndex: 'estadoCivil', 
+	        width: 80,
+			hidden: true
+	      },{	
+			header: 'dataNascimento',
+			dataIndex: 'dataNascimento', 
+			width: 110,
+			renderer: formatoData,
+			hidden: true
+		  },{
+	        header: 'Cpf',
+	        dataIndex: 'cpf', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Rg',
+	        dataIndex: 'rg', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'CPF Representante',
+	        dataIndex: 'cpfRepresentante', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Nome Representante',
+	        dataIndex: 'nomeRepresentante', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Data Nascimento Representante',
+	        dataIndex: 'dataNascimentoRepresentante', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Cod Estado Civil Representante',
+	        dataIndex: 'codEstadoCivilRepresentante', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Estado Civil Representante',
+	        dataIndex: 'estadoCivilRepresentante', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Cod Profissão Representante',
+	        dataIndex: 'codProfissaoRepresentante', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Renda Representante',
+	        dataIndex: 'rendaRepresentante', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Outro rendimento Representante',
+	        dataIndex: 'outroRendimentoRepresentante', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Orgão expedidor Representante',
+	        dataIndex: 'orgaoExpedidorRepresentante', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'RG Representante',
+	        dataIndex: 'rgRepresentante', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Profissão Representante',
+	        dataIndex: 'profissaoRepresentante', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'Cnpj',
+	        dataIndex: 'cnpj', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'ie',
+	        dataIndex: 'ie', 
+	        width: 80,
+			readOnly: false
+	      },{
+	        header: 'orgaoExpedidor',
+	        dataIndex: 'orgaoExpedidor', 
+	        width: 80,
+			readOnly: false,
+			hidden: true
+	      },{
+	        header: 'renda',
+	        dataIndex: 'renda', 
+	        width: 80,
+			renderer: alterarFloat,
+			hidden: true
+	      },{
+	        header: 'outroRendimento',
+	        dataIndex: 'outroRendimento', 
+	        width: 80,
+			renderer: alterarFloat,
+			hidden: true
+	      },{
+	        header: 'Status',
+	        dataIndex: 'status', 
+	        width: 50,
+			hidden: true,
+			readOnly: true
+	      },{
+	        header: 'Excluir',
+	        dataIndex: 'status', 
+	        width: 50,
+			renderer: usuarioExcluir,
+			readOnly: true
+	      }
+	])	
+	pessoaColuna.defaultSortable = true
+
+
+	cbProfissao = new Ext.form.ComboBox({
+		id: 'cbProfissao',
+		typeAhead: false,
+		fieldLabel: '<b>Profissão</b>',
+		value: '',
+		mode: 'local',
+		editable: false,
+		anchor: '98%',
+		store: storeProfissao,
+		displayField: 'nome',
+		valueField: 'codProfissao',
+		forceSelection: true,
+		triggerAction: 'all'
+
+	})
+
+	cbTipoPessoa = new Ext.form.ComboBox({
+		id: 'cbTipoPessoa',
+		typeAhead: false,
+		fieldLabel: '<b>Pessoa</b>',
+		value: '',
+		mode: 'local',
+		editable: false,
+		anchor: '60%',
+		store:new Ext.data.SimpleStore({
+			fields:['codTipoPessoa','tipoPessoa'],
+			data: [['1','Física'],['2','Jurídica']]
+		}),
+		displayField: 'tipoPessoa',
+		valueField: 'codTipoPessoa',
+		forceSelection: true,
+		triggerAction: 'all'
+
+	})
+
+	cbEstadoCivil = new Ext.form.ComboBox({
+		id: 'cbEstadoCivil',
+		typeAhead: false,
+		fieldLabel: '<b>Estado Civil</b>',
+		value: '',
+		mode: 'local',
+		editable: false,
+		anchor: '98%',
+		store: estadoCivilStore,
+		displayField: 'nome',
+		valueField: 'codEstadoCivil',
+		forceSelection: true,
+		triggerAction: 'all'
+	})
+
+	cbEstadoCivilRepresentante = new Ext.form.ComboBox({
+		id: 'cbEstadoCivilRepresentante',
+		typeAhead: false,
+		fieldLabel: '<b>Estado Civil</b>',
+		value: '',
+		mode: 'local',
+		editable: false,
+		anchor: '98%',
+		store: estadoCivilRepresentanteStore,
+		displayField: 'nome',
+		valueField: 'codEstadoCivil',
+		forceSelection: true,
+		triggerAction: 'all'
+	})
+
+	dtDataNascimento = new Ext.form.DateField({
+		id: 'dtDataNascimento',
+		name: 'dataNascimento',
+		fieldLabel: '<b>Data Nascimento</b>',
+		allowBlank: false,
+		blankText:"Por favor insira a <b>DATA DE NASCIMENTO</b>!",
+		format : 'd/m/Y',
+		anchor: '98%'
+	})
+
+	dtDataNascimentoRepresentante = new Ext.form.DateField({
+		id: 'dtDataNascimentoRepresentante',
+		name: 'dataNascimentoRepresentante',
+		fieldLabel: '<b>Data Nascimento</b>',
+		allowBlank: false,
+		blankText:"Por favor insira a <b>DATA DE NASCIMENTO</b> do Representante!",
+		format : 'd/m/Y',
+		anchor: '98%'
+	})
+
+
+	cbUf = new Ext.form.ComboBox({
+		xtype: 'combo',
+		id: 'cbUf',
+		typeAhead: false,
+		name: 'uf',
+		fieldLabel: '<b>UF</b>',
+		value: '',
+		mode: 'local',
+		editable: false,
+		store:ufStore,
+		displayField: 'uf',
+		valueField: 'uf',
+		forceSelection: true,
+		triggerAction: 'all',
+		anchor: '95%'
+	})
+
+	cbUfDadosProfissionais = new Ext.form.ComboBox({
+		xtype: 'combo',
+		id: 'cbUfDadosProfissionais',
+		typeAhead: false,
+		name: 'ufDadosProfissionais',
+		fieldLabel: '<b>UF</b>',
+		value: '',
+		mode: 'local',
+		editable: false,
+		store:ufStore,
+		displayField: 'uf',
+		valueField: 'uf',
+		displayField: 'uf',
+		valueField: 'uf',
+		forceSelection: true,
+		triggerAction: 'all',
+		anchor: '95%'
+	})
+
+	tfCpf = new Ext.form.NumberField({
+		fieldLabel: '<b>CPF</b>',
+		name: 'cpf',
+		id: 'tfCpf',
+		allowBlank:false,
+		blankText:"Por favor entre com o cpf do usuário.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfCpfRepresentante = new Ext.form.TextField({
+		fieldLabel: '<b>CPF</b>',
+		name: 'cpfRepresentante',
+		id: 'tfCpfRepresentante',
+		allowBlank:false,
+		blankText:"Por favor entre com o cpf do representante.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+
+	tfNacionalidade = new Ext.form.TextField({
+		fieldLabel: '<b>Nacionalidade</b>',
+		name: 'nacionalidade',
+		id: 'tfNacionalidade',
+		allowBlank:false,
+		blankText:"Por favor entre com a nacionalidade.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	cbProfissaoRepresentante = new Ext.form.ComboBox({
+		id: 'cbProfissaoRepresentante',
+		typeAhead: false,
+		fieldLabel: '<b>Profissão</b>',
+		value: '',
+		mode: 'local',
+		editable: false,
+		anchor: '98%',
+		store: storeProfissao,
+		displayField: 'nome',
+		valueField: 'codProfissao',
+		forceSelection: true,
+		triggerAction: 'all'
+
+	})
+
+	tfIdentidade = new Ext.form.TextField({
+		fieldLabel: '<b>Identidade</b>',
+		name: 'rg',
+		id: 'tfIdentidade',
+		allowBlank:false,
+		blankText:"Por favor entre com o RG do usuário.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfIdentidadeRepresentante = new Ext.form.TextField({
+		fieldLabel: '<b>Identidade</b>',
+		name: 'rgRepresentante',
+		id: 'tfIdentidadeRepresentante',
+		allowBlank:false,
+		blankText:"Por favor entre com o RG do usuário.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfOrgaoExpedidor = new Ext.form.TextField({
+		fieldLabel: '<b>Orgão Exp.</b>',
+		name: 'orgaoExpedidor',
+		id: 'tfOrgaoExpedidor',
+		allowBlank:false,
+		blankText:"Por favor entre com o orgão expedidor.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfOrgaoExpedidorRepresentante = new Ext.form.TextField({
+		fieldLabel: '<b>Orgão Exp.</b>',
+		name: 'orgaoExpedidorRepresentante',
+		id: 'tfOrgaoExpedidorRepresentante',
+		allowBlank:false,
+		blankText:"Por favor entre com o orgão expedidor do representante.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfRendaRepresentante = new Ext.form.TextField({
+		fieldLabel: '<b>Renda</b>',
+		name: 'rendaRepresentante',
+		id: 'tfRendaRepresentante',
+		allowBlank:false,
+		blankText:"Por favor entre com a renda do representante.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfRenda = new Ext.form.NumberField({
+		fieldLabel: '<b>Renda</b>',
+		name: 'renda',
+		id: 'tfRenda',
+		allowBlank:false,
+		blankText:"Por favor entre com a renda do usuário.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfOutroRendimento = new Ext.form.NumberField({
+		fieldLabel: '<b>Outro Rendimento</b>',
+		name: 'outroRendimento',
+		id: 'tfOutroRendimento',
+		allowBlank:false,
+		blankText:"Por favor entre com a outra renda do Representante.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfOutroRendimentoRepresentante = new Ext.form.NumberField({
+		fieldLabel: '<b>Outro Rendimento</b>',
+		name: 'outroRendimentoRepresentante',
+		id: 'tfOutroRendimentoRepresentante',
+		allowBlank:false,
+		blankText:"Por favor entre com a outra renda do usuário.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfNome = new Ext.form.TextField({
+		fieldLabel: '<b>Nome</b>',
+		name: 'nome',
+		id: 'tfNome',
+		allowBlank:false,
+		blankText:"Por favor entre com o endereço do imóvel.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfNomeRepresentante = new Ext.form.TextField({
+		fieldLabel: '<b>Nome</b>',
+		name: 'nomeRepresentante',
+		id: 'tfNomeRepresentante',
+		allowBlank:false,
+		blankText:"Por favor entre com o nome do Representante.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+
+	tfEmail = new Ext.form.TextField({
+		fieldLabel: '<b>E-mail</b>',
+		name: 'email',
+		id: 'tfEmail',
+		allowBlank: true,
+		maxLength: 100,
+		anchor : '85%'
+	})
+
+	psSenha = new Ext.form.TextField({
+		fieldLabel: '<b>Senha</b>',
+		name: 'senha',
+		id: 'tfSenha',
+		inputType: 'password',
+		allowBlank: true,
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	psConfirmarSenha = new Ext.form.TextField({
+		fieldLabel: '<b>Confirmar</b>',
+		name: 'confirmarSenha',
+		id: 'tfConfirmarSenha',
+		inputType: 'password',
+		allowBlank: true,
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfEndereco = new Ext.form.TextField({
+		fieldLabel: '<b>Endereço</b>',
+		name: 'endereco',
+		id: 'tfEndereco',
+		allowBlank:false,
+		blankText:"Por favor insira o endereço.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+		
+	tfBairro = new Ext.form.TextField({
+		fieldLabel: '<b>Bairro</b>',
+		name: 'bairro',
+		id: 'tfBairro',
+		allowBlank:false,
+		blankText:"Por favor insira o bairro.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+	
+	tfCidade = new Ext.form.TextField({
+		fieldLabel: '<b>Cidade</b>',
+		name: 'cidade',
+		id: 'tfCidade',
+		allowBlank:false,
+		blankText:"Por favor insira a cidade.",
+		maxLength: 100,
+		anchor: '95%'
+	})
+
+	tfCep = new Ext.form.TextField({
+		fieldLabel: '<b>CEP</b>',
+		name: 'cep',
+		id: 'tfCep',
+		allowBlank:false,
+		blankText:"Por favor insira a cidade.",
+		maxLength: 100,
+		anchor: '95%'
+	})
+
+	tfCnpj = new Ext.form.NumberField({
+		fieldLabel: '<b>CNPJ</b>',
+		name: 'cnpj',
+		id: 'tfCnpj',
+		allowBlank:false,
+		blankText:"Por favor insira o <b>CNPJ</b>.",
+		maxLength: 100,
+		anchor: '80%'
+	})
+
+	tfInscricaoEstadual = new Ext.form.NumberField({
+		fieldLabel: '<b>Inscrição Estadual</b>',
+		name: 'ie',
+		id: 'tfInscricaoEstadual',
+		allowBlank:false,
+		blankText:"Por favor insira a <b>Inscrição Estadual</b>.",
+		maxLength: 100,
+		anchor: '80%'
+	})
+
+	txObservacoes = new Ext.form.TextArea({
+		fieldLabel: '<b>Observações</b>',
+		name: 'observacao',
+		id: 'txObservacoes',
+		allowBlank: true,
+		maxLength: 100,
+		anchor : '98%',
+		height : 70
+	})
+
+	tfEmpresa = new Ext.form.TextField({
+		fieldLabel: '<b>Empresa</b>',
+		name: 'empresa',
+		id: 'tfEmpresa',
+		allowBlank:false,
+		blankText:"Por favor insira o nome da <b>EMPRESA</b>.",
+		maxLength: 100,
+		anchor: '98%'
+	})
+
+	tfEnderecoDadosProfissionais = new Ext.form.TextField({
+		fieldLabel: '<b>Endereço</b>',
+		name: 'enderecoDadosProfissionais',
+		id: 'tfEnderecoDadosProfissionais',
+		allowBlank:false,
+		blankText:"Por favor insira o <b>ENDEREÇO</b>.",
+		maxLength: 100,
+		anchor: '98%'
+	})
+
+	tfBairroDadosProfissionais = new Ext.form.TextField({
+		fieldLabel: '<b>Bairro</b>',
+		name: 'bairroDadosProfissionais',
+		id: 'tfBairroDadosProfissionais',
+		allowBlank:false,
+		blankText:"Por favor insira o <b>BAIRRO</b>.",
+		maxLength: 100,
+		anchor: '98%'
+	})
+
+	tfCidadeDadosProfissionais = new Ext.form.TextField({
+		fieldLabel: '<b>Cidade</b>',
+		name: 'cidadeDadosProfissionais',
+		id: 'tfCidadeDadosProfissionais',
+		allowBlank:false,
+		blankText:"Por favor insira o <b>BAIRRO</b>.",
+		maxLength: 100,
+		anchor: '98%'
+	})
+
+	
+
+	tfCepDadosProfissionais = new Ext.form.TextField({
+		fieldLabel: '<b>CEP</b>',
+		name: 'CEP',
+		id: 'tfCepDadosProfissionais',
+		allowBlank:false,
+		blankText:"Por favor insira o <b>CEP</b>.",
+		maxLength: 100,
+		anchor: '98%'
+	})
+
+	function manterImovel(coluna,statusUsuario,codImovel){
+		if(coluna == 13){
+			if(statusUsuario == 1){
+				if(confirm('Tem certeza que deseja desativar esse imóvel?')){
+					Ext.Ajax.request({
+						url: 'modulos/imovel/gerenciar_imovel.php',
+						params: { 
+							acao: 'imovelDesativar',
+							codImovel:  codImovel
+						},
+						callback: function(options, success, response) {
+							
+							var retorno = Ext.decode(response.responseText);
+							
+							if(retorno.success == false){
+								Ext.MessageBox.alert('ok')
+							}else{
+								pessoaStore.reload()
+								usuarioGrid.getForm().reset()
+							}
+						}
+					})
+				}
+			}else{
+				if(confirm('Tem certeza que deseja ativar esse imóvel?')){
+					Ext.Ajax.request({
+						url: 'modulos/imovel/gerenciar_imovel.php',
+						params: { 
+							acao: 'imovelAtivar',
+							codImovel:  codImovel
+						},
+						callback: function(options, success, response) {
+							
+							var retorno = Ext.decode(response.responseText);
+							
+							if(retorno.success == false){
+								msg('Erro', 'Erro ao tentar executar a operação!')
+							}else{
+								pessoaStore.reload()
+							}
+						}
+					})
+				}
+			}
+		}
+	
+	}
+
+	var gridListaPessoa = new Ext.grid.GridPanel({
+		id: 'gridListaPessoa',
+		ds: pessoaStore,
+		cm: pessoaColuna,
+		listeners:{
+			cellclick: function(grid,linha,coluna){
+				//Verifica se é a coluna de exclusão
+				var dados = grid.store.getAt(linha);
+				var codImovel = dados.get('codImovel')
+				var statusUsuario = dados.get('status')
+				manterImovel(coluna, statusUsuario,codImovel)
+				
+			},
+			rowcontextmenu: function(grid,rowIndex, e){
+				e.stopEvent()
+				var acao;
+				var dados     = grid.store.getAt( rowIndex );
+				var codPessoa = dados.get('codPessoa')
+				var nome      = dados.get('nome');
+				
+				if(dados.get('status') == 1){
+					acao = 'Desativar';
+					status = 'botaoDesativar'; 
+				}else{
+					acao = 'Ativar';
+					status = 'botaoAtivar'; 
+				}
+				
+				var contextMenu = new Ext.menu.Menu();
+				contextMenu.add({
+					text: acao,
+					iconCls: status,
+					handler: function (){
+						manterPessoa('13', dados.get('status'),codPessoa)
+					}
+				},{
+					text: 'Relacionar Perfis',
+					iconCls:'manterUsuario',
+					handler: function (){
+						perfisRelacionar(codPessoa,nome)
+					}
+				});
+				
+				contextMenu.showAt(e.xy);
+			}
+		},
+		viewConfig: {
+			forceFit: true,
+			getRowClass: function(record, rowIndex, rp, ds){
+				if(record.data.status == '0'){
+					return 'linhaDesativada'
+				}
+			}
+		}, 
+		sm: new Ext.grid.RowSelectionModel({
+			singleSelect: true,
+			listeners: {
+				rowselect: function(sm, row, rec) {
+					codPessoaSelecionada = rec.data.codPessoa
+					nomeSelecionado = rec.data.nome
+					codEstadoCivil = rec.data.codEstadoCivil
+
+					if(codEstadoCivil == '1'){
+						Ext.getCmp("botaoConuge").hide(true)
+					}else{
+						Ext.getCmp("botaoConuge").show(true)
+					}
+						
+					Ext.getCmp("usuarioGrid").getForm().loadRecord(rec)
+					Ext.getCmp("cbTipoPessoa").setRawValue(rec.data.tipoPessoa)
+					Ext.getCmp("cbTipoPessoa").setValue(rec.data.codTipoPessoa)
+
+					Ext.getCmp("tfEnderecoDadosProfissionais").setValue (rec.data.enderecoTrabalho)
+					Ext.getCmp("tfEmpresa").setValue (rec.data.empresaTrabalho)
+					Ext.getCmp("tfBairroDadosProfissionais").setValue (rec.data.bairroTrabalho)
+					Ext.getCmp("tfCidadeDadosProfissionais").setValue (rec.data.cidadeTrabalho)
+					Ext.getCmp("tfCepDadosProfissionais").setValue (rec.data.cepTrabalho)
+					Ext.getCmp("cbUfDadosProfissionais").setValue (rec.data.ufTrabalho)
+
+					Ext.getCmp("cbProfissao").setValue(rec.data.codProfissao)
+					Ext.getCmp("cbProfissao").setRawValue(rec.data.profissao)
+					Ext.getCmp("cbProfissaoRepresentante").setValue(rec.data.codProfissaoRepresentante)
+					Ext.getCmp("cbProfissaoRepresentante").setRawValue(rec.data.profissaoRepresentante)
+
+					Ext.getCmp("cbEstadoCivil").setValue(rec.data.codEstadoCivil)
+					Ext.getCmp("cbEstadoCivil").setRawValue(rec.data.estadoCivil)
+
+					Ext.getCmp("cbEstadoCivilRepresentante").setValue(rec.data.codEstadoCivilRepresentante)
+					Ext.getCmp("cbEstadoCivilRepresentante").setRawValue(rec.data.estadoCivilRepresentante)
+					verificarTipoPessoa()
+				}			
+			}
+		}),
+		autoExpandColumn: 'codImovel',
+		height: 290,
+		border: true
+	})
+
+	var usuarioGrid = new Ext.FormPanel({
+        id: 'usuarioGrid',
+        frame: true,
+		autoHeight: true,
+        labelAlign: 'left',
+        layout: 'column',	
+		items: [{
+			columnWidth: 0.5,
+			layout: 'fit',
+			items: [gridListaPessoa]
+        },{
+        	columnWidth: 0.50,
+            xtype: 'fieldset',
+			style: 'margin: 0px 5px 5px 5px;',
+            title:'Cadastro de Usuário', 
+			bodyStyle: Ext.isIE ? 'padding:0 0 5px 10px' : 'padding:10px 10px',
+            items:[{
+				layout:'column',
+				width: '100%',
+				border: false,
+				items: [{	
+					columnWidth: 1,
+					labelWidth: 85,
+					layout: 'form',
+					autoHeight: true,
+					border: false,
+					items: [tfNome, tfEmail]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 85,
+					layout: 'form',
+					border: false,
+					items: [psSenha]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 75,
+					layout: 'form',
+					items: [psConfirmarSenha]
+				},{
+					columnWidth: 1,
+					labelWidth: 85,
+					layout: 'form',
+					border: false,
+					items: [tfEndereco]
+				},{
+					columnWidth: 0.7,
+					labelWidth: 85,
+					layout: 'form',
+					items: [tfBairro]
+				},{
+					columnWidth: 0.3,
+					labelWidth: 40,
+					layout: 'form',
+					items: [tfCep]
+				},{
+					columnWidth: 0.8,
+					labelWidth: 85,
+					layout: 'form',
+					items: [tfCidade]
+				},{
+					columnWidth: 0.2,
+					labelWidth: 30,
+					layout: 'form',
+					items: [cbUf]
+				},{
+					columnWidth: 1,
+					labelWidth: 85,
+					layout: 'form',
+					items: [txObservacoes]
+				},{
+					columnWidth: 1,
+					labelWidth: 85,
+					layout: 'form',
+					items: [cbTipoPessoa]
+				}]
+			}]
+				
+        },{
+        	columnWidth: 0.50,
+            xtype: 'fieldset',
+			style: 'margin: 0px 5px 5px 0px;',
+            title:'Dados Profissionais', 
+			id: 'fieldPessoaFisicaDadosProfissionais',
+			bodyStyle: Ext.isIE ? 'padding:0 0 5px 10px' : 'padding:10px 10px',
+            items:[{
+				layout:'column',
+				width: '100%',
+				border: false,
+				items: [{	
+					columnWidth: 0.5,
+					labelWidth: 70,
+					layout: 'form',
+					autoHeight: true,
+					border: false,
+					items: [cbProfissao]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 60,
+					layout: 'form',
+					border: false,
+					items: [tfEmpresa]
+				},{
+					columnWidth: 1,
+					labelWidth: 70,
+					layout: 'form',
+					items: [tfEnderecoDadosProfissionais]
+				},{
+					columnWidth: 0.7,
+					labelWidth: 70,
+					layout: 'form',
+					border: false,
+					items: [tfBairroDadosProfissionais]
+				},{
+					columnWidth: 0.3,
+					labelWidth: 30,
+					layout: 'form',
+					items: [tfCepDadosProfissionais]
+				},{
+					columnWidth: 0.8,
+					labelWidth: 70,
+					layout: 'form',
+					items: [tfCidadeDadosProfissionais]
+				},{
+					columnWidth: 0.2,
+					labelWidth: 20,
+					layout: 'form',
+					items: [cbUfDadosProfissionais]
+				}]
+			}]
+				
+        },{
+        	columnWidth: 0.50,
+            xtype: 'fieldset',
+			style: 'margin: 0px 5px 5px 5px;',
+            title:'Pessoa Física', 
+			id: 'fieldPessoaFisica',
+			bodyStyle: Ext.isIE ? 'padding:0 0 5px 10px' : 'padding:10px 10px',
+            items:[{
+				layout:'column',
+				width: '100%',
+				border: false,
+				items: [{	
+					columnWidth: 0.5,
+					labelWidth: 115,
+					layout: 'form',
+					autoHeight: true,
+					border: false,
+					items: [cbEstadoCivil]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 90,
+					layout: 'form',
+					border: false,
+					items: [tfNacionalidade]
+				},{
+					columnWidth: 0.6,
+					labelWidth: 115,
+					layout: 'form',
+					border: false,
+					items: [dtDataNascimento]
+				},{
+					columnWidth: 0.4,
+					labelWidth: 45,
+					layout: 'form',
+					items: [tfCpf]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 115,
+					layout: 'form',
+					border: false,
+					items: [tfIdentidade]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 80,
+					layout: 'form',
+					items: [tfOrgaoExpedidor]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 115,
+					layout: 'form',
+					items: [tfRenda]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 120,
+					layout: 'form',
+					items: [tfOutroRendimento]
+				}]
+			}]
+				
+        },{
+        	columnWidth: 0.50,
+            xtype: 'fieldset',
+            title:'Representante Legal', 
+			id: 'fieldRepresentanteLegal',
+			bodyStyle: Ext.isIE ? 'padding:0 0 5px 10px' : 'padding:10px 10px',
+            items:[{
+				layout:'column',
+				width: '100%',
+				border: false,
+				items: [{	
+					columnWidth: 1,
+					labelWidth: 115,
+					layout: 'form',
+					autoHeight: true,
+					border: false,
+					items: [tfNomeRepresentante]
+				},{	
+					columnWidth: 0.5,
+					labelWidth: 115,
+					layout: 'form',
+					autoHeight: true,
+					border: false,
+					items: [cbEstadoCivilRepresentante]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 60,
+					layout: 'form',
+					border: false,
+					items: [cbProfissaoRepresentante]
+				},{
+					columnWidth: 0.6,
+					labelWidth: 115,
+					layout: 'form',
+					border: false,
+					items: [dtDataNascimentoRepresentante]
+				},{
+					columnWidth: 0.4,
+					labelWidth: 45,
+					layout: 'form',
+					items: [tfCpfRepresentante]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 115,
+					layout: 'form',
+					border: false,
+					items: [tfIdentidadeRepresentante]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 80,
+					layout: 'form',
+					items: [tfOrgaoExpedidorRepresentante]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 115,
+					layout: 'form',
+					items: [tfRendaRepresentante]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 120,
+					layout: 'form',
+					items: [tfOutroRendimentoRepresentante]
+				}]
+			}]
+				
+        },{
+        	columnWidth: 0.50,
+            xtype: 'fieldset',
+			style: 'margin: 0px 5px 5px 5px;',
+            title:'Pessoa Jurídica', 
+			id: 'fieldPessoaJuridica',
+			bodyStyle: Ext.isIE ? 'padding:0 0 5px 10px' : 'padding:10px 10px',
+            items:[{
+				layout:'column',
+				width: '100%',
+				border: false,
+				items: [{	
+					columnWidth: 1,
+					labelWidth: 115,
+					layout: 'form',
+					autoHeight: true,
+					border: false,
+					items: [tfCnpj]
+				},{
+					columnWidth: 1,
+					labelWidth: 115,
+					layout: 'form',
+					border: false,
+					items: [tfInscricaoEstadual]
+				}]
+			}]
+				
+        }],	
+		bbar: [
+			botaoRelacionar = new Ext.Button({
+				text: '<b>Gerenciar Perfis</b>',
+				tooltip: '<b>Gerenciar Perfis</b>',
+				handler: function(){
+					perfisRelacionar(codPessoaSelecionada,nomeSelecionado)
+				},   
+				iconCls:'manterUsuario'
+			}),
+			'|',
+			botaoConuge = new Ext.Button({
+				id: 'botaoConuge',
+				text: '<b>Gerenciar Conjuge</b>',
+				tooltip: '<b>Gerenciar Conjuge</b>',
+				handler: function(){
+					conjugeRelacionar(codPessoaSelecionada,nomeSelecionado)
+				},   
+				iconCls:'manterUsuario'
+			}),
+				
+			'->',
+			
+			botaoNovo = new Ext.Button({
+				text: 'Novo',
+				tooltip: 'Novo',
+				handler: novo,   
+				iconCls:'botaoNovo'
+			}),'-',
+			
+			
+
+			botaoSalvar= new Ext.Button({
+				text: 'Salvar',
+				tooltip: 'Salvar',
+				handler: salvar,
+				iconCls:'botaoSalvar'
+			})
+		]
+    })
+
+
+cbTipoPessoa.on('select',function(node,checked,e){
+	verificarTipoPessoa()
+})
+function novo(){
+	Ext.getCmp('fieldPessoaFisica').hide(true)	
+	Ext.getCmp('fieldPessoaFisicaDadosProfissionais').hide(true)
+	Ext.getCmp('fieldPessoaJuridica').hide(true)
+	Ext.getCmp('fieldRepresentanteLegal').hide(true)
+
+	codPessoaSelecionada = 0
+	nomeSelecionado = ''
+	pessoaStore.load()
+	usuarioGrid.getForm().reset()
+}	
+
+function salvar (){
+		if(	(cbTipoPessoa.getValue() == '1' &&
+			tfNome.getValue() != '' &&
+			tfEmail.getValue() != '' &&
+			tfEndereco.getValue() != '' &&
+			tfBairro.getValue() != '' &&
+			tfCep.getValue() != '' &&
+			tfCidade.getValue() != '' &&
+			cbUf.getValue() != '' &&
+			txObservacoes.getValue() != '' &&
+			cbEstadoCivil.getRawValue() != '' &&
+			dtDataNascimento.getValue() != '' &&
+			tfNacionalidade.getValue() != '' &&
+			tfCpf.getValue() != '' &&
+			tfIdentidade.getValue() != '' &&
+			tfOrgaoExpedidor.getValue() != '' &&
+			tfRenda.getValue() != '') || 
+			(cbTipoPessoa.getValue() == '2' &&
+			tfNome.getValue() != '' &&
+			tfEmail.getValue() != '' &&
+			tfEndereco.getValue() != '' &&
+			tfBairro.getValue() != '' &&
+			tfCep.getValue() != '' &&
+			tfCidade.getValue() != '' &&
+			cbUf.getValue() != '' &&
+			txObservacoes.getValue() != '' &&
+			tfCnpj.getValue() != '' &&
+			tfInscricaoEstadual.getValue() != ''
+			
+		)){
+			if(psSenha.getValue() != '' && psConfirmarSenha.getValue() != psSenha.getValue()){
+			
+				msg('Informação','As senhas são diferentes!')
+			}else{
+				
+				Ext.Ajax.request({
+					url: 'modulos/usuario/gerenciar_usuario.php',
+					params: { 
+						acao                        : 'pessoaCadastrar',
+						codPessoa                   : codPessoaSelecionada,
+						nome                        : tfNome.getValue(),
+						email                       : tfEmail.getValue(),
+						senha                       : psSenha.getValue(),
+						confirmarSenha              : psConfirmarSenha.getValue(),
+						endereco                    : tfEndereco.getValue(),
+						bairro                      : tfBairro.getValue(),
+						cep                         : tfCep.getValue(),
+						cidade                      : tfCidade.getValue(),
+						uf                          : cbUf.getValue(),
+						observacoes                 : txObservacoes.getValue(),
+						codTipoPessoa               : cbTipoPessoa.getValue(),
+						codProfissao                : cbProfissao.getValue(),
+						empresaTrabalho             : tfEmpresa.getValue(), 
+						enderecoTrabalho            : tfEnderecoDadosProfissionais.getValue(),
+						bairroTrabalho              : tfBairroDadosProfissionais.getValue(),
+						cepTrabalho                 : tfCepDadosProfissionais.getValue(), 
+						cidadeTrabalho              : tfCidadeDadosProfissionais.getValue(),
+						ufTrabalho                  : cbUfDadosProfissionais.getValue(),
+						estadoCivil                 : cbEstadoCivil.getValue(),
+						dataNascimento              : dtDataNascimento.getValue(),
+						cpf                         : tfCpf.getValue(),
+						nacionalidade               : tfNacionalidade.getValue(),	
+						rg                          : tfIdentidade.getValue(),
+						orgaoExpedidor              : tfOrgaoExpedidor.getValue(),
+						renda                       : tfRenda.getValue(),
+						outroRendimento             : tfOutroRendimento.getValue(),
+						cnpj                        : tfCnpj.getValue(),
+						ie                          : tfInscricaoEstadual.getValue(),
+						nomeRepresentante           : tfNomeRepresentante.getValue(),
+						estadoCivilRepresentante    : cbEstadoCivilRepresentante.getValue(),
+						profissaoRepresentante      : cbProfissaoRepresentante.getValue(),
+						dataNascimentoRepresentante : dtDataNascimentoRepresentante.getValue(),
+						cpfRepresentante            : tfCpfRepresentante.getValue(),
+						identidadeRepresentante     : tfIdentidadeRepresentante.getValue(),
+						orgaoExpedidorRepresentante : tfOrgaoExpedidorRepresentante.getValue(),
+						rendaRepresentante          : tfRendaRepresentante.getValue(),
+						outroRendimentorepresentante: tfOutroRendimentoRepresentante.getValue()
+						
+					},
+					callback: function(options, success, response) {
+						var retorno = Ext.decode(response.responseText);
+						
+						if(retorno.success == false){
+							msg('Informação','Problema ao cadastrar o imóvel!')
+						}else{
+							msg('Informação','Operação executada com sucesso!')
+						}
+					}
+				})
+
+				novo()
+				codPessoaSelecionada = 0
+				nomeSelecionado      = ''
+				usuarioGrid.getForm().reset()
+			}
+
+
+		}else{
+			msg('Informação','Existem campos obrigatórios em Branco!')
+		}	
+		
+		
+	
+}
+	
+	pessoaStore.load({params: {start: 0, limit: 15}})
+
+	Ext.getCmp('fieldPessoaFisica').hide(true)	
+	Ext.getCmp('fieldPessoaFisicaDadosProfissionais').hide(true)
+	Ext.getCmp('fieldPessoaFisica').hide(true)	
+	Ext.getCmp('fieldPessoaJuridica').hide(true)
+	Ext.getCmp('fieldRepresentanteLegal').hide(true)
+	Ext.getCmp('fieldPessoaFisica').hide(true)
+
+
+	var janelaGerenciarUsuario = new Ext.Window({
+		title: 'Gerenciar Usuário',
+		id: 'janelaGerenciarUsuario',
+		border: false,
+		draggable: true,
+		resizable: false,
+		shadow: false,
+		autoHeight: true,
+		width: 1000,
+		anchor: 50,
+		height: 510,
+		closeAction:'close',
+		iconCls: 'manterUsuario',
+		items:[usuarioGrid]
+	})
+	janelaGerenciarUsuario.show()
+}

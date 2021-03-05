@@ -1,0 +1,166 @@
+.ic_seguro{
+	padding-left:0px;
+	background: url(../img/cadeado.png) no-repeat  0 3px !important;
+}
+
+#center{
+	margin-top: 190px;
+	margin-bottom: 125px;
+}
+
+#bgLogin{
+	width: 800px;
+	height: 486px;
+	border: 1px solid #DCE8F7;
+	background: url('../img/bg_login.jpg');
+}
+
+.bodyLogin{
+	background: url('../img/bg_body_login.gif');
+	font-family: arial;
+	font-size: 10px;
+}
+
+table{
+	font-family: arial;
+	font-size: 10px;
+}
+
+
+#topo{
+	width: 100%;
+	height: 93px;
+	padding-bottom: 2px;
+	border-bottom: 5px solid #000;
+	background: url("../img/bg_topo.jpg") repeat-x;
+}
+
+#logoSistema{
+	float: left;
+}
+
+.linhaDesativada .x-grid3-cell-inner{ 
+	color: #888;
+}
+
+.botaoBuscar {
+  background-image:url('../img/ic_busca.png') !important;
+}
+
+.botaoImprimir {
+  background-image:url('../img/ic_imprimir.png') !important;
+}
+
+.botaoPagamento {
+  background-image:url('../img/ic_pagamento.png') !important;
+}
+
+
+.botaoSalvar {
+  background-image:url('../img/ic_salvar.gif') !important;
+}
+
+.botaoNovo{
+  background-image:url('../img/ic_novo.gif') !important;
+}
+
+.botaoEditar{
+  background-image:url('../img/ic_editar.gif') !important;
+}
+
+.botaoImovel{
+  background-image:url('../img/ic_imovel.png') !important;
+}
+
+.botaoContrato{
+  background-image:url('../img/ic_contrato.png') !important;
+}
+
+
+
+
+.botaoFechar {
+  background-image:url('../img/ic_deletar.gif') !important;
+}
+
+.botaoAdicionar {
+  background-image:url('../img/ic_adicionar.gif') !important;
+}
+
+.botaoUpload{
+  background-image:url('../img/ic_upload.png') !important;
+}
+
+.botaoDesativar{
+  background-image:url('../img/ic_desativar.png') !important;
+}
+
+.botaoAtivar{
+  background-image:url('../img/ic_ativar.png') !important;
+}
+
+.botaoLogoff{
+  background-image:url('../img/ic_logoff.png') !important;
+}
+
+
+.menuUsuario{
+	background-image:url('../img/ic_usuario.png') !important ;
+}
+
+.manterUsuario{
+	background-image:url('../img/ic_manter_usuario.png') !important;
+}
+.icConjuge{
+	background-image:url('../img/ic_conjuge.png') !important;
+}
+
+
+.ic_atualizar{
+	background-image:url('../img/ic_atualizar.png') !important;
+}
+
+.grupo{
+	background-image:url('../img/ic_grupo.png') !important;
+}
+
+
+
+.menuConfiguracoes{
+	background-image:url('../img/ic_configuracoes.png') !important;
+}
+
+.menuRelatorios{
+	background-image:url('../img/ic_relatorio.gif') !important;
+}
+
+
+
+ 
+.x-form-file-wrap {
+	height:22px;
+	position:relative;
+}
+
+.x-form-file-wrap .x-form-file {
+	height:22px;
+	opacity:0;
+	position:absolute;
+	right:0;
+	z-index:2;
+}
+
+.x-form-file-wrap .x-form-file-btn {
+	position:absolute;
+	right:0;
+	z-index:1;
+}
+
+.x-form-file-wrap .x-form-file-text {
+	color:#777777;
+	left:0;
+	position:absolute;
+	z-index:3;
+}
+
+

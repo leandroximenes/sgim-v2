@@ -1,0 +1,35 @@
+#topo{
+	background: url('../img/topo.jpg') repeat-x;
+	height: 61px;
+}
+#logoSistema{
+	height: 50px;
+	background: green;
+	margin: 5px 0px 0px 20px;
+	float: left;
+}
+
+#logoCmBio{
+	height: 50px;
+	background: blue;
+	margin: 5px 20px 0px 0px;
+	float: right;
+}
+
+
+
+
+
+
+
+.botaoSalvar {
+  background-image:url('../img/ic_salvar.gif') !important;
+}
+
+.botaoEditar{
+  background-image:url('../img/ic_editar.gif') !important;
+}
+
+.botaoFechar {
+  background-image:url('../img/ic_deletar.gif') !important;
+}

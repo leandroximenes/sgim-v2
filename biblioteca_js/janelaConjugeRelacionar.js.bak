@@ -1,0 +1,412 @@
+function conjugeRelacionar(codPessoa, nomePessoa){
+	
+	var codPessoaSelecionada;
+
+	var storeProfissao = new Ext.data.Store({
+		id: 'storeProfissao',
+		proxy: new Ext.data.HttpProxy({
+			url: 'modulos/usuario/gerenciar_usuario.php',
+			method: 'POST'
+		}),
+		baseParams:{acao: "profissaoListar"},
+		reader: new Ext.data.JsonReader({
+			root: 'resultado',
+			totalProperty: 'total',
+			id: ['codProfissao','nome']
+		},[ 
+			{name: 'codProfissao', type: 'int'},
+			{name: 'nome', type: 'string'}
+
+		]),
+		sortInfo:{field: 'nome', direction: "ASC"}
+	}) 
+
+	storeProfissao.load()
+
+
+	//Listar Pessoas
+	var storeCliente = new Ext.data.Store({
+		id: 'storeCliente',
+		proxy: new Ext.data.HttpProxy({
+			url: 'modulos/usuario/gerenciar_usuario.php',
+			method: 'POST'
+		}),
+		baseParams:{acao: "pessoaVwListar"},
+		reader: new Ext.data.JsonReader({
+			root: 'resultado',
+			totalProperty: 'total',
+			id: ['codProfissao','nome']
+		},[ 
+			{name: 'codPessoa', type: 'int'},
+			{name: 'nome', type: 'string'}
+
+		]),
+		sortInfo:{field: 'nome', direction: "ASC"}
+	}) 
+
+	var sm2 = new Ext.grid.CheckboxSelectionModel;
+
+    var ds = new Ext.data.Store({
+		id: 'mRemoteDataStore',
+		baseParams:{
+			acao: 'pessoaGrupoListar',
+			codPessoa: codPessoa					
+		},
+		pruneModifiedRecords:true,
+		proxy: new Ext.data.HttpProxy({
+			url: 'modulos/usuario/gerenciar_usuario.php',
+			method: 'post'
+		}),
+		
+		reader: new Ext.data.JsonReader({
+			totalProperty: 'total',
+			root: 'resultado',
+			id: ['codGrupo']
+		},[
+			{name: 'codGrupo', type: 'int', mapping: 'codGrupo'},
+			{name: 'nome', type: 'string', mapping: 'nome'},
+			{name: 'marcado', type: 'boolean', mapping: 'marcado'}
+		])
+	})
+	
+	var checkColumn = new Ext.grid.CheckColumn({
+      header: "-",
+      dataIndex: 'marcado',
+      width: 30   
+    });
+
+	var cm = new Ext.grid.ColumnModel([checkColumn,
+		{id:'codGrupo',header: "Código", readOnly: true, width: 55, dataIndex: 'codGrupo', hidden: true},
+		{header: "Grupo", width: 250, sortable: true, dataIndex: 'nome'}
+	])
+	cm.defaultSortable = true
+	
+
+	tfPessoaPrincipal = new Ext.form.TextField({
+		fieldLabel: '<b>Pessoa</b>',
+		name: 'nome',
+		value: nomePessoa,
+		id: 'tfPessoaPrincipal',
+		allowBlank:false,
+		disabled: true,
+		maxLength: 100,
+		anchor : '98%'
+	})
+	
+	
+	tfNomeConjuge = new Ext.form.TextField({
+		fieldLabel: '<b>Nome</b>',
+		name: 'nome',
+		id: 'tfNomeConjuge',
+		allowBlank:false,
+		blankText:"Por favor entre com o nome do Conjuge.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfNacionalidadeConjuge = new Ext.form.TextField({
+		fieldLabel: '<b>Nacionalidade</b>',
+		name: 'nacionalidade',
+		id: 'tfNacionalidadeConjuge',
+		allowBlank:false,
+		blankText:"Por favor entre com a nacionalidade.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfCpfConjuge = new Ext.form.NumberField({
+		fieldLabel: '<b>CPF</b>',
+		name: 'cpf',
+		id: 'tfCpfConjuge',
+		allowBlank:false,
+		blankText:"Por favor entre com o cpf do conjuge",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	dtDataNascimentoConjuge = new Ext.form.DateField({
+		id: 'dtDataNascimentoConjuge',
+		name: 'dataNascimentoConjuge',
+		fieldLabel: '<b>Data Nascimento</b>',
+		allowBlank: false,
+		blankText:"Por favor insira a <b>DATA DE NASCIMENTO</b> do conjuge!",
+		format : 'd/m/Y',
+		anchor: '98%'
+	})
+
+	tfIdentidadeConjuge = new Ext.form.TextField({
+		fieldLabel: '<b>Identidade</b>',
+		name: 'rg',
+		id: 'tfIdentidadeConjuge',
+		allowBlank:false,
+		blankText:"Por favor entre com o RG do usuário.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfOrgaoExpedidorConjuge = new Ext.form.TextField({
+		fieldLabel: '<b>Orgão Exp.</b>',
+		name: 'orgaoExpedidor',
+		id: 'tfOrgaoExpedidorConjuge',
+		allowBlank:false,
+		blankText:"Por favor entre com o orgão expedidor.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfRendaConjuge = new Ext.form.NumberField({
+		fieldLabel: '<b>Renda</b>',
+		name: 'renda',
+		id: 'tfRendaConjuge',
+		allowBlank:false,
+		blankText:"Por favor entre com a renda do usuário.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	tfOutroRendimentoConjuge = new Ext.form.NumberField({
+		fieldLabel: '<b>Outro Rendimento</b>',
+		name: 'outroRendimento',
+		id: 'tfOutroRendimentoConjuge',
+		allowBlank:false,
+		blankText:"Por favor entre com a outra renda do Representante.",
+		maxLength: 100,
+		anchor : '98%'
+	})
+
+	cbProfissaoConjuge = new Ext.form.ComboBox({
+		id: 'cbProfissaoConjuge',
+		typeAhead: false,
+		fieldLabel: '<b>Profissão</b>',
+		value: '',
+		mode: 'local',
+		editable: false,
+		anchor: '98%',
+		store: storeProfissao,
+		displayField: 'nome',
+		valueField: 'codProfissao',
+		forceSelection: true,
+		triggerAction: 'all'
+
+	})
+
+	var janelaConjuge = new Ext.FormPanel({
+        id: 'janelaConjuge',
+        frame: true,
+		autoHeight: true,
+        labelAlign: 'left',
+        layout: 'column',	
+		items: [{
+        	columnWidth: 1,
+            xtype: 'panel',
+			frame: true,
+			bodyStyle: Ext.isIE ? 'padding:0 0 5px 10px' : 'padding:10px 10px',
+            items:[{
+				layout:'column',
+				width: '100%',
+				border: false,
+				items: [{
+					columnWidth: 1,
+					labelWidth: 110,
+					layout: 'form',
+					border: false,
+					items: [tfPessoaPrincipal]
+				},{
+					columnWidth: 1,
+					labelWidth: 110,
+					layout: 'form',
+					border: false,
+					items: [tfNomeConjuge]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 110,
+					layout: 'form',
+					border: false,
+					items: [cbProfissaoConjuge]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 90,
+					layout: 'form',
+					border: false,
+					items: [tfNacionalidadeConjuge]
+				},{
+					columnWidth: 0.6,
+					labelWidth: 110,
+					layout: 'form',
+					border: false,
+					items: [dtDataNascimentoConjuge]
+				},{
+					columnWidth: 0.4,
+					labelWidth: 45,
+					layout: 'form',
+					items: [tfCpfConjuge]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 110,
+					layout: 'form',
+					border: false,
+					items: [tfIdentidadeConjuge]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 80,
+					layout: 'form',
+					items: [tfOrgaoExpedidorConjuge]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 110,
+					layout: 'form',
+					items: [tfRendaConjuge]
+				},{
+					columnWidth: 0.5,
+					labelWidth: 120,
+					layout: 'form',
+					items: [tfOutroRendimentoConjuge]
+				}]
+			}]
+				
+        }],
+		bbar: [
+			botaoSalvar= new Ext.Button({
+				text: 'Salvar',
+				tooltip: 'Salvar',
+				handler: salvar,
+				iconCls:'botaoSalvar'
+			})
+		]
+    })
+
+	codPessoaSelecionada = codPessoa
+		
+	function SelecionarIdCliente(obj, record, index) {  
+		codPessoaSelecionada = record.get('codPessoa')
+
+		ds.baseParams = {
+			acao: 'pessoaGrupoListar',
+			codPessoa: codPessoaSelecionada
+		}
+		ds.load({params:{start:0, limit:30}});
+	}  
+	
+	function verificar(){
+		if(codPessoaSelecionada == '' || codPessoaSelecionada == null){
+			Ext.Msg.alert('Aviso', 'Por favor selecione um Usuário!')
+		}else{
+			Ext.each(grid.getStore().getModifiedRecords(), function(record){                   
+				var c = record.get('marcado')
+				codGrupo = record.get('codGrupo')
+
+				if(c == true){
+					Ext.Ajax.request({
+						url: 'modulos/usuario/gerenciar_usuario.php',
+						params: { 
+							acao: 'pessoaGrupoRelacionar',
+							codGrupo: codGrupo,
+							codPessoa: codPessoaSelecionada,
+							op: 1
+						},
+						callback: function(options, success, response) {
+							ds.reload({params:{start:0, limit:10}});
+						}
+					});
+				}else{	
+					Ext.Ajax.request({
+						url: 'modulos/usuario/gerenciar_usuario.php',
+						params: { 
+							acao: 'pessoaGrupoRelacionar',
+							codGrupo: codGrupo,
+							codPessoa: codPessoaSelecionada,
+							op: 2
+						},
+						callback: function(options, success, response) {
+							ds.reload({params:{start:0, limit:10}});
+						}
+					});
+				}
+
+			});
+		}
+	}
+
+	Ext.Ajax.request({
+		url: 'modulos/usuario/gerenciar_usuario.php',
+		params: { 
+			acao: 'conjugeUnicoListar',
+			codPessoa:  codPessoaSelecionada
+		},
+		callback: function(options, success, response) {
+			
+			var retorno = Ext.decode(response.responseText);
+			
+
+			Ext.getCmp("tfNomeConjuge").setValue(retorno.resultado[0].nome);
+			Ext.getCmp("cbProfissaoConjuge").setValue(retorno.resultado[0].codProfissao);
+			Ext.getCmp("cbProfissaoConjuge").setRawValue(retorno.resultado[0].profissao);
+			Ext.getCmp("tfNacionalidadeConjuge").setRawValue(retorno.resultado[0].nacionalidade);
+			Ext.getCmp("tfCpfConjuge").setRawValue(retorno.resultado[0].cpf);
+			Ext.getCmp("tfIdentidadeConjuge").setRawValue(retorno.resultado[0].rg);
+			Ext.getCmp("tfOrgaoExpedidorConjuge").setRawValue(retorno.resultado[0].orgaoExpedidor);
+			Ext.getCmp("tfRendaConjuge").setRawValue(separarVirgula(retorno.resultado[0].renda));
+			Ext.getCmp("dtDataNascimentoConjuge").setValue(retorno.resultado[0].dataNascimento);
+			Ext.getCmp("tfOutroRendimentoConjuge").setRawValue(separarVirgula(retorno.resultado[0].outroRendimento));
+
+		}
+	})
+
+
+function salvar (){
+	if(	cbTipoPessoa.getValue() == '1' &&
+		tfNome.getValue() != '' &&
+		dtDataNascimento.getValue() != '' &&
+		tfNacionalidade.getValue() != '' &&
+		tfCpf.getValue() != '' &&
+		tfIdentidade.getValue() != '' &&
+		tfOrgaoExpedidor.getValue() != '' &&
+		tfRenda.getValue() != ''
+	){
+		
+		Ext.Ajax.request({
+			url: 'modulos/usuario/gerenciar_usuario.php',
+			params: { 
+				acao                        : 'conjugeCadastrar',
+				codPessoa                   : codPessoaSelecionada,
+				nome                        : tfNomeConjuge.getValue(),
+				codProfissao                : cbProfissaoConjuge.getValue(),
+				dataNascimento              : dtDataNascimentoConjuge.getValue(),
+				cpf                         : tfCpfConjuge.getValue(),
+				nacionalidade               : tfNacionalidadeConjuge.getValue(),	
+				rg                          : tfIdentidadeConjuge.getValue(),
+				orgaoExpedidor              : tfOrgaoExpedidorConjuge.getValue(),
+				renda                       : tfRendaConjuge.getValue(),
+				outroRendimento             : tfOutroRendimentoConjuge.getValue(),
+			},
+			callback: function(options, success, response) {
+				var retorno = Ext.decode(response.responseText);
+				
+				if(retorno.success == false){
+					msg('Informação','Problema ao cadastrar o imóvel!')
+				}else{
+					msg('Informação','Operação executada com sucesso!')
+				}
+			}
+		})
+
+
+	}else{
+		msg('Informação','Existem campos obrigatórios em Branco!')
+	}	
+}
+
+	win = new Ext.Window({
+		title: 'Relacionar Conjuge',
+		id: 'conjugeRelacionar',
+		layout: 'fit',
+		border: false,
+		draggable: true,
+		resizable: false,
+		width: 500,
+		iconCls: 'manterUsuario',
+		items:[janelaConjuge]
+	})
+	win.show()
+	ds.load({params:{start:0, limit:10}});
+}

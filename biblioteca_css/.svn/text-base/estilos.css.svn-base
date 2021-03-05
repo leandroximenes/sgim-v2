@@ -1,0 +1,72 @@
+#topo{
+	background: url('../img/topo.jpg') repeat-x;
+	height: 61px;
+}
+#logoSistema{
+	height: 50px;
+	background: green;
+	margin: 5px 0px 0px 20px;
+	float: left;
+}
+
+#logoCmBio{
+	height: 50px;
+	background: blue;
+	margin: 5px 20px 0px 0px;
+	float: right;
+}
+
+
+
+
+.botaoBuscar {
+  background-image:url('../img/ic_busca.png') !important;
+}
+
+.botaoSalvar {
+  background-image:url('../img/ic_salvar.gif') !important;
+}
+
+.botaoEditar{
+  background-image:url('../img/ic_editar.gif') !important;
+}
+
+.botaoFechar {
+  background-image:url('../img/ic_deletar.gif') !important;
+}
+
+.botaoAdicionar {
+  background-image:url('../img/ic_adicionar.gif') !important;
+}
+
+.botaoUpload{
+  background-image:url('../img/ic_upload.png') !important;
+}
+ 
+.x-form-file-wrap {
+	height:22px;
+	position:relative;
+}
+
+.x-form-file-wrap .x-form-file {
+	height:22px;
+	opacity:0;
+	position:absolute;
+	right:0;
+	z-index:2;
+}
+
+.x-form-file-wrap .x-form-file-btn {
+	position:absolute;
+	right:0;
+	z-index:1;
+}
+
+.x-form-file-wrap .x-form-file-text {
+	color:#777777;
+	left:0;
+	position:absolute;
+	z-index:3;
+}
+
+

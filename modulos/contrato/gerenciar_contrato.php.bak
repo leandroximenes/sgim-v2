@@ -1,0 +1,176 @@
+<?php
+session_start();
+header('Content-Type: text/html; charset=iso-8859-1');
+if(isset($_SESSION["SISTEMA_codPessoa"])){
+
+	include("../../conexao/conexao.php");
+
+	function JEncode($arr){
+		if (version_compare(PHP_VERSION,"5.2","<")){    
+			require_once("./JSON.php"); 
+			$json = new Services_JSON();
+			$data=$json->encode($arr);
+		}else{
+			//utf_prepare($arr);
+			$data = json_encode($arr);
+		}
+		return $data;
+	}
+	
+
+	function contratoGerenciar() {
+		
+		global $mySQL;
+		
+		$codContrato  = (integer) $_POST['codContrato'];
+		$status       = (integer) $_POST['statusContrato'];
+
+		$sql = sprintf("call procContratoGerenciar($status, $codContrato)");
+
+		try {
+			if (!($rs = $mySQL->runQuery($sql))) {
+				throw new Exception("Erro ao executar comando."); 
+			}else{
+				echo "{success:true}";
+			}
+		} catch (Exception $e) {
+			echo "{failure:true}";
+			exit;
+		}
+	}
+
+	function contratoUnicoListar(){
+		global $mySQL;
+
+		$codContrato  = (integer) $_POST['codContrato'];
+		
+		$sql = sprintf("CALL procContratoUnicoListar($codContrato)");
+		$rs = $mySQL->runQuery($sql);
+		$rsQuant = $rs->num_rows;
+			
+		if($rsQuant>0){
+			while ($rsLinha = mysqli_fetch_assoc($rs)) {
+				$arr[] = $rsLinha;
+			}
+			$json = JEncode($arr);
+			echo '({"total":"'.$rsQuant.'","resultado":'.$json.'})';
+		} else {
+			echo '({"total":"0", "resultado":""})';
+		}
+	}
+
+	function contratoListar(){
+		global $mySQL;
+
+		$sql = sprintf("CALL procContratoListar()");
+		$rs = $mySQL->runQuery($sql);
+		$rsQuant = $rs->num_rows;
+			
+		if($rsQuant>0){
+			while ($rsLinha = mysqli_fetch_assoc($rs)) {
+				$arr[] = $rsLinha;
+			}
+			$json = JEncode($arr);
+			echo '({"total":"'.$rsQuant.'","resultado":'.$json.'})';
+		} else {
+			echo '({"total":"0", "resultado":""})';
+		}
+	}
+
+	function contratoCadastrar(){
+		
+		global $mySQL;
+		
+		$codFuncionario       = $_SESSION["SISTEMA_codPessoa"];
+		$codContrato          = (int) $_POST['codContrato'];
+		$codProprietario      = (int) $_POST['codProprietario'];
+		$codImovel            = (int) $_POST['codImovel'];
+		$codContratante       = (int) $_POST['codContratante'];
+		$codTipoServico       = (int) $_POST['codTipoServico'];
+		$comissao             = str_replace ('.',',',$_POST['comissao']);
+		$descontoPontualidade = str_replace ('.',',',$_POST['descontoPontualidade']);
+		$valor                = str_replace ('.',',',$_POST['valor']);
+		$multaAtraso          = str_replace ('.',',',$_POST['multaAtraso']);
+		$dataInicio           = (isset($_POST['dataInicio']) ? $_POST['dataInicio'] : 0);
+		$qtdMeses             = (int) $_POST['qtdMeses'];
+		
+		$dataSeparada         = explode("/",$dataInicio);
+		$dataInicioInvertida  = $dataSeparada[2]."/".$dataSeparada[1]."/".$dataSeparada[0];
+		$dataFim			  = strftime("%Y/%m/%d", (strtotime($dataSeparada[2]."/".$dataSeparada[1]."/".$dataSeparada[0]. " " .$qtdMeses." month - 1 day")));
+		$observacao			  = $_POST['observacoes'];
+
+		
+			
+		$sql = sprintf("call procContratoCadastrar($codContrato,$codFuncionario,$codProprietario,$codImovel,$codContratante,$codTipoServico,'$comissao','$descontoPontualidade','$valor','$multaAtraso','$dataInicioInvertida','$dataFim',$qtdMeses,'$observacao')");
+
+		try {
+			if (!($rs = $mySQL->runQuery($sql))) {
+				throw new Exception("Erro ao executar comando."); 
+			}else{
+				
+		
+				$rsLinha           = mysqli_fetch_assoc($rs);
+				$codUltimoContrato = $rsLinha['codContrato'];
+
+				for($i=1;$i<=$qtdMeses;$i++){
+			
+					if($i != $qtdMeses){
+						$dataVencimento = strftime("%Y/%m/%d", (strtotime($dataSeparada[2]."/".$dataSeparada[1]."/".$dataSeparada[0]. " " .$i." month")));
+					}else{
+						$dataVencimento = strftime("%Y/%m/%d", (strtotime($dataSeparada[2]."/".$dataSeparada[1]."/".$dataSeparada[0]. " " .$i." month - 1 day")));
+					}
+
+					$sqlPagamento = sprintf("call procPagamentoCadastrar($codUltimoContrato,$i,'$dataVencimento', $descontoPontualidade, $multaAtraso)");
+					echo $sqlPagamento;
+					exit;
+					$rsPagamento = $mySQL->runQuery($sqlPagamento);
+				}
+
+				echo "{success:true}";
+		
+		
+			}
+		} catch (Exception $e) {
+			echo "{failure:true}";
+			exit;
+		}
+	}
+
+
+	/*----------------------------------------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------------------------------------
+									Recebe o parametro que indica que função irá ser executada
+	------------------------------------------------------------------------------------------------------------------------
+	--------------------------------------------------------------------------------------------------------------------- */
+
+
+	$acao = "";
+	if(isset($_POST['acao'])){
+		$acao = $_POST['acao'];
+	}
+
+	if(isset($_GET['acao'])){
+		$acao = $_GET['acao'];
+	}
+	switch($acao){
+		case "contratoListar":
+			contratoListar();
+			break;
+
+		case "contratoCadastrar":
+			contratoCadastrar();
+			break;
+		
+		case "contratoGerenciar":
+			contratoGerenciar();
+			break;
+
+		case "contratoUnicoListar":
+			contratoUnicoListar();
+			break;
+	}
+
+}else{
+	header('location:login.php');
+}	
+?>

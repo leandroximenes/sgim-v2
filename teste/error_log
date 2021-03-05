@@ -1,0 +1,381 @@
+[20-Jan-2021 19:15:44 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 19:15:44 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 13:15:44 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 19:15:51 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 19:15:51 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 13:15:51 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 19:16:05 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 19:16:05 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 13:16:05 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 20:08:14 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 20:08:14 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 14:08:14 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 14:08:14 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'mysqli' not found in /home1/tabak865/public_html/sgim/teste/conexao.php:10
+Stack trace:
+#0 {main}
+  thrown in /home1/tabak865/public_html/sgim/teste/conexao.php on line 10
+[20-Jan-2021 20:13:06 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 20:13:06 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 14:13:06 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 14:13:06 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'mysqli' not found in /home1/tabak865/public_html/sgim/teste/conexao.php:10
+Stack trace:
+#0 {main}
+  thrown in /home1/tabak865/public_html/sgim/teste/conexao.php on line 10
+[20-Jan-2021 20:22:35 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20131226
+PHP    compiled with module API=20190902
+These options need to match
+ in Unknown on line 0
+[20-Jan-2021 20:22:35 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ixed.5.6.lin' (tried: /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin: undefined symbol: _zval_ptr_dtor), /opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so (/opt/php56/lib/php/extensions/no-debug-non-zts-20131226/ixed.5.6.lin.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[20-Jan-2021 14:22:35 America/Chicago] PHP Deprecated:  Directive 'allow_url_include' is deprecated in Unknown on line 0
+[20-Jan-2021 14:22:35 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'mysqli' not found in /home1/tabak865/public_html/sgim/teste/conexao.php:10
+Stack trace:
+#0 {main}
+  thrown in /home1/tabak865/public_html/sgim/teste/conexao.php on line 10
+[20-Jan-2021 17:24:39 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:28:31 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:29:32 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:34:48 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:37:50 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:38:36 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2021 17:39:21 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:15:30 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:16:14 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:16:40 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:19:56 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:19:57 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:26:36 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:26:46 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:31:54 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:31:59 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:48:44 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 09:48:53 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:02:44 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:02:48 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:11:29 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:12:32 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:18:54 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:18:56 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:20:00 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:20:30 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:22:36 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:23:58 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:25:43 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:26:06 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:26:13 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:26:26 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:31:33 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2021 17:31:49 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[22-Jan-2021 08:55:27 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[22-Jan-2021 08:55:40 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[22-Jan-2021 08:58:41 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[22-Jan-2021 09:03:07 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[22-Jan-2021 09:03:14 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[22-Jan-2021 09:03:59 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[22-Jan-2021 09:04:02 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[23-Jan-2021 19:55:02 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[23-Jan-2021 19:55:05 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[23-Jan-2021 22:56:16 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 22:56:16 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 22:56:20 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 22:56:20 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 22:58:17 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 22:58:17 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 22:58:31 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 22:58:31 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 23:01:20 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 23:01:20 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 23:01:48 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 23:01:48 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 23:02:13 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 23:02:13 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 23:02:16 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 23:02:16 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 23:02:17 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[23-Jan-2021 23:02:17 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 12:49:56 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 12:49:56 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 12:52:35 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 12:52:35 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 12:52:48 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 12:52:48 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 12:54:13 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 12:54:13 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 06:54:13 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'mysqli' not found in /home1/tabak865/public_html/sgim/teste/conexao.php:10
+Stack trace:
+#0 {main}
+  thrown in /home1/tabak865/public_html/sgim/teste/conexao.php on line 10
+[25-Jan-2021 12:55:19 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 12:55:19 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 06:55:19 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'mysqli' not found in /home1/tabak865/public_html/sgim/teste/conexao.php:10
+Stack trace:
+#0 {main}
+  thrown in /home1/tabak865/public_html/sgim/teste/conexao.php on line 10
+[25-Jan-2021 12:55:22 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 12:55:22 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 06:55:22 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'mysqli' not found in /home1/tabak865/public_html/sgim/teste/conexao.php:10
+Stack trace:
+#0 {main}
+  thrown in /home1/tabak865/public_html/sgim/teste/conexao.php on line 10
+[25-Jan-2021 12:57:07 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 12:57:07 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 06:57:07 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'mysqli' not found in /home1/tabak865/public_html/sgim/teste/conexao.php:10
+Stack trace:
+#0 {main}
+  thrown in /home1/tabak865/public_html/sgim/teste/conexao.php on line 10
+[25-Jan-2021 12:57:34 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 12:57:34 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 06:57:34 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'mysqli' not found in /home1/tabak865/public_html/sgim/teste/conexao.php:10
+Stack trace:
+#0 {main}
+  thrown in /home1/tabak865/public_html/sgim/teste/conexao.php on line 10
+[25-Jan-2021 12:58:20 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 12:58:20 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 06:58:20 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'mysqli' not found in /home1/tabak865/public_html/sgim/teste/conexao.php:3
+Stack trace:
+#0 {main}
+  thrown in /home1/tabak865/public_html/sgim/teste/conexao.php on line 3
+[25-Jan-2021 13:00:08 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 13:00:08 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 07:00:08 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'mysql_connect' not found in /home1/tabak865/public_html/sgim/teste/conexao.php:3
+Stack trace:
+#0 {main}
+  thrown in /home1/tabak865/public_html/sgim/teste/conexao.php on line 3
+[25-Jan-2021 13:12:12 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 13:12:12 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 07:12:12 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'mysql_connect' not found in /home1/tabak865/public_html/sgim/teste/conexao.php:3
+Stack trace:
+#0 {main}
+  thrown in /home1/tabak865/public_html/sgim/teste/conexao.php on line 3
+[25-Jan-2021 13:14:14 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 13:14:14 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 07:14:14 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PDO' not found in /home1/tabak865/public_html/sgim/teste/conexao_pdo.php:11
+Stack trace:
+#0 {main}
+  thrown in /home1/tabak865/public_html/sgim/teste/conexao_pdo.php on line 11
+[25-Jan-2021 18:42:25 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 18:42:25 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 12:42:25 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'mysql_connect' not found in /home1/tabak865/public_html/sgim/teste/conexao.php:3
+Stack trace:
+#0 {main}
+  thrown in /home1/tabak865/public_html/sgim/teste/conexao.php on line 3
+[25-Jan-2021 18:42:57 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 18:42:57 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 12:42:57 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'mysql_connect' not found in /home1/tabak865/public_html/sgim/teste/conexao.php:3
+Stack trace:
+#0 {main}
+  thrown in /home1/tabak865/public_html/sgim/teste/conexao.php on line 3
+[25-Jan-2021 18:44:28 UTC] PHP Warning:  PHP Startup: imagick: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
+[25-Jan-2021 18:44:28 UTC] PHP Warning:  PHP Startup: SourceGuardian: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20170718
+These options need to match
+ in Unknown on line 0
