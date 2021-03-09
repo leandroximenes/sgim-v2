@@ -5,7 +5,7 @@ function gerenciarContrato() {
 
     function manterPessoa(coluna, statusContrato, codContrato) {
         if (statusContrato == 1) {
-            if (confirm('Tem certeza que deseja desativar esse Usuário?')) {
+            if (confirm('Tem certeza que deseja desativar esse contrato?')) {
                 Ext.Ajax.request({
                     url: 'modulos/contrato/gerenciar_contrato.php',
                     params: {
@@ -18,7 +18,7 @@ function gerenciarContrato() {
                         var retorno = Ext.decode(response.responseText);
 
                         if (retorno.success == false) {
-                            Ext.MessageBox.alert('Mensagem', 'Usuário Desativado com sucesso!')
+                            Ext.MessageBox.alert('Mensagem', 'contrato Desativado com sucesso!')
                         } else {
                             contratoStore.reload()
                         }
@@ -26,7 +26,7 @@ function gerenciarContrato() {
                 })
             }
         } else {
-            if (confirm('Tem certeza que deseja ativar esse Usuário?')) {
+            if (confirm('Tem certeza que deseja ativar esse contrato?')) {
                 Ext.Ajax.request({
                     url: 'modulos/contrato/gerenciar_contrato.php',
                     params: {
@@ -295,7 +295,7 @@ function gerenciarContrato() {
 
     function verificar() {
         if (codContratoSelecionada == '' || codContratoSelecionada == null) {
-            Ext.Msg.alert('Aviso', 'Por favor selecione um Usuário!')
+            Ext.Msg.alert('Aviso', 'Por favor selecione um contrato!')
         } else {
             Ext.each(grid.getStore().getModifiedRecords(), function (record) {
                 var c = record.get('marcado')

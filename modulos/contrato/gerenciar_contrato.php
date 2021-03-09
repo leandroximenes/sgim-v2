@@ -77,7 +77,7 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
 			0
 		END encerrado,
                 (select MAX(DATE_FORMAT(data, '%Y-%m-%d')) from contratoEncerramento CE WHERE CE.codContrato = C.codContrato) as dataEncerramento,
-		C.codContrato, C.dataInicio, C.dataFim, C.`status`, C.valor, C.qtdMeses, ti.nome,
+		C.codContrato, C.dataInicio, C.dataFim, C.`status`, C.valor, C.qtdMeses, ti.nome, C.dtInicioSI, C.dtFimSI, C.tipoSI,
 		(SELECT P.nome FROM pessoa P WHERE P.codPessoa = C.codPessoaLocador) as proprietario,
 		(SELECT P.nome FROM pessoa P WHERE P.codPessoa = C.codPessoaInquilino) as inquilino
 		
@@ -162,8 +162,11 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
         $dataFim = strftime("%Y/%m/%d", (strtotime($dataSeparada[2] . "/" . $dataSeparada[1] . "/" . $dataSeparada[0] . " " . $qtdMeses . " month - 1 day")));
         $observacao = $_POST['observacoes'];
         $intermediacao = $_POST['intermediacao'];
+        $dataInicioSI = (!empty($_POST['dataInicioSI']) ? "'" .  inverteData($_POST['dataInicioSI']) . "'" : 'null');
+        $dataFimSI = (!empty($_POST['dataFimSI']) ? "'" .  inverteData($_POST['dataFimSI']) . "'" : 'null');
+        $tipoSI = $_POST['tipoSI'];
 
-        $sql = sprintf("call procContratoCadastrar($codContrato,$codFuncionario,$codProprietario,$codImovel,$codContratante,$codTipoServico,'$comissao','$descontoPontualidade','$valor', null, null,  '$multaAtraso','$dataInicioInvertida','$dataFim',$qtdMeses,'$observacao', $intermediacao)");
+        $sql = sprintf("call procContratoCadastrar($codContrato,$codFuncionario,$codProprietario,$codImovel,$codContratante,$codTipoServico,'$comissao','$descontoPontualidade','$valor', null, null,  '$multaAtraso','$dataInicioInvertida','$dataFim',$qtdMeses,'$observacao', $intermediacao, $dataInicioSI, $dataFimSI, '$tipoSI')");
 
         try {
             if (!($rs = $mySQL->runQuery($sql))) {

@@ -772,6 +772,50 @@ function cadastrarContrato(codContratoSelecionado) {
         anchor: '95%'
     })
 
+    //Seguro Incêndio
+
+    dtInicioSI = new Ext.form.DateField({
+        id: 'dtInicioSI',
+        name: 'dtInicioSI',
+        fieldLabel: '<b>Início S. Incêndio</b>',
+        blankText: "Por favor insira a data <b>INÍCIO DO S. INCÊNDIO</b>.",
+        allowBlank: true,
+        format: 'd/m/Y',
+        anchor: '98%'
+    })
+
+    dtFimSI = new Ext.form.DateField({
+        id: 'dtFimSI',
+        name: 'dtFimSI',
+        fieldLabel: '<b>Fim S. Incêndio</b>',
+        allowBlank: true,
+        blankText: "Por favor insira a data <b>FIM DO S. INCÊNDIO</b>.",
+        format: 'd/m/Y',
+        anchor: '98%'
+    })
+
+    var cbTipoSI = new Ext.form.ComboBox({
+        typeAhead: true,
+        triggerAction: 'all',
+        lazyRender:true,
+        id: 'cbTipoSI',
+        name: 'cbTipoSI',
+        fieldLabel: '<b>Tipo S. Incêndio</b>',
+        anchor: '98%',
+        mode: 'local',
+        store: new Ext.data.ArrayStore({
+            fields: [
+                'myId',
+                'displayText'
+            ],
+            data: [['Particular', 'Particular'], ['Tabakal', 'Tabakal'], ['Não adquirido', 'Não adquirido']]
+        }),
+        valueField: 'myId',
+        displayField: 'displayText'
+    });
+
+    
+
     function manterImovel(coluna, statusUsuario, codImovel) {
         if (coluna == 13) {
             if (statusUsuario == 1) {
@@ -1078,6 +1122,21 @@ function cadastrarContrato(codContratoSelecionado) {
                                 labelWidth: 45,
                                 layout: 'form',
                                 items: [tfUltimaParcelaPaga]
+                            }, {
+                                columnWidth: .40,
+                                labelWidth: 65,
+                                layout: 'form',
+                                items: [dtInicioSI]
+                            }, {
+                                columnWidth: .40,
+                                labelWidth: 65,
+                                layout: 'form',
+                                items: [dtFimSI]
+                            }, {
+                                columnWidth: .40,
+                                labelWidth: 65,
+                                layout: 'form',
+                                items: [cbTipoSI]
                             }]
                     }]
 
@@ -1238,6 +1297,9 @@ function cadastrarContrato(codContratoSelecionado) {
 //                            vencimentoCondominio: document.getElementById("dtPrimeiroVencimentoCondominio").value,
                             multaAtraso: document.getElementById("tfMulta").value,
                             intermediacao: document.getElementById("tfIntermediacao").value,
+                            dataInicioSI: document.getElementById("dtInicioSI").value,
+                            dataFimSI: document.getElementById("dtFimSI").value,
+                            tipoSI: document.getElementById("cbTipoSI").value,
                             observacoes: txObservacoes.getValue()
                         },
                         callback: function (options, success, response) {
@@ -1313,6 +1375,9 @@ function cadastrarContrato(codContratoSelecionado) {
                 Ext.getCmp("cbImovel").setValue(retorno.resultado[0].codImovel);
                 Ext.getCmp("cbImovel").setRawValue(retorno.resultado[0].endereco);
 
+                Ext.getCmp("cbTipoSI").setValue(retorno.resultado[0].tipoSI);
+                Ext.getCmp("cbTipoSI").setRawValue(retorno.resultado[0].tipoSI);
+                
                 Ext.getCmp("dtInicioLocacao").setValue(retorno.resultado[0].dataInicio);
                 Ext.getCmp("dtFimLocacao").setValue(retorno.resultado[0].dataFim);
                 Ext.getCmp("dtUltimoMesPago").setValue(retorno.resultado[0].ultimoMesPago);
@@ -1324,6 +1389,9 @@ function cadastrarContrato(codContratoSelecionado) {
                 Ext.getCmp("tfDescPontualidade").setValue(retorno.resultado[0].descontoPontualidade);
                 Ext.getCmp("tfQtdMeses").setValue(retorno.resultado[0].qtdMeses);
                 Ext.getCmp("tfIntermediacao").setValue(retorno.resultado[0].intermediacao);
+                Ext.getCmp("dtInicioSI").setValue(retorno.resultado[0].dtInicioSI);
+                Ext.getCmp("dtFimSI").setValue(retorno.resultado[0].dtFimSI);
+                
                 document.getElementById('txObservacoes').value = retorno.resultado[0].observacao;
                 Ext.getCmp("dtUltimoMesPagoCondominio").setValue(retorno.resultado[0].ultimoMesPagoCondominio);
                 Ext.getCmp("tfqtdeParcelaPagaCondominio").setValue(retorno.resultado[0].qtdeParcelaPagasCondominio);
