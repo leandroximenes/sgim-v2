@@ -162,8 +162,15 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
         $dataFim = strftime("%Y/%m/%d", (strtotime($dataSeparada[2] . "/" . $dataSeparada[1] . "/" . $dataSeparada[0] . " " . $qtdMeses . " month - 1 day")));
         $observacao = $_POST['observacoes'];
         $intermediacao = $_POST['intermediacao'];
-        $dataInicioSI = (!empty($_POST['dataInicioSI']) ? "'" .  inverteData($_POST['dataInicioSI']) . "'" : 'null');
-        $dataFimSI = (!empty($_POST['dataFimSI']) ? "'" .  inverteData($_POST['dataFimSI']) . "'" : 'null');
+        if (empty($_POST['dataInicioSI'])){
+            $dataInicioSI = 'null';
+            $dataFimSI = 'null';
+        }else{
+            $dataInicioSI = "'" .  inverteData($_POST['dataInicioSI']) . "'";
+            $obDataInicioSI = new DateTime(inverteData($_POST['dataInicioSI']));
+            $obDataInicioSI->modify("+ 1 year");
+            $dataFimSI =  "'{$obDataInicioSI->format("Y-m-d")}'";
+        }
         $tipoSI = $_POST['tipoSI'];
 
         $sql = sprintf("call procContratoCadastrar($codContrato,$codFuncionario,$codProprietario,$codImovel,$codContratante,$codTipoServico,'$comissao','$descontoPontualidade','$valor', null, null,  '$multaAtraso','$dataInicioInvertida','$dataFim',$qtdMeses,'$observacao', $intermediacao, $dataInicioSI, $dataFimSI, '$tipoSI')");

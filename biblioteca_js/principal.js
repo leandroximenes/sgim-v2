@@ -156,6 +156,14 @@ Ext.onReady(function () {
                     }
                 });
 
+            arrayitensMenuRelatorios.push({
+                text: 'Relatório seguro incêndio',
+                iconCls: '',
+                handler: function () {
+                    window.open('modulos/relatorios/seguroIncendio.php');
+                }
+            });
+
             var itensMenuRelatorios = new Ext.menu.Menu({
                 items: arrayitensMenuRelatorios
             });

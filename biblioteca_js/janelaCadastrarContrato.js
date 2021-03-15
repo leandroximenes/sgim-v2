@@ -789,6 +789,7 @@ function cadastrarContrato(codContratoSelecionado) {
         name: 'dtFimSI',
         fieldLabel: '<b>Fim S. Incêndio</b>',
         allowBlank: true,
+        disabled: true,
         blankText: "Por favor insira a data <b>FIM DO S. INCÊNDIO</b>.",
         format: 'd/m/Y',
         anchor: '98%'
