@@ -143,6 +143,7 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                 DATE_FORMAT(dataInicio,'%d/%m/%Y') as dataInicio,
                 DATE_FORMAT(dataFim,'%d/%m/%Y') as dataFim,
                 DATEDIFF(dataFim, CURDATE()) as diasVencer,
+                DATEDIFF(dtFimSI, CURDATE()) as diasVencerSI,
                 DATE_FORMAT(dtInicioSI,'%d/%m/%Y') as dtInicioSI,
                 DATE_FORMAT(dtFimSI,'%d/%m/%Y') as dtFimSI,
                 tipoSI
@@ -188,10 +189,11 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                         <th> Inquilino </td>
                         <th> In&iacute;cio do contrato</td>
                         <th> Fim do contrato</td>
-                        <th> Dias a vencer</td>
+                        <th> Dias a vencer do contrato</td>
                         <th> In&iacute;cio do seguro</td>
                         <th> Fim do seguro</td>
                         <th> Tipo de seguro</td>
+                        <th> Dias a vencer do S. Incêndio</td>
                     </tr>
                     <?php
                     foreach ($result as $value) :
@@ -205,6 +207,20 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                         }else{
                             $diasVencerText = $value['diasVencer'] . ' dias';
                         }
+
+                        $diasVencerSIText = '';
+                        if(is_null($value['diasVencerSI'])){
+                            $diasVencerSIText = '-';
+                        }
+                        else if($value['diasVencerSI'] == 0 || $value['diasVencerSI'] == 1){
+                            $diasVencerSIText = $value['diasVencerSI'] . ' dia';
+                        }else if($value['diasVencerSI'] == -1){
+                            $diasVencerSIText = 'vencido à ' . abs($value['diasVencerSI']) . ' dia';
+                        }else if($value['diasVencerSI'] < 0){
+                            $diasVencerSIText = 'vencido à ' . abs($value['diasVencerSI']) . ' dias';
+                        }else{
+                            $diasVencerSIText = $value['diasVencerSI'] . ' dias';
+                        }
                         ?>
                         <tr class="result" ?>
                             <td width='50' align='center'> <?php echo $value['dataRerefencia']; ?></td>
@@ -217,6 +233,7 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                             <td width='50' align='center'> <?php echo $value['dtInicioSI']; ?></td>
                             <td width='50' align='center'> <?php echo $value['dtFimSI']; ?></td>
                             <td width='50' align='center'> <?php echo $value['tipoSI']; ?></td>
+                            <td width='50' align='center'> <?php echo $diasVencerSIText ?> </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
