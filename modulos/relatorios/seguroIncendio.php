@@ -114,17 +114,18 @@ header('Content-Type: text/html; charset=iso-8859-1');
         $('.sendSMS').on('click', function(e) {
             e.preventDefault();
             var _this = $(this);
+            
             var src = _this.children().attr('src');
             _this.children().attr('src', '../../img/loading.gif');
 
 
             $.ajax({
                 type: "POST",
-                async: false,
                 dataType: "json",
                 url: '../../ajax/SeguroIncendio.php?acao=enviarSMS',
                 data: {
-                    // value: value
+                    nome : _this.siblings('.firstName').val(),
+                    celular : _this.siblings('.cel').val()
                 },
                 success: function() {
                     _this.children().attr('src', '../../img/ok-sendemail.png');
@@ -158,17 +159,20 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
         $dtFim = inverteData($_POST['dtFim']);
         global $mySQL;
         $sql = "
-            SELECT DATE_FORMAT(dataFim,'%m/%Y') as dataRerefencia, codContrato,
-                PL.nome, codPessoaInquilino, 
-                DATE_FORMAT(dataInicio,'%d/%m/%Y') as dataInicio,
-                DATE_FORMAT(dataFim,'%d/%m/%Y') as dataFim,
-                DATEDIFF(dataFim, CURDATE()) as diasVencer,
-                DATEDIFF(dtFimSI, CURDATE()) as diasVencerSI,
-                DATE_FORMAT(dtInicioSI,'%d/%m/%Y') as dtInicioSI,
-                DATE_FORMAT(dtFimSI,'%d/%m/%Y') as dtFimSI,
-                tipoSI
+            SELECT DATE_FORMAT(dataFim,'%m/%Y') AS dataRerefencia, codContrato,
+                PL.nome, 
+                codPessoaInquilino, 
+                (SELECT SUBSTRING_INDEX(nome, ' ', 1) FROM pessoa WHERE codPessoa = codPessoaInquilino) AS primeiroNome,
+                DATE_FORMAT(dataInicio,'%d/%m/%Y') AS dataInicio,
+                DATE_FORMAT(dataFim,'%d/%m/%Y') AS dataFim,
+                DATEDIFF(dataFim, CURDATE()) AS diasVencer,
+                DATEDIFF(dtFimSI, CURDATE()) AS diasVencerSI,
+                DATE_FORMAT(dtInicioSI,'%d/%m/%Y') AS dtInicioSI,
+                DATE_FORMAT(dtFimSI,'%d/%m/%Y') AS dtFimSI,
+                tipoSI,
+                (SELECT CONCAT('55', ddd, telefone) FROM telefone WHERE codTipoTelefone = 2 AND codPessoa = codPessoaInquilino) AS celular
             FROM contrato C 
-            INNER JOIN pessoa PL on C.codPessoaLocador = PL.codPessoa
+            INNER JOIN pessoa PL ON C.codPessoaLocador = PL.codPessoa
             WHERE C.status = 1 AND C.dataFim BETWEEN '" . $dtInicio . "' AND '" . $dtFim . "'
             AND codContrato NOT IN (SELECT codContrato FROM contratoEncerramento)
             ORDER BY diasVencer,1,2";
@@ -253,7 +257,11 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                             <td width='50' align='center'> <?php echo $value['dtFimSI']; ?></td>
                             <td width='50' align='center'> <?php echo $value['tipoSI']; ?></td>
                             <td width='50' align='center'> <?php echo $diasVencerSIText ?> </td>
-                            <td width='50' align='center'> <a href="#" class="sendSMS"> <img src="../../img/nt-sendemail.png"> </a></td>
+                            <td width='50' align='center'> 
+                                <a href="#" class="sendSMS"> <img src="../../img/nt-sendemail.png"></a>
+                                <input type="hidden" value="<?php echo ($value['primeiroNome']); ?>" class="firstName" />
+                                <input type="hidden" value="<?php echo ($value['celular']); ?>" class="cel" />
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

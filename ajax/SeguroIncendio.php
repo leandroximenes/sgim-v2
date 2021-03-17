@@ -8,31 +8,32 @@ include_once("../modulos/diversos/util.php");
 switch ($_GET['acao']) {
 
     case 'enviarSMS':
-        try {
+        try { 
             $id = date('YmdHms');
             include_once '../human_gateway_client_api/HumanClientMain.php';
             $account = "gabrielneiva.api";
             $password = "FMFpl6N8lm";
             $humanMultipleSend = new HumanMultipleSend($account, $password);
 
-            $telefone = '5561986092074';
-            $arrayNome[0] = 'Leandro';
+            $telefone = $_POST['celular'];
+            $nome = $_POST['nome'];
+
+            if(is_null($nome)){
+                throw new Exception("Nome inválido");
+            }
+            if(is_null($telefone)){
+                throw new Exception("Telefone inválido");
+            }
 
             $tipo = HumanMultipleSend::TYPE_C;
             // $msg_list = "556181056006; Teste de envio de sms Aurélio; ID-Teste-A-{$id}\n";
             // $msg_list .= "556191341099; Teste de envio de sms Leandro; ID-Teste-L-{$id}";
-            $msg_list = "$telefone; {$arrayNome[0]}, 
-            Prezado fulano, não identificamos em nosso sistema a renovação do seguro contra incêndio do imóvel 
-            locado por vossa senhoria. Caso já tenha efetuado, favor desconsiderar essa mensagem e remeter cópia 
-            da apólice para efetuarmos a devida baixa.
-            Atenciosamente
-            Tabakal Imobiliária
-            ; ID-IR-E-{$id}\n";
+            $msg_list = "$telefone; Prezado $nome, nao identificamos a renovacao do seguro contra incendio. Caso ja tenha efetuado, favor remeter copia da apolice. Tabakal Imobiliaria; SE-{$id}"."\n";
             $callBack = HumanMultipleSend::CALLBACK_INACTIVE;
             $responses = $humanMultipleSend->sendMultipleList($tipo, $msg_list, $callBack);
 
             if ($responses[0]->getCode() == '200') {
-                echo 'Envio de sms com sucesso';
+                echo json_encode('Envio de sms com sucesso');
             } else {
                 throw new Exception("Erro ao eviar o sms");
             }
