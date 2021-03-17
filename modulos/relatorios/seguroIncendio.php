@@ -5,18 +5,18 @@ session_start();
 header('Content-Type: text/html; charset=iso-8859-1');
 ?>
 <style>
-    body{
+    body {
         margin: 0px;
         font-size: 11px;
         font-family: arial;
         padding: 5px
     }
 
-    input{
+    input {
         margin: 0 5px;
     }
 
-    input[type=text]{
+    input[type=text] {
         width: 100px;
     }
 
@@ -30,26 +30,26 @@ header('Content-Type: text/html; charset=iso-8859-1');
     }
 
 
-    table{
+    table {
         font-size: 11px;
         font-family: arial;
     }
 
-    th{
+    th {
         background: #19688F;
         font-weight: bold;
         color: #FFF;
     }
 
-    .vermelho{
+    .vermelho {
         color: #990000;
     }
 
-    .verde{
+    .verde {
         color: #31CC2E;
     }
 
-    #cabecalhoRelatorio{
+    #cabecalhoRelatorio {
         width: 650px;
         margin-bottom: 10px;
         height: 62px;
@@ -57,16 +57,16 @@ header('Content-Type: text/html; charset=iso-8859-1');
         float: left;
     }
 
-    #logoRelatorio{
+    #logoRelatorio {
         float: left;
     }
 
-    #tituloRelatorio{
+    #tituloRelatorio {
         float: right;
         text-align: right;
     }
 
-    #nomeRelatorio{
+    #nomeRelatorio {
         padding-top: 15px;
         font-size: 18px;
         color: #19688F;
@@ -76,7 +76,7 @@ header('Content-Type: text/html; charset=iso-8859-1');
         background: #CFE4EF;
     }
 
-    .agrupador td{
+    .agrupador td {
         background: #6699FF;
         text-align: center;
         font-weight: bold;
@@ -92,11 +92,11 @@ header('Content-Type: text/html; charset=iso-8859-1');
 <script type="text/javascript" src="../../biblioteca_js/jquery-1.11.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#dtInicio').val('<?= $_POST['dtInicio'] ?>');
         $('#dtFim').val('<?= $_POST['dtFim'] ?>');
         // $('.result').addClass('hide');
-        $('.agrupador').on('click', function () {
+        $('.agrupador').on('click', function() {
             var id = $(this).attr('id');
             // $('.' + id).toggleClass('hide');
         });
@@ -111,20 +111,40 @@ header('Content-Type: text/html; charset=iso-8859-1');
             prevText: 'Anterior'
         });
 
+        $('.sendSMS').on('click', function(e) {
+            e.preventDefault();
+            var _this = $(this);
+            var src = _this.children().attr('src');
+            _this.children().attr('src', '../../img/loading.gif');
+
+
+            $.ajax({
+                type: "POST",
+                async: false,
+                dataType: "json",
+                url: '../../ajax/SeguroIncendio.php?acao=enviarSMS',
+                data: {
+                    // value: value
+                },
+                success: function() {
+                    _this.children().attr('src', '../../img/ok-sendemail.png');
+                },
+                error: function(e) {
+                    _this.children().attr('src', '../../img/nt-sendemail.png');
+                    alert(e.responseText);
+                }
+            });
+        });
     });
 </script>
 
 <form method='POST'>
-    <br/>
-    <b>Data Inicio:</b><input id="dtInicio" class="date" required="required" type='text' name='dtInicio' size='6'> 
+    <br />
+    <b>Data Inicio:</b><input id="dtInicio" class="date" required="required" type='text' name='dtInicio' size='6'>
     <b>Data Fim:</b><input id="dtFim" class="date" type='text' name='dtFim' size='6' required="required">
     <input type='submit' value='Enviar'>
 </form>
 <?php
-//header("Content-type: application/vnd.ms-word");
-//header("Content-type: application/force-download");
-//header("Content-Disposition: attachment; filename=relatorio_aniversariantes.doc");
-//header("Pragma: no-cache");
 
 $titulo = 'Relat&oacute;rio de Seguro Incêndio';
 
@@ -155,17 +175,16 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
 
         $query = $mySQL->runQuery($sql);
         $result = $mySQL->getArrayResult();
-        $agrupadores = array_icount_values($result, true, 'agrupador');
 
         $mySQL->runQuery("SELECT codPessoa, nome FROM pessoa;");
         $resultPessoa = $mySQL->getArrayResult();
         $arrayPessoa = array_enum($resultPessoa, 'codPessoa', 'nome');
         if (count($result) > 0) {
-            ?>
+?>
             <table border='0' width='650' cellpadding='3' cellspacing='1'>
                 <thead>
                     <tr>
-                        <td colspan='8'> 
+                        <td colspan='8'>
                             <div id='cabecalhoRelatorio' class='clearfix'>
                                 <div id='logoRelatorio'>
                                     <img src='img/logo.jpg' />
@@ -194,34 +213,34 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                         <th> Fim do seguro</td>
                         <th> Tipo de seguro</td>
                         <th> Dias a vencer do S. Incêndio</td>
+                        <th> SMS</td>
                     </tr>
                     <?php
                     foreach ($result as $value) :
                         $diasVencerText = '';
-                        if($value['diasVencer'] == 0 || $value['diasVencer'] == 1){
+                        if ($value['diasVencer'] == 0 || $value['diasVencer'] == 1) {
                             $diasVencerText = $value['diasVencer'] . ' dia';
-                        }else if($value['diasVencer'] == -1){
+                        } else if ($value['diasVencer'] == -1) {
                             $diasVencerText = 'vencido à ' . abs($value['diasVencer']) . ' dia';
-                        }else if($value['diasVencer'] < 0){
+                        } else if ($value['diasVencer'] < 0) {
                             $diasVencerText = 'vencido à ' . abs($value['diasVencer']) . ' dias';
-                        }else{
+                        } else {
                             $diasVencerText = $value['diasVencer'] . ' dias';
                         }
 
                         $diasVencerSIText = '';
-                        if(is_null($value['diasVencerSI'])){
+                        if (is_null($value['diasVencerSI'])) {
                             $diasVencerSIText = '-';
-                        }
-                        else if($value['diasVencerSI'] == 0 || $value['diasVencerSI'] == 1){
+                        } else if ($value['diasVencerSI'] == 0 || $value['diasVencerSI'] == 1) {
                             $diasVencerSIText = $value['diasVencerSI'] . ' dia';
-                        }else if($value['diasVencerSI'] == -1){
+                        } else if ($value['diasVencerSI'] == -1) {
                             $diasVencerSIText = 'vencido à ' . abs($value['diasVencerSI']) . ' dia';
-                        }else if($value['diasVencerSI'] < 0){
+                        } else if ($value['diasVencerSI'] < 0) {
                             $diasVencerSIText = 'vencido à ' . abs($value['diasVencerSI']) . ' dias';
-                        }else{
+                        } else {
                             $diasVencerSIText = $value['diasVencerSI'] . ' dias';
                         }
-                        ?>
+                    ?>
                         <tr class="result" ?>
                             <td width='50' align='center'> <?php echo $value['dataRerefencia']; ?></td>
                             <td width='50' align='center'> <?php echo $value['codContrato']; ?></td>
@@ -234,12 +253,13 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                             <td width='50' align='center'> <?php echo $value['dtFimSI']; ?></td>
                             <td width='50' align='center'> <?php echo $value['tipoSI']; ?></td>
                             <td width='50' align='center'> <?php echo $diasVencerSIText ?> </td>
+                            <td width='50' align='center'> <a href="#" class="sendSMS"> <img src="../../img/nt-sendemail.png"> </a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
 
-            <?php
+<?php
         } else {
             echo 'Não existem Pagamentos em atraso!';
         }
@@ -248,33 +268,8 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
     header('location:login.php');
 }
 
-function array_icount_values($arr, $lower = true, $paramentro) {
-    $arr2 = array();
-    if (!is_array($arr['0'])) {
-        $arr = array($arr);
-    }
-    foreach ($arr as $k => $v) {
-        foreach ($v as $key => $v2) {
-            if ($key == $paramentro) {
-                if ($lower == true) {
-                    $v2 = strtolower($v2);
-                }
-                if (!isset($arr2[$v2])) {
-                    $arr2[$v2]['total'] = 1;
-                    $arr2[$v2]['valor'] = $arr[$k]['valor'];
-                    $arr2[$v2]['comissao'] = $arr[$k]['comissao'];
-                } else {
-                    $arr2[$v2]['total'] ++;
-                    $arr2[$v2]['valor'] += $arr[$k]['valor'];
-                    $arr2[$v2]['comissao'] += $arr[$k]['comissao'];
-                }
-            }
-        }
-    }
-    return $arr2;
-}
-
-function array_enum($array, $campoIndex, $campoLabel) {
+function array_enum($array, $campoIndex, $campoLabel)
+{
     foreach ($array as $key => $value) {
         $newArray[$value[$campoIndex]] = ($value[$campoLabel]);
     }
