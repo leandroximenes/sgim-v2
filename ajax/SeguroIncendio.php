@@ -28,10 +28,10 @@ switch ($_GET['acao']) {
             $tipo = HumanMultipleSend::TYPE_C;
             $msg_list = "$telefone; Prezado $nome, nao identificamos a renovacao do seguro contra incendio. Caso ja tenha efetuado, favor remeter copia da apolice. Tabakal Imobiliaria; SE-{$id}"."\n";
             $callBack = HumanMultipleSend::CALLBACK_INACTIVE;
-            // $responses = $humanMultipleSend->sendMultipleList($tipo, $msg_list, $callBack);
+            $responses = $humanMultipleSend->sendMultipleList($tipo, $msg_list, $callBack);
 
-            // if ($responses[0]->getCode() == '200') {
-            if (true) {
+            if ($responses[0]->getCode() == '200') {
+            // if (true) {
                 if($mySQL->runQuery("UPDATE contrato SET smsSI = 1 WHERE codContrato = {$_POST['codContrato']}")){
                     echo json_encode('SMS enviado.\n Dados atualizados com sucesso');
                 }else{
