@@ -173,7 +173,12 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
         }
         $tipoSI = $_POST['tipoSI'];
 
-        $sql = sprintf("call procContratoCadastrar($codContrato,$codFuncionario,$codProprietario,$codImovel,$codContratante,$codTipoServico,'$comissao','$descontoPontualidade','$valor', null, null,  '$multaAtraso','$dataInicioInvertida','$dataFim',$qtdMeses,'$observacao', $intermediacao, $dataInicioSI, $dataFimSI, '$tipoSI')");
+        $mySQL->runQuery("SELECT dtInicioSI, smsSI FROM contrato where codContrato = $codContrato");
+        $resultdtInicioSI = $mySQL->getArrayResult();
+
+        $smsSI = $resultdtInicioSI[0]['dtInicioSI'] == inverteData($_POST['dataInicioSI']) ? $resultdtInicioSI[0]['smsSI'] : "0";
+
+        $sql = sprintf("call procContratoCadastrar($codContrato,$codFuncionario,$codProprietario,$codImovel,$codContratante,$codTipoServico,'$comissao','$descontoPontualidade','$valor', null, null,  '$multaAtraso','$dataInicioInvertida','$dataFim',$qtdMeses,'$observacao', $intermediacao, $dataInicioSI, $dataFimSI, '$tipoSI', '$smsSI')");
 
         try {
             if (!($rs = $mySQL->runQuery($sql))) {
@@ -288,4 +293,3 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
 } else {
     header('location:login.php');
 }
-?>

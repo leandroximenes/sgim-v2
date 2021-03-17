@@ -125,7 +125,8 @@ header('Content-Type: text/html; charset=iso-8859-1');
                 url: '../../ajax/SeguroIncendio.php?acao=enviarSMS',
                 data: {
                     nome : _this.siblings('.firstName').val(),
-                    celular : _this.siblings('.cel').val()
+                    celular : _this.siblings('.cel').val(),
+                    codContrato : _this.siblings('.codContrato').val()
                 },
                 success: function() {
                     _this.children().attr('src', '../../img/ok-sendemail.png');
@@ -169,7 +170,7 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                 DATEDIFF(dtFimSI, CURDATE()) AS diasVencerSI,
                 DATE_FORMAT(dtInicioSI,'%d/%m/%Y') AS dtInicioSI,
                 DATE_FORMAT(dtFimSI,'%d/%m/%Y') AS dtFimSI,
-                tipoSI,
+                tipoSI, smsSI,
                 (SELECT CONCAT('55', ddd, telefone) FROM telefone WHERE codTipoTelefone = 2 AND codPessoa = codPessoaInquilino) AS celular
             FROM contrato C 
             INNER JOIN pessoa PL ON C.codPessoaLocador = PL.codPessoa
@@ -244,6 +245,8 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                         } else {
                             $diasVencerSIText = $value['diasVencerSI'] . ' dias';
                         }
+
+                        $smsImg = ($value['smsSI']) ? "../../img/ok-sendemail.png" : "../../img/nt-sendemail.png";
                     ?>
                         <tr class="result" ?>
                             <td width='50' align='center'> <?php echo $value['dataRerefencia']; ?></td>
@@ -255,12 +258,13 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                             <td width='50' align='center'> <?php echo $diasVencerText ?> </td>
                             <td width='50' align='center'> <?php echo $value['dtInicioSI']; ?></td>
                             <td width='50' align='center'> <?php echo $value['dtFimSI']; ?></td>
-                            <td width='50' align='center'> <?php echo $value['tipoSI']; ?></td>
+                            <td width='50' align='center'> <?php echo utf8_decode($value['tipoSI']); ?></td>
                             <td width='50' align='center'> <?php echo $diasVencerSIText ?> </td>
                             <td width='50' align='center'> 
-                                <a href="#" class="sendSMS"> <img src="../../img/nt-sendemail.png"></a>
+                                <a href="#" class="sendSMS"> <img src="<?= $smsImg ?>"></a>
                                 <input type="hidden" value="<?php echo utf8_decode($value['primeiroNome']); ?>" class="firstName" />
                                 <input type="hidden" value="<?php echo ($value['celular']); ?>" class="cel" />
+                                <input type="hidden" value="<?php echo ($value['codContrato']); ?>" class="codContrato" />
                             </td>
                         </tr>
                     <?php endforeach; ?>
