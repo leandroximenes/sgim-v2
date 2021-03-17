@@ -249,7 +249,7 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                             <td width='50' align='center'> <?php echo $value['dataRerefencia']; ?></td>
                             <td width='50' align='center'> <?php echo $value['codContrato']; ?></td>
                             <td width='100px' align='center'> <?php echo utf8_decode($value['nome']); ?></td>
-                            <td width='100px' align='center'> <?php echo ($arrayPessoa[$value['codPessoaInquilino']]); ?></td>
+                            <td width='100px' align='center'> <?php echo utf8_decode($arrayPessoa[$value['codPessoaInquilino']]); ?></td>
                             <td width='50' align='center'> <?php echo $value['dataInicio']; ?></td>
                             <td width='50' align='center'> <?php echo $value['dataFim']; ?></td>
                             <td width='50' align='center'> <?php echo $diasVencerText ?> </td>
