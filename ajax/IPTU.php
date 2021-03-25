@@ -69,10 +69,10 @@ switch ($_GET['acao']) {
 
             $msg_list = "$telefone; Prezado $nome, nao identificamos junto ao GDF a quitação do IPTU, parcela $iptu. Se foi efetuado o pagamento, favor remeter cópia do recibo.Tabakal Imobiliária; IPTU-{$id}" . "\n";
             $callBack = HumanMultipleSend::CALLBACK_INACTIVE;
-            // $responses = $humanMultipleSend->sendMultipleList($tipo, $msg_list, $callBack);
+            $responses = $humanMultipleSend->sendMultipleList($tipo, $msg_list, $callBack);
 
-            // if ($responses[0]->getCode() == '200') {
-            if (true) {
+            if ($responses[0]->getCode() == '200') {
+            // if (true) {
                 if ($mySQL->runQuery("UPDATE IPTU SET SMSEnviado = 1 
                                       WHERE codContrato = {$_POST['codContrato']} AND ano = {$_POST['ano']}")) {
                     echo json_encode('SMS enviado.\n Dados atualizados com sucesso');
