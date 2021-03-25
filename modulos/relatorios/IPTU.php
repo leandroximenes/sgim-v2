@@ -200,6 +200,7 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                     ano: $('#cbmAno').val(),
                     codContrato: _this.closest("tr").find(".codContrato").html(),
                     celular: _this.siblings('.telefone').val(),
+                    pNome: _this.siblings('.PNome').val(),
                     nome: _this.closest("tr").find(".nome").html(),
                     parcela: parcela
                 },

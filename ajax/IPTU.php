@@ -53,7 +53,7 @@ switch ($_GET['acao']) {
             $humanMultipleSend = new HumanMultipleSend($account, $password);
 
             $telefone = $_POST['celular'];
-            $nome = $_POST['nome'];
+            $nome = $_POST['pNome'];
             $iptu = $_POST['parcela'] . '/' .  $_POST['ano'];
 
             if (is_null($nome)) {
