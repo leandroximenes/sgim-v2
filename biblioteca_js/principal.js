@@ -163,6 +163,14 @@ Ext.onReady(function () {
                     window.open('modulos/relatorios/seguroIncendio.php');
                 }
             });
+            
+            arrayitensMenuRelatorios.push({
+                text: 'Relatório de IPTU',
+                iconCls: '',
+                handler: function () {
+                    window.open('modulos/relatorios/IPTU.php');
+                }
+            });
 
             var itensMenuRelatorios = new Ext.menu.Menu({
                 items: arrayitensMenuRelatorios
