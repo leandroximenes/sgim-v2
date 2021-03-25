@@ -183,10 +183,7 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
             });
         }
 
-        var teste;
-
         function enviaSMS(_this) {
-            alert('comecou');
             var parcela = 1;
             _this.closest("tr").find("select").each(function(index) {
                 if(parcela == 1){
