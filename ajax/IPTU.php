@@ -52,7 +52,7 @@ switch ($_GET['acao']) {
             $password = "FMFpl6N8lm";
             $humanMultipleSend = new HumanMultipleSend($account, $password);
 
-            $telefone = $_POST['celular'];
+            $telefone = '55' . $_POST['celular'];
             $nome = $_POST['pNome'];
             $iptu = $_POST['parcela'] . '/' .  $_POST['ano'];
 
@@ -75,7 +75,7 @@ switch ($_GET['acao']) {
             // if (true) {
                 if ($mySQL->runQuery("UPDATE IPTU SET SMSEnviado = 1 
                                       WHERE codContrato = {$_POST['codContrato']} AND ano = {$_POST['ano']}")) {
-                    echo json_encode('SMS enviado.\n Dados atualizados com sucesso');
+                    echo json_encode('SMS enviado. Dados atualizados com sucesso');
                 } else {
                     throw new Exception("SMS enviado com sucesso, mas não foi possivel salvar dados de envio");
                 }
