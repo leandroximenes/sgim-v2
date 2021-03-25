@@ -184,6 +184,7 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
         }
 
         function enviaSMS(_this) {
+            _this.children().attr('src', '../../img/loading.gif');
             var parcela = 1;
             _this.closest("tr").find("select").each(function(index) {
                 if(parcela == 1){
