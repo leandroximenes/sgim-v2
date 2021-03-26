@@ -162,7 +162,7 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
             <tr>
                 <td colspan='2'> 
                     <div id='cabecalhoRelatorio' class='clearfix'>
-                        <div id='logoRelatorio'>
+                        <div id='logoRelatorio' onclick="location.reload(true)">
                             <img src='img/logo.jpg' />
                         </div>
                         <div id='tituloRelatorio'>
