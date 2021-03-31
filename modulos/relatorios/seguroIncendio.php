@@ -142,7 +142,7 @@ header('Content-Type: text/html; charset=iso-8859-1');
 
 <form method='POST'>
     <br />
-    <b>Data dos contratos elaborados (iniciados) entre:</b><br/>
+    <b>Data dos contratos elaborados (iniciados) entre:</b><br/><br/>
     <b>Data Inicio:</b><input id="dtInicio" class="date" required="required" type='text' name='dtInicio' size='6'>
     <b>Data Fim:</b><input id="dtFim" class="date" type='text' name='dtFim' size='6' required="required">
     <input type='submit' value='Enviar'><br />
