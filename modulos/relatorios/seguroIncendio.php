@@ -142,10 +142,11 @@ header('Content-Type: text/html; charset=iso-8859-1');
 
 <form method='POST'>
     <br />
+    <b>Data dos contratos elaborados (iniciados) entre:</b><br/>
     <b>Data Inicio:</b><input id="dtInicio" class="date" required="required" type='text' name='dtInicio' size='6'>
     <b>Data Fim:</b><input id="dtFim" class="date" type='text' name='dtFim' size='6' required="required">
     <input type='submit' value='Enviar'><br />
-    <b>* Leva em consideração apenas dia e mês.</b>
+    <i>* Leva em consideração apenas dia e mês.</i>
 </form>
 <?php
 
@@ -183,10 +184,11 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                     AND codContrato NOT IN (SELECT codContrato FROM contratoEncerramento)
                     
                     ) AS t1
-                WHERE diaMesInicio >= " . $dtInicio->format('md') . " and diaMesFim <= " . $dtFim->format('md') .
+                WHERE diaMesInicio >= " . $dtInicio->format('md') . " and diaMesInicio <= " . $dtFim->format('md') .
                 " ORDER BY diasVencer,3,4";
 
-        
+
+
         $query = $mySQL->runQuery($sql);
         $result = $mySQL->getArrayResult();
 
