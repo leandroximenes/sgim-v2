@@ -186,6 +186,7 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                 WHERE diaMesInicio >= " . $dtInicio->format('md') . " and diaMesFim <= " . $dtFim->format('md') .
                 " ORDER BY diasVencer,3,4";
 
+        
         $query = $mySQL->runQuery($sql);
         $result = $mySQL->getArrayResult();
 
