@@ -36,8 +36,8 @@ $qtdAniversarios = mysqli_num_rows($aniversario);
 $Aniversariantes = $mySQL->getArrayResult();
 
 $fimContrato = $mySQL->runQuery("
-SELECT * FROM contrato 
-INNER JOIN pessoa ON (contrato.codPessoaLocador = pessoa.codPessoa AND pessoa.status = 1)
+SELECT *, SUBSTRING_INDEX(SUBSTRING_INDEX(pessoa.nome, ' ', 1), ' ', -1)  AS primeiroNome FROM contrato 
+INNER JOIN pessoa ON (contrato.codPessoaInquilino = pessoa.codPessoa AND pessoa.status = 1)
 LEFT JOIN telefone on pessoa.codPessoa = telefone.codPessoa AND (telefone.telefone like '9%' OR telefone.telefone like '7%' OR telefone.telefone like '8%')
 where NOW() >= SUBDATE(dataFim, INTERVAL 30 DAY)
 AND codContrato not in (SELECT codContrato FROM contratoEncerramento)
@@ -93,7 +93,7 @@ if ($qtdFimContratos > 0 && empty($mensagemAlerta)) {
         $celular = $value['telefone'];
 
         if (!empty($ddd) && !empty($celular)) {
-            $mensagem = "Seu contrato de locacao se encerra nos proximos 30 dias. Favor entrar em contato com a TABAKAL.";
+            $mensagem = $value['primeiroNome'] . ", seu contrato de locacao se encerra nos proximos 30 dias. Favor entrar em contato com a TABAKAL.";
             try {
                 $data = !empty($value['dataRepasse']) ? $value['dataRepasse'] : 'now';
                 $message = new HumanSimpleMessage($mensagem, "55" . $ddd . $celular, "_hide", "ID" . $value['codContrato']);
