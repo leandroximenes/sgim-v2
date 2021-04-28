@@ -16,8 +16,8 @@ switch ($_GET['acao']) {
             $cabecalho = "MIME-Version: 1.0\n";
             $cabecalho .= "Content-Type: text/html; charset=UTF-8\n";
             $cabecalho .= "From: TABAKAL <atendimento@tabakalimoveis.com.br>\n";
-//        $cabecalho .= "Bcc: extratos@tabakalimoveis.com.br, tabakal.imoveis@hotmail.com, tabakalimoveis@hotmail.com, gneivamachado@gmail.com";
-            $cabecalho .= "Bcc: tabakal.imoveis@hotmail.com, lelomagno@gmail.com";
+//        $cabecalho .= "Bcc: extratos@tabakalimoveis.com.br, tabakal.imoveis@hotmail.com, leandroj.r.ximenes@gmail.com, tabakalimoveis@hotmail.com, gneivamachado@gmail.com";
+            $cabecalho .= "Bcc: tabakal.imoveis@hotmail.com, leandroj.r.ximenes@gmail.com, lelomagno@gmail.com";
 
             ob_start();
             include '../modulos/relatorios/relatorio_locador_locatario.php';

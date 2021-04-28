@@ -117,7 +117,7 @@ if ($qtdPagamentos > 0 && empty($mensagemAlerta)) {
     $cabecalho = "MIME-Version: 1.0\n";
     $cabecalho .= "Content-Type: text/html; charset=UTF-8\n";
     $cabecalho .= "From: \TABAKAL\" <atendimento@tabakalimoveis.com.br>\n";
-    $cabecalho .= "Bcc: extratos@tabakalimoveis.com.br, tabakal.imoveis@hotmail.com, tabakalimoveis@hotmail.com, gneivamachado@gmail.com";
+    $cabecalho .= "Bcc: extratos@tabakalimoveis.com.br, tabakal.imoveis@hotmail.com, leandroj.r.ximenes@gmail.com, tabakalimoveis@hotmail.com";
 
     $codPagamento = "";
 
