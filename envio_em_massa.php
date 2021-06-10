@@ -10,19 +10,19 @@ date_default_timezone_set('America/Sao_Paulo');
 header('Content-Type: text/html; charset=iso-8859-1');
 
 //Altere a query abaixo colocando a tabela onde estão os telefones celulares
-$pagamento = $mySQL->runQuery("select pagamento.*, pessoa.nome, pessoa.email, telefone.ddd, telefone.telefone from pagamento 
-INNER JOIN contrato on contrato.codContrato = pagamento.codContrato
+$pagamento = $mySQL->runQuery("SELECT DISTINCT pagamento.*, pessoa.nome, pessoa.email, telefone.ddd, telefone.telefone FROM pagamento 
+INNER JOIN contrato ON contrato.codContrato = pagamento.codContrato
 INNER JOIN pessoa ON (contrato.codPessoaLocador = pessoa.codPessoa AND pessoa.status = 1)
-LEFT JOIN telefone on pessoa.codPessoa = telefone.codPessoa AND (telefone.telefone like '9%' OR telefone.telefone like '7%' OR telefone.telefone like '8%')
-where valorPagamento is not null AND dataRepasse is not null  AND enviouSms = 0");
+LEFT JOIN telefone ON pessoa.codPessoa = telefone.codPessoa AND (telefone.telefone LIKE '9%' OR telefone.telefone LIKE '7%' OR telefone.telefone LIKE '8%')
+WHERE valorPagamento IS NOT NULL AND dataRepasse IS NOT NULL  AND enviouSms = 0");
 $qtdPagamentos = mysqli_num_rows($pagamento);
 $ArrayPagamentos = $mySQL->getArrayResult();
 
 
 $sqlAniversario = "SELECT *, DATE_FORMAT(dataNascimento,'%d/%m'), DATE_FORMAT(NOW(),'%d/%m'), informouAniversario, DATE_FORMAT(NOW(),'%y')
 FROM pessoaFisica
-INNER JOIN pessoa on pessoaFisica.codPessoa = pessoa.codPessoa
-LEFT JOIN telefone on pessoa.codPessoa = telefone.codPessoa AND (telefone.telefone like '9%' OR telefone.telefone like '7%' OR telefone.telefone like '8%')
+INNER JOIN pessoa ON pessoaFisica.codPessoa = pessoa.codPessoa
+LEFT JOIN telefone ON pessoa.codPessoa = telefone.codPessoa AND (telefone.telefone LIKE '9%' OR telefone.telefone LIKE '7%' OR telefone.telefone LIKE '8%')
 WHERE pessoaFisica.codPessoa NOT IN (
     SELECT codPessoa FROM pessoaGrupo 
     WHERE codGrupo = 6 )
@@ -35,8 +35,7 @@ $aniversario = $mySQL->runQuery($sqlAniversario);
 $qtdAniversarios = mysqli_num_rows($aniversario);
 $Aniversariantes = $mySQL->getArrayResult();
 
-$fimContrato = $mySQL->runQuery("
-SELECT *, SUBSTRING_INDEX(SUBSTRING_INDEX(pessoa.nome, ' ', 1), ' ', -1)  AS primeiroNome FROM contrato 
+$fimContrato = $mySQL->runQuery("SELECT *, SUBSTRING_INDEX(SUBSTRING_INDEX(pessoa.nome, ' ', 1), ' ', -1)  AS primeiroNome FROM contrato 
 INNER JOIN pessoa ON (contrato.codPessoaInquilino = pessoa.codPessoa AND pessoa.status = 1)
 LEFT JOIN telefone on pessoa.codPessoa = telefone.codPessoa AND (telefone.telefone like '9%' OR telefone.telefone like '7%' OR telefone.telefone like '8%')
 where NOW() >= SUBDATE(dataFim, INTERVAL 30 DAY)
