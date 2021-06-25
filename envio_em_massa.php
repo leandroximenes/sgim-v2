@@ -13,7 +13,9 @@ header('Content-Type: text/html; charset=iso-8859-1');
 $pagamento = $mySQL->runQuery("SELECT DISTINCT pagamento.*, pessoa.nome, pessoa.email, telefone.ddd, telefone.telefone FROM pagamento 
 INNER JOIN contrato ON contrato.codContrato = pagamento.codContrato
 INNER JOIN pessoa ON (contrato.codPessoaLocador = pessoa.codPessoa AND pessoa.status = 1)
-LEFT JOIN telefone ON pessoa.codPessoa = telefone.codPessoa AND (telefone.telefone LIKE '9%' OR telefone.telefone LIKE '7%' OR telefone.telefone LIKE '8%')
+LEFT JOIN telefone ON pessoa.codPessoa = telefone.codPessoa 
+    AND (telefone.telefone LIKE '9%' OR telefone.telefone LIKE '7%' OR telefone.telefone LIKE '8%')
+    AND codTipoTelefone = 2
 WHERE valorPagamento IS NOT NULL AND dataRepasse IS NOT NULL  AND enviouSms = 0");
 $qtdPagamentos = mysqli_num_rows($pagamento);
 $ArrayPagamentos = $mySQL->getArrayResult();
