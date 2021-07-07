@@ -9,7 +9,7 @@ header("Content-type: application/force-download");
 header("Content-Disposition: attachment; filename=contrato_locacao_cred_pago.doc");
 header("Pragma: no-cache");
 
-$titulo = 'Relatório de Aniversariantes';
+$titulo = 'CONTRATO DE LOCAÇÃO DE IMÓVEL RESIDENCIAL';
 
 if (isset($_SESSION["SISTEMA_codPessoa"])) {
 
@@ -103,6 +103,7 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
     $valor = $rsLinha['valor'];
     $descontoPontualidade = floatval($rsLinha['descontoPontualidade']);
     $qtdMeses = $rsLinha['qtdMeses'];
+    $iptu = $rsLinha['nIptu'];
     ?>
 
 
@@ -254,7 +255,7 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
         <br/>
         <br/>
         <div class="clJustificar">
-            Além do aluguel mensal, o(s)(a) LOCATÁRIO(S)(A) pagará(ão) o IPTU/TLP, despesas ordinárias de condomínio (portaria, água, limpeza, jardinagem, etc.), se houver, taxa de religação de energia elétrica e água – quando tiver dado causa à interrupção desses serviços. Os comprovantes de adimplemento destas obrigações deverão ser apresentados no ato do pagamento do aluguel.
+            Além do aluguel mensal, o(s)(a) LOCATÁRIO(S)(A) pagará(ão) o IPTU/TLP sob inscrição número <?= $iptu ?> acessando o site da  Secretaria de Fazenda; despesas ordinárias de condomínio (portaria, água, limpeza, jardinagem, etc.), se houver, taxa de religação de energia elétrica e água – quando tiver dado causa à interrupção desses serviços. Os comprovantes de adimplemento destas obrigações deverão ser apresentados no ato do pagamento do aluguel.
         </div>
 
         <br/>
@@ -278,7 +279,7 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
         <br/>
 
         <div class="clJustificar">
-            <b>Parágrafo Quarto:</b> O(s)(A) LOCATÁRIO(S)(A) obriga(m)-se a pagar o seguro contra incêndio do imóvel locado. O valor segurado deverá ser 120 (cento e vinte) vezes o valor do aluguel, em companhia seguradora de sua livre escolha. O prêmio do referido seguro se reverterá à ADMINISTRADORA. Obriga(m)-se o(s)(a) LOCATÁRIO(S)(A) em renovar o contrato de seguro anualmente.
+            <b>Parágrafo Quarto:</b> O(s)(A) LOCATÁRIO(S)(A) obriga(m)-se a pagar o seguro contra incêndio do imóvel locado em até 07 (sete) dias a partir da presente data. O valor segurado deverá ser 120 (cento e vinte) vezes o valor do aluguel bruto, em companhia seguradora de sua livre escolha, desde que de absoluta idoneidade. Caso não seja apresentada a apólice do seguro no prazo acordado, automaticamente fica a ADMINISTRADORA livre para contratação imediata do seguro junto a uma seguradora idônea cujo o valor será repassado O(s)(A) LOCATÁRIO(S)(A) sendo pago CONJUNTAMENTE com o aluguel em parcelas ou a vista de acordo com a operadora contratada.
         </div>
 
         <br/>
