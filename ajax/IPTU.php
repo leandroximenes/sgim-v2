@@ -22,6 +22,10 @@ switch ($_GET['acao']) {
     case 'listarIPTU':
         include_once '../blocoHTML/tabelaIPTU.php';
         break;
+    
+    case 'listarIPTUPorParcela':
+        include_once '../blocoHTML/tabelaIPTUPorParcela.php';
+        break;
 
     case 'salvarParcela':
         try {
@@ -72,7 +76,7 @@ switch ($_GET['acao']) {
             $responses = $humanMultipleSend->sendMultipleList($tipo, $msg_list, $callBack);
 
             if ($responses[0]->getCode() == '200') {
-            // if (true) {
+                // if (true) {
                 if ($mySQL->runQuery("UPDATE IPTU SET SMSEnviado = 1 
                                       WHERE codContrato = {$_POST['codContrato']} AND ano = {$_POST['ano']}")) {
                     echo json_encode('SMS enviado. Dados atualizados com sucesso');

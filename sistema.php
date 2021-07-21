@@ -14,7 +14,7 @@ if (isset($_SESSION['SISTEMA_codPessoa'])) {
         <head><meta charset="iso8859-1">
 
             
-            <title>:: Tabakal Imóveis - SisGIM - Sistema de Gerenciamento de Imóveis.::</title>
+            <title>:: Tabakal Imóveis - SisGIm - Sistema de Gerenciamento de Imóveis.::</title>
 
             <link rel="stylesheet" type="text/css" href="ext-3.3.1/resources/css/ext-all-notheme.css" />
             <script type="text/javascript" src="ext-3.3.1/adapter/ext/ext-base.js"></script>
