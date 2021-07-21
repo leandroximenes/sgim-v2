@@ -21,7 +21,7 @@ $sql = "SELECT *, c.codContrato AS codigoContrato, ti.nome AS tipoImovel,
 foreach ($_POST['parcelas'] as $key => $value) {
     $sql .= " AND " . $value . " IS NULL ";
 }
-    $sql .= " ORDER BY nomeLocador ";
+$sql .= " ORDER BY nomeLocador ";
 try {
     $rs = $mySQL->runQuery($sql);
     $rsQuant = $rs->num_rows;
@@ -47,6 +47,13 @@ while ($rsLinha = mysqli_fetch_assoc($rs)) {
             </td>
 
         <?php endfor; ?>
+        <td>
+                <input type="hidden" class="telefone" value="<?= $rsLinha['celular'] ?>" />
+                <input type="hidden" class="PNome" value="<?= $rsLinha['primeiroNome'] ?>" />
+                <a class="sendSMS" href="#">
+                    <img src="../../img/<?= $imgSMS ?>.png">
+                </a>
+            </td>
     </tr>
 <?php
 }

@@ -53,13 +53,6 @@ if ($rsQuant > 0 && count($_POST['id_proprietarios']) > 0) {
                 </td>
 
             <?php endfor; ?>
-            <td>
-                <input type="hidden" class="telefone" value="<?= $rsLinha['celular'] ?>" />
-                <input type="hidden" class="PNome" value="<?= $rsLinha['primeiroNome'] ?>" />
-                <a class="sendSMS" href="#">
-                    <img src="../../img/<?= $imgSMS ?>.png">
-                </a>
-            </td>
         </tr>
 <?php
     }

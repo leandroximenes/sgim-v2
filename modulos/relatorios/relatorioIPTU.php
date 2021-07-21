@@ -31,10 +31,6 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
             background: #F8F8FF;
         }
 
-        #tb-ir td, th{
-            height: 30px;
-        }
-
         .clearfix:after {
             content: ".";
             display: block;
@@ -121,37 +117,106 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                 year += 1900;
             $('#cbmAno').val(year);
             ListarLocador();
-
-            $("input:checkbox[name=parcela]").change(function (){
-                ListarLocador();
-            });
         });
 
-
-        function ListarLocador() {
-            let checked = [];
-            $("input:checkbox[name=parcela]:checked").each(function() {
-                checked.push($(this).val());
-            });
+        function ListarInquilinos() {
             $.ajax({
                 type: "POST",
                 async: false,
-                url: '../../ajax/IPTU.php?acao=listarIPTUPorParcela',
+                url: '../../ajax/IPTU.php?acao=listarIPTU',
                 data: {
-                    ano: $('#cbmAno').val(),
-                    parcelas: checked
+                    id_proprietarios: $('#cmbProprietario').val(),
+                    ano: $('#cbmAno').val()
                 },
                 success: function(data) {
                     $('#tbodyInquilinosIR').html(data);
+                    $('.cmbParcela').on('change', function() {
+                        salvarParcela($(this));
+                    });
+                    $('.sendSMS').on('click', function() {
+                        enviaSMS($(this));
+                    });
+                },
+                error: function() {
+                    $('#tbodyInquilinosIR').html('Não foi possivel trazer os inquilinos');
+                }
+            });
+        }
+
+        function ListarLocador() {
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: '../../ajax/IPTU.php?acao=ListarLocador',
+                data: {
+                    ano: $('#cbmAno').val()
+                },
+                success: function(data) {
+                    $('#cmbProprietario').html(data);
+                    $('#tbodyInquilinosIR').html('');
                 },
                 error: function() {
                     alert('Não foi possivel listar os Locadores');
                 }
             });
         }
+
+
+
+        function salvarParcela(_this) {
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: '../../ajax/IPTU.php?acao=salvarParcela',
+                data: {
+                    ano: $('#cbmAno').val(),
+                    codContrato: _this.closest("tr").find(".codContrato").html(),
+                    parcela: _this.prop('name'),
+                    parcelaVal: _this.val(),
+                },
+                success: function(data) {
+                    _this.closest("tr").find('img').attr('src', '../../img/nt-sendemail.png');
+                },
+                error: function(e) {
+                    alert(e.responseText);
+                }
+            });
+        }
+
+        function enviaSMS(_this) {
+            _this.children().attr('src', '../../img/loading.gif');
+            var parcela = 1;
+            _this.closest("tr").find("select").each(function(index) {
+                if(parcela == 1){
+                    if($(this).val() == 0){
+                        parcela = index + 1;
+                    }
+                }
+            });
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: '../../ajax/IPTU.php?acao=enviarSMS',
+                data: {
+                    ano: $('#cbmAno').val(),
+                    codContrato: _this.closest("tr").find(".codContrato").html(),
+                    celular: _this.siblings('.telefone').val(),
+                    pNome: _this.siblings('.PNome').val(),
+                    nome: _this.closest("tr").find(".nome").html(),
+                    parcela: parcela
+                },
+                success: function() {
+                    _this.children().attr('src', '../../img/ok-sendemail.png');
+                },
+                error: function(e) {
+                    _this.children().attr('src', '../../img/nt-sendemail.png');
+                    alert(e.responseText);
+                }
+            });
+        }
     </script>
 
-    <table border='0' width='90%' cellpadding='3' cellspacing='1'>
+    <table border='0' width='90%' height="500" cellpadding='3' cellspacing='1'>
         <thead>
             <tr>
                 <td colspan='2'>
@@ -173,12 +238,12 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
         <tbody>
 
             <tr>
-                <th width="10%"> Filtro</th>
+                <th width="20%"> Locador</th>
                 <th width="79%"> Informações do contrato</th>
             </tr>
 
             <tr>
-                <td valign="top">
+                <td height="400" valign="top">
                     <b>Ano: </b>
                     <select id="cbmAno" onchange="ListarLocador()" style="margin-top: 10px;">
                         <option value="2013">2013</option>
@@ -212,40 +277,11 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                     </select>
                     <br />
                     <br />
-                    Parcelas não pagas:
-                    <br />
-                    <label>
-                        <b>1º parcela: </b>
-                        <input name="parcela" type="checkbox" value="parcela1">
-                    </label>
-                    <br />
-                    <label>
-                        <b>2º parcela: </b>
-                        <input name="parcela" type="checkbox" value="parcela2">
-                    </label>
-                    <br />
-                    <label>
-                        <b>3º parcela: </b>
-                        <input name="parcela" type="checkbox" value="parcela3">
-                    </label>
-                    <br />
-                    <label>
-                        <b>4º parcela: </b>
-                        <input name="parcela" type="checkbox" value="parcela4">
-                    </label>
-                    <br />
-                    <label>
-                        <b>5º parcela: </b>
-                        <input name="parcela" type="checkbox" value="parcela5">
-                    </label>
-                    <br />
-                    <label>
-                        <b>6º parcela: </b>
-                        <input name="parcela" type="checkbox" value="parcela6">
-                    </label>
+                    <select id="cmbProprietario" multiple="multiple" onchange="ListarInquilinos()">
+                    </select>
                 </td>
                 <td align='center' valign="top">
-                    <div style="height: 85vh; overflow: auto; width:100%">
+                    <div style="height: 445px; overflow: auto; width:100%">
                         <table id="tb-ir" style="width: 100%; vertical-align: text-top;">
                             <thead>
                                 <tr>
