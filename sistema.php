@@ -31,7 +31,7 @@ if (isset($_SESSION['SISTEMA_codPessoa'])) {
 
             <link rel="stylesheet" href="ext-3.3.1/resources/css/ext-all.css" />
             <link rel="stylesheet" href="biblioteca_css/estilos.css" />
-            <script type="text/javascript" src="biblioteca_js/principal.js"></script>
+            <script type="text/javascript" src="biblioteca_js/principal.js?version=01"></script>
             <script type="text/javascript" src="biblioteca_js/scripts.js"></script>
 
             <script type="text/javascript" src="biblioteca_js/janelaGerenciarImovel.js"></script>	
