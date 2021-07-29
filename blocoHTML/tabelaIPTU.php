@@ -18,8 +18,8 @@ $sql = "SELECT *, c.codContrato AS codigoContrato, ti.nome AS tipoImovel,
         INNER JOIN tipoImovel ti ON (ti.codTipoImovel = i.codTipoImovel)
         LEFT JOIN IPTU ip ON (c.codContrato = ip.codContrato AND ano = {$_POST['ano']})
         WHERE c.codContrato NOT IN (SELECT codContrato FROM contratoEncerramento) 
-            AND c.codPessoaLocador IN ($idsProprietários) ;
-        ";
+            AND c.codPessoaLocador IN ($idsProprietários)
+        ORDER BY nomeInquilino";
 
 try {
     $rs = $mySQL->runQuery($sql);
@@ -53,13 +53,6 @@ if ($rsQuant > 0 && count($_POST['id_proprietarios']) > 0) {
                 </td>
 
             <?php endfor; ?>
-            <td>
-                <input type="hidden" class="telefone" value="<?= $rsLinha['celular'] ?>" />
-                <input type="hidden" class="PNome" value="<?= $rsLinha['primeiroNome'] ?>" />
-                <a class="sendSMS" href="#">
-                    <img src="../../img/<?= $imgSMS ?>.png">
-                </a>
-            </td>
         </tr>
 <?php
     }

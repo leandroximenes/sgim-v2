@@ -8,7 +8,7 @@ include_once("../modulos/diversos/util.php");
 
 //$idsProprietários = implode(",", $_POST['id_proprietarios']);
 $ano = $_POST['ano'];
-$sql = "SELECT *, c.codContrato AS codigoContrato, ti.nome AS tipoImovel,
+$sql = "SELECT *, c.codContrato AS codigoContrato, ti.nome AS tipoImovel, ip.id as id_IPTU,
             (SELECT nome FROM pessoa WHERE c.codPessoaLocador = codPessoa) AS nomeLocador,
             (SELECT SUBSTRING_INDEX(nome, ' ', 1) FROM pessoa WHERE codPessoa = c.codPessoaInquilino) AS primeiroNome,
             (SELECT nome FROM pessoa WHERE c.codPessoaInquilino = codPessoa) AS nomeInquilino,
@@ -16,12 +16,12 @@ $sql = "SELECT *, c.codContrato AS codigoContrato, ti.nome AS tipoImovel,
         FROM contrato c
         INNER JOIN imovel i ON (c.codImovel = i.codImovel)
         INNER JOIN tipoImovel ti ON (ti.codTipoImovel = i.codTipoImovel)
-        INNER JOIN IPTU ip ON (c.codContrato = ip.codContrato AND ano = {$_POST['ano']})
+        LEFT JOIN IPTU ip ON (c.codContrato = ip.codContrato AND ano = {$_POST['ano']})
         WHERE c.codContrato NOT IN (SELECT codContrato FROM contratoEncerramento)";
 foreach ($_POST['parcelas'] as $key => $value) {
     $sql .= " AND " . $value . " IS NULL ";
 }
-    $sql .= " ORDER BY nomeLocador ";
+$sql .= " ORDER BY nomeLocador, nomeInquilino ";
 try {
     $rs = $mySQL->runQuery($sql);
     $rsQuant = $rs->num_rows;
@@ -30,7 +30,8 @@ try {
 }
 //if ($rsQuant > 0 && count($_POST['id_proprietarios']) > 0) {
 while ($rsLinha = mysqli_fetch_assoc($rs)) {
-    $imgSMS = $rsLinha['SMSEnviado'] == 1 ? "ok-sendemail" : "nt-sendemail";
+    $imgSMS = $rsLinha['SMSEnviado'] > 0 ? "ok-sendemail" : "nt-sendemail";
+    $ProximaParcela = 1;
 ?>
     <tr>
         <td class="parent codContrato" align="center"><?= ($rsLinha['codigoContrato']) ?></td>
@@ -41,12 +42,28 @@ while ($rsLinha = mysqli_fetch_assoc($rs)) {
         <td class="parent"><?= $rsLinha['tipoImovel'] ?></td>
         <td class="parent"><?= $rsLinha['nIptu'] ?></td>
 
-        <?php for ($i = 1; $i <= 6; $i++) : ?>
-            <td>
-                <?= $rsLinha['parcela' . $i] == '1' ? 'Pago' : 'Não pago'; ?>
+        <?php for ($i = 1; $i <= 6; $i++) :
+            $parcelaText = "Não pago";
+            if ($rsLinha['parcela' . $i] == '1') {
+                $ProximaParcela ++;
+                $parcelaText = "Pago";
+            }
+        ?>
+            <td class="parcela">
+                <?= $parcelaText ?>
             </td>
 
         <?php endfor; ?>
+        <td>
+            <input type="hidden" class="telefone" value="<?= $rsLinha['celular'] ?>" />
+            <input type="hidden" class="PNome" value="<?= $rsLinha['primeiroNome'] ?>" />
+            <input type="hidden" class="ProximaParcela" value="<?= $ProximaParcela ?>" />
+            <input type="hidden" class="id_iptu" value="<?= $rsLinha['id_IPTU']  ?>" />
+            <a class="sendSMS" href="#">
+                <img src="../../img/<?= $imgSMS ?>.png">
+            </a>
+            <?= $rsLinha['SMSEnviado'] > 0 ? "({$rsLinha['SMSEnviado']})" : '' ?>
+        </td>
     </tr>
 <?php
 }

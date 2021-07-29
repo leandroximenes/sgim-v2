@@ -165,18 +165,18 @@ Ext.onReady(function () {
             });
             
             arrayitensMenuRelatorios.push({
-                text: 'Gerenciar IPTU',
+                text: 'Relatório de IPTU',
                 iconCls: '',
                 handler: function () {
-                    window.open('modulos/relatorios/gerenciarIPTU.php');
+                    window.open('modulos/relatorios/relatorioIPTU.php');
                 }
             });
 
             arrayitensMenuRelatorios.push({
-                text: 'Relatório de IPTU',
+                text: 'Gerenciamento IPTU',
                 iconCls: '',
                 handler: function () {
-                    window.open('modulos/relatorios/IPTU.php');
+                    window.open('modulos/relatorios/gerenciamentoIPTU.php');
                 }
             });
 
