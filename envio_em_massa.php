@@ -21,7 +21,8 @@ $qtdPagamentos = mysqli_num_rows($pagamento);
 $ArrayPagamentos = $mySQL->getArrayResult();
 
 
-$sqlAniversario = "SELECT *, DATE_FORMAT(dataNascimento,'%d/%m'), DATE_FORMAT(NOW(),'%d/%m'), informouAniversario, DATE_FORMAT(NOW(),'%y')
+$sqlAniversario = "SELECT *, DATE_FORMAT(dataNascimento,'%d/%m'), DATE_FORMAT(NOW(),'%d/%m'), informouAniversario, DATE_FORMAT(NOW(),'%y'),
+SUBSTRING_INDEX(pessoa.nome, ' ', 1) AS primeiroNome
 FROM pessoaFisica
 INNER JOIN pessoa ON pessoaFisica.codPessoa = pessoa.codPessoa
 LEFT JOIN telefone ON pessoa.codPessoa = telefone.codPessoa AND (telefone.telefone LIKE '9%' OR telefone.telefone LIKE '7%' OR telefone.telefone LIKE '8%')
@@ -73,7 +74,7 @@ if ($qtdAniversarios > 0) {
         if (!empty($ddd) && !empty($celular)) {
             try {
                 $data = !empty($value['dataRepasse']) ? $value['dataRepasse'] : 'now';
-                $message = new HumanSimpleMessage("Feliz aniversario! Que sua vida seja constantemente presenteada com bons e felizes momentos. Parabens! TABAKAL.", "55" . $ddd . $celular, "_hide", "ID-Aniversario-" . $codPessoa);
+                $message = new HumanSimpleMessage("{$value['primeiroNome']}, feliz aniversario! Que sua vida seja constantemente presenteada com bons e felizes momentos. Parabens! TABAKAL.", "55" . $ddd . $celular, "_hide", "NV-" . crc32(microtime()));
                 $response = $sender->sendMessage($message);
                 $response = $sender->queryStatus("ID" . $value['codPessoa'] . '-' . date('Y'));
                 $statusEnvio = $response->getCode() . " -> " . $response->getMessage();
@@ -97,7 +98,7 @@ if ($qtdFimContratos > 0 && empty($mensagemAlerta)) {
             $mensagem = $value['primeiroNome'] . ", seu contrato de locacao se encerra nos proximos 30 dias. Favor entrar em contato com a TABAKAL.";
             try {
                 $data = !empty($value['dataRepasse']) ? $value['dataRepasse'] : 'now';
-                $message = new HumanSimpleMessage($mensagem, "55" . $ddd . $celular, "_hide", "ID" . $value['codContrato']);
+                $message = new HumanSimpleMessage($mensagem, "55" . $ddd . $celular, "_hide", "EC" . crc32(microtime()));
                 $response = $sender->sendMessage($message);
                 $response = $sender->queryStatus("ID" . $value['codContrato'] . '-' . $value['codPessoa'] . '-' . date('Y'));
                 $statusEnvio = $response->getCode() . " -> " . $response->getMessage();
@@ -144,7 +145,7 @@ if ($qtdPagamentos > 0 && empty($mensagemAlerta)) {
 
                 try {
                     $data = !empty($value['dataRepasse']) ? $value['dataRepasse'] : 'now';
-                    $message = new HumanSimpleMessage("A TABAKAL realizou em " . date('d/m/Y', strtotime($data)) . " credito de R$ " . number_format($repace, 2, ',', '.') . " relativo a locacao de seu imovel. Favor consultar seu e-mail. ", "55" . $ddd . $celular, "_hide", "ID" . $value['codPagamento']);
+                    $message = new HumanSimpleMessage("A TABAKAL realizou em " . date('d/m/Y', strtotime($data)) . " credito de R$ " . number_format($repace, 2, ',', '.') . " relativo a locacao de seu imovel. Favor consultar seu e-mail. ", "55" . $ddd . $celular, "_hide", "PG-" . crc32(microtime()));
                     $response = $sender->sendMessage($message);
                     $response = $sender->queryStatus("ID" . $value['codPagamento']);
                     $statusEnvio = $response->getCode() . " -> " . $response->getMessage();

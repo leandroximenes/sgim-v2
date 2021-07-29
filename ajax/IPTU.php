@@ -56,8 +56,7 @@ switch ($_GET['acao']) {
             $password = "FMFpl6N8lm";
             $humanMultipleSend = new HumanMultipleSend($account, $password);
 
-            //$telefone = '55' . $_POST['celular'];
-            $telefone = '556181056006';
+            $telefone = '55' . $_POST['celular'];
             $nome = $_POST['pNome'];
             $iptu = $_POST['parcela'] . '/' .  $_POST['ano'];
 
