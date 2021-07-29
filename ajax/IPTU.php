@@ -22,7 +22,7 @@ switch ($_GET['acao']) {
     case 'listarIPTU':
         include_once '../blocoHTML/tabelaIPTU.php';
         break;
-    
+
     case 'listarIPTUPorParcela':
         include_once '../blocoHTML/tabelaIPTUPorParcela.php';
         break;
@@ -34,11 +34,11 @@ switch ($_GET['acao']) {
             $result = $mySQL->getArrayResult();
             if (count($result) > 0) {
                 $sqlSave = "UPDATE IPTU 
-                SET {$_POST['parcela']} = {$_POST['parcelaVal']}, SMSEnviado = 0
+                SET {$_POST['parcela']} = {$_POST['parcelaVal']}
                 WHERE id = {$result[0]['id']}";
             } else {
-                $sqlSave = "INSERT INTO IPTU (codContrato, ano, {$_POST['parcela']}, SMSEnviado) 
-                VALUES({$_POST['codContrato']}, {$_POST['ano']}, {$_POST['parcelaVal']}, 0) ";
+                $sqlSave = "INSERT INTO IPTU (codContrato, ano, {$_POST['parcela']}) 
+                VALUES({$_POST['codContrato']}, {$_POST['ano']}, {$_POST['parcelaVal']}) ";
             }
             if (!$mySQL->runQuery($sqlSave))
                 throw new Exception("Não foi possivel salvar o registro");
@@ -56,7 +56,8 @@ switch ($_GET['acao']) {
             $password = "FMFpl6N8lm";
             $humanMultipleSend = new HumanMultipleSend($account, $password);
 
-            $telefone = '55' . $_POST['celular'];
+            //$telefone = '55' . $_POST['celular'];
+            $telefone = '556181056006';
             $nome = $_POST['pNome'];
             $iptu = $_POST['parcela'] . '/' .  $_POST['ano'];
 
@@ -77,11 +78,23 @@ switch ($_GET['acao']) {
 
             if ($responses[0]->getCode() == '200') {
                 // if (true) {
-                if ($mySQL->runQuery("UPDATE IPTU SET SMSEnviado = 1 
-                                      WHERE codContrato = {$_POST['codContrato']} AND ano = {$_POST['ano']}")) {
-                    echo json_encode('SMS enviado. Dados atualizados com sucesso');
+                if ($_POST['id_iptu'] > 0) {
+                    if ($mySQL->runQuery(
+                        "UPDATE IPTU SET SMSEnviado = SMSEnviado + 1  
+                        WHERE codContrato = {$_POST['codContrato']} AND ano = {$_POST['ano']}"
+                    )) {
+                        echo json_encode('SMS enviado. Dados atualizados com sucesso');
+                    } else {
+                        throw new Exception("SMS enviado com sucesso, mas não foi possivel salvar dados de envio");
+                    }
                 } else {
-                    throw new Exception("SMS enviado com sucesso, mas não foi possivel salvar dados de envio");
+                    if ($mySQL->runQuery(
+                        "INSERT INTO IPTU (codContrato, ano, SMSEnviado) VALUES({$_POST['codContrato']}, {$_POST['ano']}, 1)"
+                    )) {
+                        echo json_encode('SMS enviado. Dados atualizados com sucesso');
+                    } else {
+                        throw new Exception("SMS enviado com sucesso, mas não foi possivel salvar dados de envio");
+                    }
                 }
             } else {
                 throw new Exception("Erro ao eviar o sms");

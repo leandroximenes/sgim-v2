@@ -31,8 +31,14 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
             background: #F8F8FF;
         }
 
-        #tb-ir td, th{
+        #tb-ir td,
+        th {
             height: 30px;
+        }
+
+        #tb-ir a {
+            float: left;
+            margin-right: 5px;
         }
 
         .clearfix:after {
@@ -122,8 +128,12 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
             $('#cbmAno').val(year);
             ListarLocador();
 
-            $("input:checkbox[name=parcela]").change(function (){
+            $("input:checkbox[name=parcela]").change(function() {
                 ListarLocador();
+            });
+
+            $('body').on('click','.sendSMS', function(){
+                enviaSMS($(this));
             });
         });
 
@@ -146,6 +156,31 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                 },
                 error: function() {
                     alert('Não foi possivel listar os Locadores');
+                }
+            });
+        }
+
+        function enviaSMS(_this) {
+            _this.children().attr('src', '../../img/loading.gif');
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: '../../ajax/IPTU.php?acao=enviarSMS',
+                data: {
+                    ano: $('#cbmAno').val(),
+                    codContrato: _this.closest("tr").find(".codContrato").html(),
+                    celular: _this.siblings('.telefone').val(),
+                    pNome: _this.siblings('.PNome').val(),
+                    nome: _this.closest("tr").find(".nome").html(),
+                    parcela: _this.closest("tr").find(".ProximaParcela").val(),
+                    id_iptu: _this.closest("tr").find(".id_iptu").val(),
+                },
+                success: function() {
+                    _this.children().attr('src', '../../img/ok-sendemail.png');
+                },
+                error: function(e) {
+                    _this.children().attr('src', '../../img/nt-sendemail.png');
+                    alert(e.responseText);
                 }
             });
         }

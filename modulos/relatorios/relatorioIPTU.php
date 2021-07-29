@@ -133,9 +133,6 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
                     $('.cmbParcela').on('change', function() {
                         salvarParcela($(this));
                     });
-                    $('.sendSMS').on('click', function() {
-                        enviaSMS($(this));
-                    });
                 },
                 error: function() {
                     $('#tbodyInquilinosIR').html('Não foi possivel trazer os inquilinos');
@@ -183,37 +180,7 @@ if (isset($_SESSION["SISTEMA_codPessoa"])) {
             });
         }
 
-        function enviaSMS(_this) {
-            _this.children().attr('src', '../../img/loading.gif');
-            var parcela = 1;
-            _this.closest("tr").find("select").each(function(index) {
-                if(parcela == 1){
-                    if($(this).val() == 0){
-                        parcela = index + 1;
-                    }
-                }
-            });
-            $.ajax({
-                type: "POST",
-                async: false,
-                url: '../../ajax/IPTU.php?acao=enviarSMS',
-                data: {
-                    ano: $('#cbmAno').val(),
-                    codContrato: _this.closest("tr").find(".codContrato").html(),
-                    celular: _this.siblings('.telefone').val(),
-                    pNome: _this.siblings('.PNome').val(),
-                    nome: _this.closest("tr").find(".nome").html(),
-                    parcela: parcela
-                },
-                success: function() {
-                    _this.children().attr('src', '../../img/ok-sendemail.png');
-                },
-                error: function(e) {
-                    _this.children().attr('src', '../../img/nt-sendemail.png');
-                    alert(e.responseText);
-                }
-            });
-        }
+        
     </script>
 
     <table border='0' width='90%' height="500" cellpadding='3' cellspacing='1'>
