@@ -19,7 +19,7 @@ $sql = "SELECT *, c.codContrato AS codigoContrato, ti.nome AS tipoImovel, ip.id 
         LEFT JOIN IPTU ip ON (c.codContrato = ip.codContrato AND ano = {$_POST['ano']})
         WHERE c.codContrato NOT IN (SELECT codContrato FROM contratoEncerramento)";
 foreach ($_POST['parcelas'] as $key => $value) {
-    $sql .= " AND " . $value . " IS NULL ";
+    $sql .= " AND ($value IS NULL OR $value = 0)  ";
 }
 $sql .= " ORDER BY nomeLocador, nomeInquilino ";
 try {

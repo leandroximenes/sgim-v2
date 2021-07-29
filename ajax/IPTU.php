@@ -72,7 +72,7 @@ switch ($_GET['acao']) {
 
 
 
-            $msg_list = "$telefone; Prezado $nome, nao identificamos junto ao GDF a quitacao do IPTU $iptu. Se foi efetuado o pagamento, favor remeter copia do recibo.Tabakal Imobiliaria; IPTU-{$id}" . "\n";
+            $msg_list = "$telefone; Prezado(a) $nome, nao identificamos junto ao GDF a quitacao do IPTU $iptu. Se foi efetuado o pagamento, favor remeter copia do recibo.Tabakal Imobiliaria; IPTU-{$id}" . "\n";
             $callBack = HumanMultipleSend::CALLBACK_INACTIVE;
             $responses = $humanMultipleSend->sendMultipleList($tipo, $msg_list, $callBack);
 
