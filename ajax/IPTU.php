@@ -5,17 +5,11 @@ include_once("../conexao/conexao.php");
 
 switch ($_GET['acao']) {
     case 'ListarLocador':
-        $sql = "SELECT DISTINCT codPessoaLocador, nome FROM contrato c 
-                INNER JOIN pessoa p ON (c.codPessoaLocador = p.codPessoa)
-                WHERE {$_POST['ano']} BETWEEN DATE_FORMAT(c.dataInicio,'%Y') AND DATE_FORMAT(c.dataFim,'%Y')
-                    AND c.codContrato NOT IN (SELECT codContrato FROM contratoEncerramento)
-                    AND c.informouFim = 0
-                ORDER BY nome
-                ";
+        $sql = "SELECT DISTINCT codLocador, locador  FROM contratosAtivosPorAno WHERE ano = {$_POST['ano']}";
 
         $rs = $mySQL->runQuery($sql);
         while ($rsLinha = mysqli_fetch_assoc($rs)) {
-            echo "<option value=\"{$rsLinha['codPessoaLocador']}\">" . utf8_decode($rsLinha['nome']) . "</option>";
+            echo "<option value=\"{$rsLinha['codLocador']}\">" . utf8_decode($rsLinha['locador']) . "</option>";
         }
         break;
 
